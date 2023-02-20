@@ -2,13 +2,13 @@
 // import Race from "../Race/Race";
 // import General from "../General/General";
 // import Generator from "../Generator/Generator";
-// import Generator from "../Stat/Stat";
+// import Stat from "../Stat/Stat";
 // import Route from "../Way/Way";
 // import Preview from "../Preview/Preview";
-// import Generator from "../Notice/Notice";
-// import Generator from "../Sheet/Sheet";
-// import Generator from "../Profile/Profile";
-// import Generator from "../Register/Register";
+// import Notice from "../Notice/Notice";
+// import Sheet from "../Sheet/Sheet";
+// import Profile from "../Profile/Profile";
+// import Register from "../Register/Register";
 
 
 // const races = [
