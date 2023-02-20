@@ -1,7 +1,7 @@
 // import Class from "../Class/Class";
 // import Race from "../Race/Race";
-// import General from "../General/General";
-// import Generator from "../Generator/Generator";
+import General from "../General/General";
+import Generator from "../Generator/Generator";
 // import Stat from "../Stat/Stat";
 // import Route from "../Way/Way";
 // import Preview from "../Preview/Preview";
@@ -26,8 +26,8 @@ const Scriptorium = () => {
           bonus2={race.bonus2}
         />
       ))} */}
-      {/* <General religions={religions} /> */}
-      {/* <Generator /> */}
+      <General religions={religions} />
+      <Generator />
       {/* <Stat/> */}
       {/* <Way /> */}
       {/* <Preview /> */}
