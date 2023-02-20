@@ -5,6 +5,10 @@
 // import Stat from "../Stat/Stat";
 // import Route from "../Way/Way";
 // import Preview from "../Preview/Preview";
+// import Notice from "../Notice/Notice";
+// import Sheet from "../Sheet/Sheet";
+// import Profile from "../Profile/Profile";
+// import Register from "../Register/Register";
 // import User from "../User/User";
 // import Notice from "../Notice/Notice";
 // import Sheet from "../Sheet/Sheet";
