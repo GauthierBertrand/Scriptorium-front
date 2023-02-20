@@ -1,7 +1,7 @@
 // import Profile from "../Class/Class";
 // import Race from "../Race/Race";
-// import General from "../General/General";
-// import Generator from "../Generator/Generator";
+import General from "../General/General";
+import Generator from "../Generator/Generator";
 // import Stat from "../Stat/Stat";
 // import Route from "../Way/Way";
 // import Preview from "../Preview/Preview";
@@ -62,52 +62,52 @@
 //   },
 // ];
 
-// const religions = [
-//   {
-//     name: "Aucune",
-//     description: "",
-//   },
-//   {
-//     name: "Bahamut",
-//     description: "The Platinum Dragon, god of good dragons, justice, honor, protection, nobility, and wisdom.",
-//   },
-//   {
-//     name: "Bane",
-//     description: "The Black Lord, god of war, conquest, and tyranny.",
-//   },
-//   {
-//     name: "Beshaba",
-//     description: "Lady Doom, goddess of misfortune, accidents, bad luck, and random mischief.",
-//   },
-//   {
-//     name: "Corellon Larethian",
-//     description: "Creator of the elves, god of magic, music, arts, crafts, poetry, and warfare.",
-//   },
-//   {
-//     name: "Gruumsh",
-//     description: "One-Eye, god of orcs, conquest, survival, strength, and territory.",
-//   },
-//   {
-//     name: "Lathander",
-//     description: "The Morninglord, god of dawn, renewal, birth, vitality, and youth.",
-//   },
-//   {
-//     name: "Moradin",
-//     description: "Dwarf-Father, god of dwarves, creation, smithing, protection, family, and war.",
-//   },
-//   {
-//     name: "Mystra",
-//     description: "The Lady of Mysteries, goddess of magic, spells, the Weave, knowledge, and secrets.",
-//   },
-//   {
-//     name: "Shar",
-//     description: "Mistress of the Night, goddess of darkness, secrets, loss, forgetfulness, and caverns.",
-//   },
-//   {
-//     name: "Tymora",
-//     description: "Lady Luck, goddess of good fortune, victory, skill, adventure, and boldness.",
-//   },
-// ];
+const religions = [
+  {
+    name: "Aucune",
+    description: "",
+  },
+  {
+    name: "Bahamut",
+    description: "The Platinum Dragon, god of good dragons, justice, honor, protection, nobility, and wisdom.",
+  },
+  {
+    name: "Bane",
+    description: "The Black Lord, god of war, conquest, and tyranny.",
+  },
+  {
+    name: "Beshaba",
+    description: "Lady Doom, goddess of misfortune, accidents, bad luck, and random mischief.",
+  },
+  {
+    name: "Corellon Larethian",
+    description: "Creator of the elves, god of magic, music, arts, crafts, poetry, and warfare.",
+  },
+  {
+    name: "Gruumsh",
+    description: "One-Eye, god of orcs, conquest, survival, strength, and territory.",
+  },
+  {
+    name: "Lathander",
+    description: "The Morninglord, god of dawn, renewal, birth, vitality, and youth.",
+  },
+  {
+    name: "Moradin",
+    description: "Dwarf-Father, god of dwarves, creation, smithing, protection, family, and war.",
+  },
+  {
+    name: "Mystra",
+    description: "The Lady of Mysteries, goddess of magic, spells, the Weave, knowledge, and secrets.",
+  },
+  {
+    name: "Shar",
+    description: "Mistress of the Night, goddess of darkness, secrets, loss, forgetfulness, and caverns.",
+  },
+  {
+    name: "Tymora",
+    description: "Lady Luck, goddess of good fortune, victory, skill, adventure, and boldness.",
+  },
+];
 
 const Scriptorium = () => {
   return (
@@ -122,8 +122,8 @@ const Scriptorium = () => {
           bonus2={race.bonus2}
         />
       ))} */}
-      {/* <General religions={religions} /> */}
-      {/* <Generator /> */}
+      <General religions={religions} />
+      <Generator />
       {/* <Stat/> */}
       {/* <Way /> */}
       {/* <Preview /> */}
