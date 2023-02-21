@@ -62,52 +62,54 @@ import Way from "../Way/Way";
 //   },
 // ];
 
-const religions = [
-  {
-    name: "Aucune",
-    description: "",
-  },
-  {
-    name: "Bahamut",
-    description: "The Platinum Dragon, god of good dragons, justice, honor, protection, nobility, and wisdom.",
-  },
-  {
-    name: "Bane",
-    description: "The Black Lord, god of war, conquest, and tyranny.",
-  },
-  {
-    name: "Beshaba",
-    description: "Lady Doom, goddess of misfortune, accidents, bad luck, and random mischief.",
-  },
-  {
-    name: "Corellon Larethian",
-    description: "Creator of the elves, god of magic, music, arts, crafts, poetry, and warfare.",
-  },
-  {
-    name: "Gruumsh",
-    description: "One-Eye, god of orcs, conquest, survival, strength, and territory.",
-  },
-  {
-    name: "Lathander",
-    description: "The Morninglord, god of dawn, renewal, birth, vitality, and youth.",
-  },
-  {
-    name: "Moradin",
-    description: "Dwarf-Father, god of dwarves, creation, smithing, protection, family, and war.",
-  },
-  {
-    name: "Mystra",
-    description: "The Lady of Mysteries, goddess of magic, spells, the Weave, knowledge, and secrets.",
-  },
-  {
-    name: "Shar",
-    description: "Mistress of the Night, goddess of darkness, secrets, loss, forgetfulness, and caverns.",
-  },
-  {
-    name: "Tymora",
-    description: "Lady Luck, goddess of good fortune, victory, skill, adventure, and boldness.",
-  },
-];
+// const religions = [
+//   {
+//     name: "Aucune",
+//     description: "",
+//   },
+//   {
+//     name: "Bahamut",
+//     description: "The Platinum Dragon, god of good dragons, justice, honor, protection, nobility, and wisdom.",
+//   },
+//   {
+//     name: "Bane",
+//     description: "The Black Lord, god of war, conquest, and tyranny.",
+//   },
+//   {
+//     name: "Beshaba",
+//     description: "Lady Doom, goddess of misfortune, accidents, bad luck, and random mischief.",
+//   },
+//   {
+//     name: "Corellon Larethian",
+//     description: "Creator of the elves, god of magic, music, arts, crafts, poetry, and warfare.",
+//   },
+//   {
+//     name: "Gruumsh",
+//     description: "One-Eye, god of orcs, conquest, survival, strength, and territory.",
+//   },
+//   {
+//     name: "Lathander",
+//     description: "The Morninglord, god of dawn, renewal, birth, vitality, and youth.",
+//   },
+//   {
+//     name: "Moradin",
+//     description: "Dwarf-Father, god of dwarves, creation, smithing, protection, family, and war.",
+//   },
+//   {
+//     name: "Mystra",
+//     description: "The Lady of Mysteries, goddess of magic, spells, the Weave, knowledge, and secrets.",
+//   },
+//   {
+//     name: "Shar",
+//     description: "Mistress of the Night, goddess of darkness, secrets, loss, forgetfulness, and caverns.",
+//   },
+//   {
+//     name: "Tymora",
+//     description: "Lady Luck, goddess of good fortune, victory, skill, adventure, and boldness.",
+//   },
+// ];
+
+import randomIcon from "./../Way/arrow.png";
 
 const Scriptorium = () => {
   return (
@@ -125,7 +127,23 @@ const Scriptorium = () => {
       {/* <General religions={religions} />
       <Generator /> */}
       {/* <Stat/> */}
-      <Way />
+      <Way
+        stats={[
+          { name: "For", mod: 2 },
+          { name: "Dex", mod: 1 },
+          { name: "Con", mod: 1 },
+          { name: "Int", mod: 0 },
+          { name: "Sag", mod: 0 },
+          { name: "Cha", mod: 3 },
+        ]}
+        otherStats={[
+          { type: "atk", picture: {randomIcon}, value: 30 },
+          { type: "atk", picture: {randomIcon}, value: 10 },
+          { type: "atk", picture: {randomIcon}, value: 1 },
+          { type: "def", picture: {randomIcon}, value: 15 },
+          { type: "def", picture: {randomIcon}, value: 10 },
+        ]}
+        points="2" />
       {/* <Preview /> */}
       {/* <Notice /> */}
       {/* <Sheet /> */}

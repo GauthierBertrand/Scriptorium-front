@@ -3,43 +3,26 @@ import "./../reset.css";
 import "./Way.scss";
 import imageTest from "./arrow.png";
 
-const Way = () => {
+const Way = (stats, otherStats, points) => {
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
 
-    const handleOpenDescription = () => {
+    const handleToggleDescription = () => {
         setDescriptionOpen(!descriptionOpen);
     }
 
 return (
     <>
     <div className="stats-header">
-        <div className="stats-header-mod">
-            <div className="stat-info">
-                For
-                <div className="stat-mod">+2</div>
+        {stats.map((stat, index) => (
+            <div className="stats-header-mod"
+                key={index}>
+                <div className="stat-info">
+                    {stat.name}
+                    <div className="stat-mod">{stat.mod}</div>
+                </div>
             </div>
-            <div className="stat-info">
-                For
-                <div className="stat-mod">+2</div>
-            </div>
-            <div className="stat-info">
-                For
-                <div className="stat-mod">+2</div>
-            </div>
-            <div className="stat-info">
-                For
-                <div className="stat-mod">+2</div>
-            </div>
-            <div className="stat-info">
-                For
-                <div className="stat-mod">+2</div>
-            </div>
-            <div className="stat-info">
-                For
-                <div className="stat-mod">+2</div>
-            </div>
-        </div>
+        ))}
         <div className="stats-header-other">
             <div className="stat-atk">
                 <div className="stat-type atk">
@@ -67,7 +50,7 @@ return (
             </div>
         </div>
         <div className="way-points">
-            <button className="remaining-points">2</button>
+            <button className="remaining-points">{points}</button>
             <div className="remaining-points-text">points disponibles</div>
         </div>
     </div>
@@ -77,7 +60,7 @@ return (
             Nom de la voie
         </div>
             <button className={`race ${descriptionOpen ? "way-button hidden" : "way-button"}`}
-                    onClick={handleOpenDescription}>
+                    onClick={handleToggleDescription}>
                         &#9207;
             </button>
         {descriptionOpen && (
@@ -94,7 +77,7 @@ return (
                 </div>
             </div>
             <button className="way-button open"
-                onClick={handleOpenDescription}>
+                onClick={handleToggleDescription}>
                     &#9207;
             </button>
             </>
