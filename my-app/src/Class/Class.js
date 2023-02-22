@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,6 +15,11 @@ import "./Class.scss";
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
 const Class = () => {
+    const [equipment, setEquipment] = useState(false);
+
+    const handleToggleEquipment = () => {
+        setEquipment(!equipment);
+    };
 
     return (
         <div className="class-container">
@@ -21,15 +28,34 @@ const Class = () => {
             </h1>
 
             <div className="class-img-container">
-                <button className="equipment-button">
-                    <img className="equipment-button-img" src="https://fakeimg.pl/20x20/000/" alt="Classe" />
+                <button className="equipment-button" onClick={handleToggleEquipment}>
+                    <img className="equipment-button-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
                 </button>
-                <img className="class-img" src="https://fakeimg.pl/250x250/fff/" alt="Classe" />
+                {equipment && (
+                    <div className="equipment-container">
+                        <div className="equipment-item">
+                            <img className="equipment-item-img" src="https://fakeimg.pl/30x30/0f0/" alt="Classe" />
+                            <p className="equipment-item-name">Nom de l'équipement</p>
+                            <p className="equipment-item-description">Description de l'équipement Description de l'équipement</p>
+                        </div>
+                        <div className="equipment-item">
+                            <img className="equipment-item-img" src="https://fakeimg.pl/30x30/0f0/" alt="Classe" />
+                            <p className="equipment-item-name">Nom de l'équipement</p>
+                            <p className="equipment-item-description">Description de l'équipement Description de l'équipement</p>
+                        </div>
+                        <div className="equipment-item">
+                            <img className="equipment-item-img" src="https://fakeimg.pl/30x30/0f0/" alt="Classe" />
+                            <p className="equipment-item-name">Nom de l'équipement</p>
+                            <p className="equipment-item-description">Description de l'équipement Description de l'équipement</p>
+                        </div>
+                    </div>
+                )}
+                <img className="class-img" src="https://fakeimg.pl/1000x800/f0f/" alt="Classe" />
                 <div className="class-stat">
                     <div className="class-stat-name">
                         For
                     </div>
-                    <div className="class-stat-name">
+                    <div className="class-stat-name recommended">
                         Dex
                     </div>
                     <div className="class-stat-name">
@@ -41,7 +67,7 @@ const Class = () => {
                     <div className="class-stat-name">
                         Sag
                     </div>
-                    <div className="class-stat-name">
+                    <div className="class-stat-name recommended">
                         Cha
                     </div>
                 </div>
@@ -54,40 +80,44 @@ const Class = () => {
             </div>
 
             <Swiper
+                className="class-carrousel"
                 loop={true}
-                navigation={false}
+                navigation={true}
                 keyboard={true}
                 mousewheel={true}
                 centeredSlides={true}
                 slidesPerView={3}
-                spaceBetween={10}>
-                <div className="class-carrousel">
+                spaceBetween={3}>
                     <SwiperSlide>
                         <div className="class-carrousel-item">
-                            <img className="class-carrousel-img" src="https://fakeimg.pl/70x70/000/" alt="Classe" />
+                            <img className="class-carrousel-img" src="https://fakeimg.pl/90x90/000/" alt="Classe" />
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="class-carrousel-item">
-                            <img className="class-carrousel-img" src="https://fakeimg.pl/70x70/000/" alt="Classe" />
+                            <img className="class-carrousel-img" src="https://fakeimg.pl/90x90/000/" alt="Classe" />
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="class-carrousel-item">
-                            <img className="class-carrousel-img" src="https://fakeimg.pl/70x70/000/" alt="Classe" />
+                            <img className="class-carrousel-img" src="https://fakeimg.pl/90x90/000/" alt="Classe" />
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="class-carrousel-item">
-                            <img className="class-carrousel-img" src="https://fakeimg.pl/70x70/000/" alt="Classe" />
+                            <img className="class-carrousel-img" src="https://fakeimg.pl/90x90/000/" alt="Classe" />
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="class-carrousel-item">
-                            <img className="class-carrousel-img" src="https://fakeimg.pl/70x70/000/" alt="Classe" />
+                            <img className="class-carrousel-img" src="https://fakeimg.pl/90x90/000/" alt="Classe" />
                         </div>
                     </SwiperSlide>
-                </div>
+                    <SwiperSlide>
+                        <div className="class-carrousel-item">
+                            <img className="class-carrousel-img" src="https://fakeimg.pl/90x90/000/" alt="Classe" />
+                        </div>
+                    </SwiperSlide>
             </Swiper>
         </div>
     );
