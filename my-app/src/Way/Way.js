@@ -3,7 +3,7 @@ import "./../reset.css";
 import "./Way.scss";
 import imageTest from "./arrow.png";
 
-const Way = (stats, otherStats, points) => {
+const Way = ({ stats, otherStats, points }) => {
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
 
@@ -14,15 +14,14 @@ const Way = (stats, otherStats, points) => {
 return (
     <>
     <div className="stats-header">
+    <div className="stats-header-mod">
         {stats.map((stat, index) => (
-            <div className="stats-header-mod"
-                key={index}>
-                <div className="stat-info">
-                    {stat.name}
-                    <div className="stat-mod">{stat.mod}</div>
-                </div>
+            <div className="stat-info" key={index}>
+                {stat.name}
+                <div className="stat-mod">{stat.mod}</div>
             </div>
         ))}
+        </div>
         <div className="stats-header-other">
             <div className="stat-atk">
                 <div className="stat-type atk">
