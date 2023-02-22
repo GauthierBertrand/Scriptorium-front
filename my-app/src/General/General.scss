@@ -1,0 +1,74 @@
+
+  .general-page {
+    position: relative;
+    background-color: rgb(175, 117, 9);
+  }
+  
+  .selected-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    position: relative;
+  }
+  
+  .general-form-head  {
+    display: flex;
+    margin: 0.5rem 0.5rem 0 0.5rem;
+    justify-content: space-between;
+  }
+
+  .general-form-head >* {
+    border: solid red;
+    }
+
+    .general-form-head-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .general-form-head-right {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .general-form-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex: 0 0 33%;
+    }
+
+    .general-form-row >* {
+        flex: 0 0 60px;
+        border: solid red;
+    }
+
+  .backstory-input {
+    margin-top: auto;
+    border: 1px solid black;
+    padding: 1rem;
+    width: 90%;
+    height: 40vh;
+  }
+
+  .religion-box {
+    flex-grow: 1;
+    border: 1px solid black;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: solid red;
+    text-align: center;
+  }
+
+  .religion-description {
+    border: 1px solid black;
+    height: 15vh;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: solid red;
+  }
+
+  .religion-dropdown {
+    margin-left: 1rem;
+    }

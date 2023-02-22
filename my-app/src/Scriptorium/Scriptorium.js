@@ -3,7 +3,7 @@
 // import General from "../General/General";
 // import Generator from "../Generator/Generator";
 // import Stat from "../Stat/Stat";
-// import Route from "../Way/Way";
+// import Way from "../Way/Way";
 // import Preview from "../Preview/Preview";
 // import User from "../User/User";
 // import Notice from "../Notice/Notice";

@@ -1,61 +1,18 @@
-import { useState } from "react";
-import "./Race.scss";
+.races-container {
+  width: 100vw;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
 
-const Race = ({ name, description, bonus1, bonus2 }) => {
-  const [expanded, setExpanded] = useState(false);
-  const [selectedBonus, setSelectedBonus] = useState("");
+  .races-title {
+    padding: 1em;
+    text-align: center;
+    font-size: 28px;
+  }
+}
 
-  const handleRaceClick = () => {
-    setExpanded(!expanded);
-    if (!expanded) {
-      setSelectedBonus("");
-    }
-  };
-
-  const handleBonusClick = (bonus) => {
-    if (selectedBonus !== bonus) {
-      setSelectedBonus(bonus);
-    } else {
-      setSelectedBonus("");
-    }
-  };
-
-  return (
-    <div className={`race ${expanded ? "expanded" : ""}`}>
-      <div className="race-header" onClick={handleRaceClick}>
-        <h3 className="race-title">{name}</h3>
-      </div>
-      <div className="race-content">
-        {expanded && (
-          <>
-            <p>{description}</p>
-            <div className="race-bonuses">
-              {bonus1 && (
-                <button
-                  className={`race-bonus ${
-                    selectedBonus === bonus1 ? "selected" : ""
-                  }`}
-                  onClick={() => handleBonusClick(bonus1)}
-                >
-                  {bonus1}
-                </button>
-              )}
-              {bonus2 && (
-                <button
-                  className={`race-bonus ${
-                    selectedBonus === bonus2 ? "selected" : ""
-                  }`}
-                  onClick={() => handleBonusClick(bonus2)}
-                >
-                  {bonus2}
-                </button>
-              )}
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default Race;
+.races-frames {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
