@@ -1,4 +1,4 @@
-// import Profile from "../Class/Class";
+import Class from "../Class/Class";
 // import Race from "../Race/Race";
 // import General from "../General/General";
 // import Generator from "../Generator/Generator";
@@ -109,12 +109,10 @@
 //   },
 // ];
 
-import randomIcon from "./../Way/arrow.png";
-
 const Scriptorium = () => {
   return (
     <div>
-      {/* <Class /> */}
+      <Class />
       {/* {races.map((race, index) => (
         <Race
           key={index}
@@ -127,23 +125,7 @@ const Scriptorium = () => {
       {/* <General religions={religions} />
       <Generator /> */}
       {/* <Stat/> */}
-      <Way
-        stats={[
-          { name: "For", mod: 2 },
-          { name: "Dex", mod: 1 },
-          { name: "Con", mod: 1 },
-          { name: "Int", mod: 0 },
-          { name: "Sag", mod: 0 },
-          { name: "Cha", mod: 3 },
-        ]}
-        otherStats={[
-          { type: "atk", picture: {randomIcon}, value: 30 },
-          { type: "atk", picture: {randomIcon}, value: 10 },
-          { type: "atk", picture: {randomIcon}, value: 1 },
-          { type: "def", picture: {randomIcon}, value: 15 },
-          { type: "def", picture: {randomIcon}, value: 10 },
-        ]}
-        points="2" />
+      {/* <Way /> */}
       {/* <Preview /> */}
       {/* <Notice /> */}
       {/* <Sheet /> */}
