@@ -5,6 +5,7 @@
 // import Stat from "../Stat/Stat";
 // import Route from "../Way/Way";
 // import Preview from "../Preview/Preview";
+// import User from "../User/User";
 // import Notice from "../Notice/Notice";
 // import Sheet from "../Sheet/Sheet";
 // import Profile from "../Profile/Profile";
