@@ -1,4 +1,4 @@
-// import Profile from "../Class/Class";
+// import Class from "../Class/Class";
 // import Race from "../Race/Race";
 // import General from "../General/General";
 // import Generator from "../Generator/Generator";
