@@ -15,6 +15,7 @@
 const Scriptorium = () => {
   return (
     <div>
+      {/* <User /> */}
       {/* <Class /> */}
       {/* {races.map((race, index) => (
         <Race
