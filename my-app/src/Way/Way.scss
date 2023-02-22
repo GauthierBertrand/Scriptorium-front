@@ -150,9 +150,13 @@
 }
 
 .way-button.open {
-    transform: rotate(180deg);
-    position: absolute;
-    bottom: -20%;
+    transform: rotate(180deg) translate(0, 0.5em);
+    z-index: 100;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    max-height: 20px;
+    color: black;
 }
 
 .hidden {
