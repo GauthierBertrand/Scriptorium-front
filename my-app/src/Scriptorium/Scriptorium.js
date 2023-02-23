@@ -17,7 +17,7 @@ const Scriptorium = () => {
     <div>
       {/* <User /> */}
       {/* <Class /> */}
-      {races.map((race, index) => (
+      {/* {races.map((race, index) => (
         <Race
           key={index}
           name={race.name}

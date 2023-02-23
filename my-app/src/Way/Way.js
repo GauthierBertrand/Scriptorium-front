@@ -1,4 +1,3 @@
-// 
 import { useState } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
