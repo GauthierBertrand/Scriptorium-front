@@ -33,6 +33,7 @@ const Class = () => {
                 </button>
                 {equipment && (
                     <div className="equipment-container">
+                    {/*Map le tableau des équipements*/}
                         <div className="equipment-item">
                             <img className="equipment-item-img" src="https://fakeimg.pl/30x30/0f0/" alt="Classe" />
                             <p className="equipment-item-name">Nom de l'équipement</p>
@@ -52,6 +53,7 @@ const Class = () => {
                 )}
                 <img className="class-img" src="https://fakeimg.pl/1000x800/f0f/" alt="Classe" />
                 <div className="class-stat">
+                {/*Map le tableau des stats*/}
                     <div className="class-stat-name">
                         For
                     </div>
@@ -82,12 +84,12 @@ const Class = () => {
             <Swiper
                 className="class-carrousel"
                 loop={true}
-                navigation={true}
                 keyboard={true}
                 mousewheel={true}
                 centeredSlides={true}
                 slidesPerView={3}
                 spaceBetween={3}>
+                {/*Map le tableau des classes pour générer les SwiperSlide*/}
                     <SwiperSlide>
                         <div className="class-carrousel-item">
                             <img className="class-carrousel-img" src="https://fakeimg.pl/90x90/000/" alt="Classe" />
