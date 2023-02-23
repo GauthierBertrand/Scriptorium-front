@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import axios from "axios";
+// import axios from "axios";
 
 import "swiper/css";
 import "swiper/css/navigation";
