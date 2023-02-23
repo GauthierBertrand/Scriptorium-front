@@ -1,4 +1,4 @@
-// import Class from "../Class/Class";
+import Class from "../Class/Class";
 // import Race from "../Race/Race";
 // import General from "../General/General";
 // import Generator from "../Generator/Generator";
@@ -16,7 +16,7 @@ const Scriptorium = () => {
   return (
     <div>
       {/* <User /> */}
-      {/* <Class /> */}
+      <Class />
       {/* {races.map((race, index) => (
         <Race
           key={index}

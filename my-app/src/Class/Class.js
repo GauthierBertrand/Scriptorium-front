@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// import axios from "axios";
+import axios from "axios";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -17,22 +17,38 @@ import "./Class.scss";
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
 const Class = () => {
-    const [equipment, setEquipment] = useState(false);
+    const [equipmentModal, setEquipmentModal] = useState(false);
+    const [equipment, setEquipment] = useState([]);
+    const [classes, setClasses] = useState([]);
+    const [recommendedStats, setRecommendedStats] = useState([]);
+    // Essayer de tout faire partir du state de classes, ce sera plus simple
 
     const handleToggleEquipment = () => {
-        setEquipment(!equipment);
+        setEquipmentModal(!equipmentModal);
     };
 
-    // useEffect(() => {
-    //     axios.get("http://localhost:8080/api/classes")
-    //     .then((response) => {
-    //         console.log(response.data);
-    //     })
-    //     .catch((error) => {
-    //         alert("Erreur API : Les données des classes n'ont pas pu être récupérées.");
-    //         console.error(error);
-    //     })
-    // }, []);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/classes")
+        .then((response) => {
+            console.log(response.data.classes);
+            response.data.classes.map((classes) => (
+                setEquipment(equipment => [...equipment, classes.equipments]),
+                setClasses(classes),
+                Object.entries(classes.stats).forEach(([stat, value]) => (
+                    // setRecommendedStats(recommendedStats => [...recommendedStats, stat])
+                    // console.log(stat, value),
+                    setRecommendedStats(recommendedStats => [...recommendedStats, {key: stat, value: value}])
+                )),
+                console.log(recommendedStats)
+            ));
+        })
+
+        .catch((error) => {
+            alert("Erreur API : Les données des classes n'ont pas pu être récupérées.");
+            console.error(error);
+        })
+    }, []);
 
     return (
         <div className="class-container">
@@ -44,33 +60,26 @@ const Class = () => {
                 <button className="equipment-button" onClick={handleToggleEquipment}>
                     <img className="equipment-button-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
                 </button>
-                {equipment && (
+                {equipmentModal && (
                     <div className="equipment-container">
-                    {/*Map le tableau des équipements*/}
-                        <div className="equipment-item">
-                            <img className="equipment-item-img" src="https://fakeimg.pl/30x30/0f0/" alt="Classe" />
-                            <p className="equipment-item-name">Nom de l'équipement</p>
-                            <p className="equipment-item-description">Description de l'équipement Description de l'équipement</p>
-                        </div>
-                        <div className="equipment-item">
-                            <img className="equipment-item-img" src="https://fakeimg.pl/30x30/0f0/" alt="Classe" />
-                            <p className="equipment-item-name">Nom de l'équipement</p>
-                            <p className="equipment-item-description">Description de l'équipement Description de l'équipement</p>
-                        </div>
-                        <div className="equipment-item">
-                            <img className="equipment-item-img" src="https://fakeimg.pl/30x30/0f0/" alt="Classe" />
-                            <p className="equipment-item-name">Nom de l'équipement</p>
-                            <p className="equipment-item-description">Description de l'équipement Description de l'équipement</p>
-                        </div>
+                    {equipment.map((equipment, index) => (
+                       <div className="equipment-item" key={index}>
+                            <img className="equipment-item-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
+                            <p className="equipment-item-name">{equipment.name} x{equipment.number}</p>
+                            <p className="equipment-item-description">{equipment.description}</p>
+                        </div> 
+                    ))}
                     </div>
                 )}
-                <img className="class-img" src="https://fakeimg.pl/1000x800/f0f/" alt="Classe" />
+                <img className="class-img" src="https://fakeimg.pl/1000x800/EFC874/" alt="Classe" />
                 <div className="class-stat">
-                {/*Map le tableau des stats*/}
-                    <div className="class-stat-name">
-                        For
-                    </div>
-                    <div className="class-stat-name recommended">
+                    {/* {recommendedStats.map((stat) => (
+                        <div className="class-stat-name" key={stat.key}>
+                                {stat.key} {stat.value}
+                        </div>
+                        ))} */}
+                    
+                        {/* <div className="class-stat-name recommended">
                         Dex
                     </div>
                     <div className="class-stat-name">
@@ -84,7 +93,7 @@ const Class = () => {
                     </div>
                     <div className="class-stat-name recommended">
                         Cha
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
