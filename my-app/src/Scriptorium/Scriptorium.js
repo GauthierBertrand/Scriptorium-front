@@ -26,7 +26,7 @@ const Scriptorium = () => {
           bonus2={race.bonus2}
         />
       ))} */}
-      {/* <General religions={religions} /> */}
+      {/* <General */}
       {/* <Generator /> */}
       {/* <Stat/> */}
       {/* <Way /> */}
