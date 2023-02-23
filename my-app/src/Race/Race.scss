@@ -1,0 +1,18 @@
+.races-container {
+  width: 100vw;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+
+  .races-title {
+    padding: 1em;
+    text-align: center;
+    font-size: 28px;
+  }
+}
+
+.races-frames {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
