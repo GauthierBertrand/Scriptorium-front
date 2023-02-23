@@ -1,7 +1,8 @@
 // import Class from "../Class/Class";
 // import Race from "../Race/Race";
 // import General from "../General/General";
-// import Generator from "../Generator/Generator";
+import Generator from "../Generator/Generator";
+// import Stat from "../Stat/Stat";
 // import Stat from "../Stat/Stat";
 // import Route from "../Way/Way";
 // import Preview from "../Preview/Preview";
@@ -31,7 +32,7 @@ const Scriptorium = () => {
         />
       ))} */}
       {/* <General religions={religions} /> */}
-      {/* <Generator /> */}
+      <Generator />
       {/* <Stat/> */}
       {/* <Way /> */}
       {/* <Preview /> */}

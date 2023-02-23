@@ -1,15 +1,18 @@
 import { createContext, useState } from 'react';
 
-const GlobalContext = createContext(null);
+export const GlobalContext = createContext({
+  diceRolls: [],
+  setDiceRolls: () => {},
+});
 
-const GlobalProvider = ({ children }) => {
-
+const GlobalProvider = (props) => {
+  const [diceRolls, setDiceRolls] = useState(Array(6).fill(0));
 
   return (
-    <GlobalContext.Provider value={null}>
-      {children}
+    <GlobalContext.Provider value={{ diceRolls, setDiceRolls }}>
+      {props.children}
     </GlobalContext.Provider>
   );
 };
 
-export { GlobalContext, GlobalProvider };
+export default GlobalProvider;

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './Generator.scss';
+import { GlobalContext } from './GlobalContext';
 
 const Generator = () => {
-  const [diceRolls, setDiceRolls] = useState(Array(6).fill(0));
+  const { diceRolls, setDiceRolls } = useContext(GlobalContext);
   const [selectedGeneration, setSelectedGeneration] = useState(null);
 
   const rollDice = () => {
@@ -46,6 +47,5 @@ const Generator = () => {
     </div>
   );
 };
-
 
 export default Generator;
