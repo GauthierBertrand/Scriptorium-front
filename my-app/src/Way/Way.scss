@@ -1,0 +1,164 @@
+.stats-header {
+    padding: 0.3em;
+    max-height: 15vh;
+    font-family: Arial, Helvetica, sans-serif;
+
+    &-mod {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        .stat-info {
+            display: inline-flex;
+            width: 5%;
+            margin: 0.5em;
+            padding: 0.2em 1.5em 0.2em 0.2em;
+            border: 1px solid #000;
+            position: relative;
+            font-size: 3.7vw;
+
+            .stat-mod {
+                font-size: 4.2vw;
+                height: fit-content;
+                width: auto;
+                padding: 0.2em 0.4em;
+                border: 1px solid #000;
+                border-radius: 100%;
+                position: absolute;
+                right: -25%;
+                top: -45%;
+                z-index: 100;
+                background-color: white;
+            }
+        }
+
+    }
+
+    &-other {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 2em;
+
+        .stat-atk, .stat-def {
+            display: flex;
+        }
+
+        .stat-type {
+            min-width: 13vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding-bottom: 1em;
+
+            &-value {
+                font-size: 4vw;
+                padding: 0.2em 0.2em 0.2em 0.5em;
+                border: 1px solid #000;
+                position: absolute;
+                bottom: 30%;
+                left: 55%;
+            }
+        }
+    }
+
+    .way-points {
+        display: flex;
+        justify-content: space-around;
+        width: 55vw;
+        margin-left: 42vw;
+
+        .remaining-points {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            border-radius: 100%;
+            font-size: 110%;
+            background-color: transparent;
+
+            &-text {
+                margin-top: 3vh;
+                margin-right: 1vw;
+                font-size: 80%;
+                font-style: italic;
+            }
+        }
+    }
+}
+
+.way-container {
+    margin-top: 2em;
+    text-align: center;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+
+    .way-name {
+    padding: 1em 1em 2em;
+    border: 1px solid #000;
+    text-align: left;
+    font-size: 1.2em;
+    }
+
+    .way-button {
+        height: 1em;
+        position: absolute;
+        right: 10%;
+        bottom: 55%;
+        font-size: 120%;
+        border: none;
+        background-color: transparent;
+
+    }
+}
+
+.way-ability {
+    text-align: left;
+    padding-left: 1em;
+    padding-top: 1em;
+
+    &-name {
+        font-size: 1.1em;
+        padding-bottom: 0.5em;
+    }
+
+    &-description {
+        font-size: 0.9em;
+        padding-bottom: 2em;
+    }
+
+    &-bonus {
+        font-size: 1.1em;
+        padding-bottom: 0.5em;
+    }
+}
+
+.way-changes-container {
+    margin-top: 1.5em;
+    padding-left: 1em;
+    text-align: left;
+
+    .way-changes {
+        display: flex;
+        padding: 0.5em;
+
+        & img {
+            padding-right: 1em;
+        }
+    }
+
+}
+
+.way-button.open {
+    transform: rotate(180deg) translate(0, 0.5em);
+    z-index: 100;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    max-height: 20px;
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
