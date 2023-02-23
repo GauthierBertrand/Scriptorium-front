@@ -26,7 +26,7 @@ const Scriptorium = () => {
           bonus2={race.bonus2}
         />
       ))} */}
-      {/* <General */}
+      {/* <General /> */}
       {/* <Generator /> */}
       {/* <Stat/> */}
       {/* <Way /> */}
