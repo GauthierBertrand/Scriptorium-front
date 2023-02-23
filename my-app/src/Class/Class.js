@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import axios from "axios";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -20,6 +22,17 @@ const Class = () => {
     const handleToggleEquipment = () => {
         setEquipment(!equipment);
     };
+
+    // useEffect(() => {
+    //     axios.get("http://localhost:8080/api/classes")
+    //     .then((response) => {
+    //         console.log(response.data);
+    //     })
+    //     .catch((error) => {
+    //         alert("Erreur API : Les données des classes n'ont pas pu être récupérées.");
+    //         console.error(error);
+    //     })
+    // }, []);
 
     return (
         <div className="class-container">
