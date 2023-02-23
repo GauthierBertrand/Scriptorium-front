@@ -1,11 +1,14 @@
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import Scriptorium from './Scriptorium/Scriptorium';
-import GlobalContext from './GlobalContext';
+import { BrowserRouter } from 'react-router-dom';
+// import GlobalProvider from './GlobalContext';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-    <GlobalContext>
+    <BrowserRouter>
+    {/* <GlobalProvider> */}
     <Scriptorium />
-    </GlobalContext>
+    {/* </GlobalProvider> */}
+    </BrowserRouter>
 );
