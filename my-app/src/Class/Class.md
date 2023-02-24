@@ -34,28 +34,35 @@ const Class = () => {
         setEquipmentModal(!equipmentModal);
     };
 
+    let statsTable = [];
+
     useEffect(() => {
         axios.get("http://localhost:8080/api/classes")
         .then((response) => {
-            const classData = response.data.classes;
-            console.log(classData);
-            setClasses(classData);
-            const statsData = classData.map((classObject) => ( {
-                class: classObject.name,
-                stat: Object.keys(classObject.stats),
-                value: Object.values(classObject.stats)
-            }));
-            setClassesStats(statsData);
+            console.log(response.data.classes);
+            response.data.classes.map((classes) => (
+                // setEquipment(equipment => [...equipment, classes.equipments]),
+                setClasses(classes),
+                // statsTable = classes.stats,
+                // console.log(classes.stats),
+                setClassesStats(classesStats => [
+                    ...classesStats, {
+                        class: {name: classes.name,
+                            stat: Object.keys(classes.stats),
+                            value: classes.stats.value
+                        }}
+                ]),
+                console.log(classesStats)
+                // console.log(Object.entries(classes.stats))
+                // Object.entries(classes.stats).forEach(([stat, value]) => (
+                //     setRecommendedStats(recommendedStats => [...recommendedStats, {stat: stat, isRecommended: value}])
+            ))    
         })
         .catch((error) => {
             alert("Erreur API : Les données des classes n'ont pas pu être récupérées.");
             console.error(error);
         })
     }, []);
-
-    useEffect(() => {
-        console.log(classesStats);
-    }, [classesStats]);
 
     return (
         <div className="class-container">
