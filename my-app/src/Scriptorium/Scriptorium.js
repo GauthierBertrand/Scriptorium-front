@@ -18,7 +18,7 @@ import { UserProvider } from "../UserContext";
 const Scriptorium = () => {
   return (
     <div>
-        <UserProvider>
+      <UserProvider>
           {/* <Navbar /> */}
         </UserProvider>
         <Routes>

@@ -21,7 +21,8 @@
             position: absolute;
             right: 0.5em;
             top: 2.5em;
-            width: 70%;
+            width: 77%;
+            max-width: 20em;
             max-height: 60%;
             height: auto;
             padding: 0.5em;
@@ -31,23 +32,22 @@
             overflow: scroll;
 
             .equipment-item {
+
+                &-title {
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
-                flex-wrap: wrap;
-                margin-bottom: 1em;
 
-                &-img, &-name {
-                    padding-bottom: 0.5em;
-                }
-
-                &-img {
-                    padding-right: 1em;
+                    &-img {
+                        padding-right: 0.5em;
+                    }
                 }
 
                 &-description {
-                    width: 60vw;
+                    padding-left: 5em;
                     font-size: 0.8em;
+                    text-align: left;
+                    margin-bottom: 0.5em;
                 }
             }
         }

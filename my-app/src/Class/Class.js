@@ -18,8 +18,8 @@ SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
 const Class = () => {
     const [equipmentModal, setEquipmentModal] = useState(false);
-    // const [equipment, setEquipment] = useState([]);
     const [classes, setClasses] = useState([]);
+    const [equipment, setEquipment] = useState([]);
     const [classesStats, setClassesStats] = useState([]);
     const [selectedClass, setSelectedClass] = useState(0);
 
@@ -37,7 +37,7 @@ const Class = () => {
             const classData = response.data.classes;
             console.log(classData);
             setClasses(classData);
-            const statsData = classData.map((classObject) => ( {
+            const statsData = classData.map((classObject) => ({
                 class: classObject.name,
                 stat: Object.entries(classObject.stats).map((stat) => ({
                     name: stat[0],
@@ -45,7 +45,10 @@ const Class = () => {
                 })),
             }));
             setClassesStats(statsData);
-            // setSelectedClass(0);
+            const equipmentData  = classData.map((classObject) => (
+                classObject.equipments
+            ));
+            setEquipment(equipmentData);
         })
         .catch((error) => {
             alert("Erreur API : Les données des classes n'ont pas pu être récupérées.");
@@ -55,7 +58,8 @@ const Class = () => {
 
     useEffect(() => {
         console.log(classesStats);
-    }, [classesStats]);
+        console.log(equipment);
+    }, [classesStats, equipment]);
 
     return (
         
@@ -70,13 +74,15 @@ const Class = () => {
                 </button>
                 {equipmentModal && (
                     <div className="equipment-container">
-                    {/* {equipment.map((equipment, index) => (
-                       <div className="equipment-item" key={index}>
-                            <img className="equipment-item-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
-                            <p className="equipment-item-name">{equipment.name} x{equipment.number}</p>
+                    {equipment[selectedClass].map((equipment, index) => (
+                        <div className="equipment-item" key={index}>
+                            <div className="equipment-item-title" key={index}>
+                                <img className="equipment-item-title-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
+                                <p className="equipment-item-title-name">{equipment.name} x{equipment.number}</p>
+                            </div>
                             <p className="equipment-item-description">{equipment.description}</p>
-                        </div> 
-                    ))} */}
+                    </div>
+                    ))}
                     </div>
                 )}
                 <img className="class-img" src="https://fakeimg.pl/1000x800/EFC874/" alt="Classe" />
