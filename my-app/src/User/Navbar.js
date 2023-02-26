@@ -3,6 +3,7 @@ import { UserContext } from '../UserContext';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import './BurgerMenu.scss';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -57,19 +58,19 @@ const Navbar = () => {
       <div className={`burger-menu ${open ? 'open' : ''}`}>
         <ul>
           <li>
-            <a href="#">Mes fiches</a>
+            <Link to="/fiches">Mes fiches</Link>
           </li>
           <li>
-            <a href="#">Paramètres</a>
+            <Link to="/paramètres">Paramètres</Link>
           </li>
           <li>
-            <a href="#">Mention légales</a>
+            <Link to="mentions-legales">Mention légales</Link>
           </li>
           {user && (
             <li>
-              <a href="#" onClick={handleLogout}>
+              <Link to="/classes" onClick={handleLogout}>
                 Log Out
-              </a>
+              </Link>
             </li>
           )}
         </ul>
