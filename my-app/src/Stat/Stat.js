@@ -6,13 +6,22 @@ import acIcon from "./ac.png";
 import rangedIcon from "./ranged.png";
 import meleeIcon from "./melee.png";
 import magicIcon from "./magic.png";
-import { GlobalContext } from '../GlobalContext';
-
+import next from "./next.png";
+import { GlobalContext } from "../GlobalContext";
+import { Link, link } from "react-router-dom";
 
 const Stat = () => {
-  const { diceRolls, stats, setStats, primaryStats,secondaryStats, statModifiers, setPrimaryStats} = useContext(GlobalContext);
+  const {
+    diceRolls,
+    stats,
+    setStats,
+    primaryStats,
+    secondaryStats,
+    statModifiers,
+    setPrimaryStats,
+  } = useContext(GlobalContext);
   const [footerArray, setFooterArray] = useState(diceRolls);
-  
+
   // Add the useEffect hook to update footerArray whenever diceRolls changes
   useEffect(() => {
     setFooterArray(diceRolls);
@@ -32,7 +41,7 @@ const Stat = () => {
   //     setPrimaryStats(newStatsObj);
   //   }
   // };
-  
+
   // const handleMoveRight = (index) => {
   //   const newStats = [...stats];
   //   if (index < newStats.length - 1 && newStats[index] !== "" && newStats[index + 1] === "") {
@@ -47,8 +56,7 @@ const Stat = () => {
   //     setPrimaryStats(newStatsObj);
   //   }
   // };
-  
-  
+
   const handleFooterButtonClick = (value) => {
     const emptyStatIndex = stats.findIndex((stat) => stat === "");
     if (emptyStatIndex !== -1) {
@@ -63,11 +71,10 @@ const Stat = () => {
         setPrimaryStats((prevStats) => ({
           ...prevStats,
           [Object.keys(prevStats)[emptyStatIndex]]: value,
-        }));      
+        }));
       }
     }
   };
-
 
   const handleRemoveStat = (index) => {
     const newStats = [...stats];
@@ -84,20 +91,31 @@ const Stat = () => {
       }));
     }
   };
-  
-  
 
-  const PrimaryStatItem = ({ name, value, index, /*handleMoveLeft, handleMoveRight,*/ handleRemoveStat, statModifiers }) => {
-    const modifier = value ? (statModifiers[name] >= 0 ? `+${statModifiers[name]}` : statModifiers[name]) : '';
-    console.log('value:', value);
+  const PrimaryStatItem = ({
+    name,
+    value,
+    index,
+    /*handleMoveLeft, handleMoveRight,*/ handleRemoveStat,
+    statModifiers,
+  }) => {
+    const modifier = value
+      ? statModifiers[name] >= 0
+        ? `+${statModifiers[name]}`
+        : statModifiers[name]
+      : "";
+    console.log("value:", value);
     return (
       <div key={name} className="primary-stat-item">
         <div className="primary-stat-header">
           <div className="primary-stat-modifier">{modifier}</div>
           <div className="primary-stat-name">{name}</div>
         </div>
-        <button className="primary-stat-text" onClick={() => handleRemoveStat(index)}>
-          {value === 0 || value === "" ? '' : value}
+        <button
+          className="primary-stat-text"
+          onClick={() => handleRemoveStat(index)}
+        >
+          {value === 0 || value === "" ? "" : value}
         </button>
         {/* {index < 5 && (
           <button className="primary-stat-move-right" onClick={() => handleMoveRight(index)}>
@@ -122,47 +140,55 @@ const Stat = () => {
     magic: magicIcon,
   };
 
-return (
-<div className="secondary-stat-container">
-  <div className="secondary-stat-row">
-    {Object.entries(secondaryStats).map(([key, value]) => {
-      const iconName = iconMap[key];
-      const displayValue = value === 0 ? 0 : (value >= 0 ? `+${value}` : value);
-      return (
-        <div className="secondary-stat-item" key={key}>
-          <img src={iconName} alt={`${key} Icon`} />
-          <div className="secondary-stat-value">{displayValue}</div>
-        </div>
-      );
-    })}
-  </div>
-   <div className="primary-stat-container">
-  {Object.keys(primaryStats).map((key, index) => (
-    <PrimaryStatItem
-      key={key}
-      name={key}
-      value={primaryStats[key]}
-      index={index}
-      statModifiers={statModifiers}
-      handleRemoveStat={handleRemoveStat}
-      // handleMoveLeft={handleMoveLeft}
-      // handleMoveRight={handleMoveRight}
-    />
-  ))}
-      <div className="primary-stat-footer">
-        {footerArray.map((value, index) => (
-          <button
-            key={index}
-            className="primary-stat-button"
-            onClick={() => handleFooterButtonClick(value)}
-          >
-            {value}
-          </button>
-        ))}
+  return (
+    <div className="secondary-stat-container">
+      <div className="secondary-stat-row">
+        {Object.entries(secondaryStats).map(([key, value]) => {
+          const iconName = iconMap[key];
+          const displayValue =
+            value === 0 ? 0 : value >= 0 ? `+${value}` : value;
+          return (
+            <div className="secondary-stat-item" key={key}>
+              <img src={iconName} alt={`${key} Icon`} />
+              <div className="secondary-stat-value">{displayValue}</div>
+            </div>
+          );
+        })}
       </div>
+      <div className="primary-stat-container">
+        {Object.keys(primaryStats).map((key, index) => (
+          <PrimaryStatItem
+            key={key}
+            name={key}
+            value={primaryStats[key]}
+            index={index}
+            statModifiers={statModifiers}
+            handleRemoveStat={handleRemoveStat}
+            // handleMoveLeft={handleMoveLeft}
+            // handleMoveRight={handleMoveRight}
+          />
+        ))}
+        <div className="primary-stat-footer">
+          {footerArray.map((value, index) => (
+            <button
+              key={index}
+              className="primary-stat-button"
+              onClick={() => handleFooterButtonClick(value)}
+            >
+              {value}
+            </button>
+          ))}
+        </div>
+      </div>
+      <Link to="/voies">
+        <img
+          className="next-page"
+          src={next}
+          alt="Chevron pointing down for the next page"
+        />
+      </Link>
     </div>
-  </div>
-);
+  );
 };
 
 export default Stat;
