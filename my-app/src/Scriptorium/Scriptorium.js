@@ -11,19 +11,19 @@
 // import Profile from "../Profile/Profile";
 // import Register from "../Register/Register";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 const Scriptorium = () => {
   return (
+  <Routes>
     <div>
       {/* <User /> */}
-      <Router>
-      {/* <Route path="/classe" component={Class} /> */}
+      {/* <Route path="/classe" element={<Class/>} /> */}
       {/* {races.map((race, index) => (
         <Route 
           key={index}
           path="/general" 
-          render={(props) => (
+          element={(props) => (
             <Race
               {...props}
               name={race.name}
@@ -34,17 +34,17 @@ const Scriptorium = () => {
           )}
         />
       ))} */}
-    {/* <Route path="/general" component={General} />
-        <Route path="/generation-des-stats" component={Generator} />
-        <Route path="/stats" component={Stat} />
-        <Route path="/voies" component={Way} />
-        <Route path="/apercu" component={Preview} />
-        <Route path="/mentions-legales" component={Notice} />
-        <Route path="/fiches" component={Sheet} />
-        <Route path="/profil" component={Profile} /> */}
-      </Router>
+    {/* <Route path="/general" element={<General/>} />
+        <Route path="/generation-des-stats" element={<Generator/>} />
+        <Route path="/stats" element={<Stat/>} />
+        <Route path="/voies" element={<Way/>} />
+        <Route path="/apercu" element={<Preview/>} />
+        <Route path="/mentions-legales" element={<Notice/>} />
+        <Route path="/fiches" element={<Sheet/>} />
+        <Route path="/profil" element={<Profile/>} /> */}
       {/* <Register /> */}
     </div>
+  </Routes>
   );
 };
 
