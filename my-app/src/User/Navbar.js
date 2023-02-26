@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
-import { UserContext } from '../UserContext';
-import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
-import './BurgerMenu.scss';
+import React, { useContext, useState } from "react";
+import { UserContext } from "../UserContext";
+import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
+import "./BurgerMenu.scss";
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setUser(null);
   };
 
@@ -34,9 +34,9 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="menu">
           {user ? (
-            <div className="user-info">{`Logged in as ${user.username}`}</div>
+            <div className="user-info">{`${user.username}`}</div>
           ) : (
-            <div className='auth-buttons'>
+            <div className="auth-buttons">
               <button type="button" onClick={handleShowLoginForm}>
                 Connexion
               </button>
@@ -54,7 +54,7 @@ const Navbar = () => {
       </nav>
       {showLoginForm && <LoginForm onSuccess={() => setShowLoginForm(false)} />}
       {showSignUpForm && <SignUpForm onSuccess={() => setShowSignUpForm(false)} />}
-      <div className={`burger-menu ${open ? 'open' : ''}`}>
+      <div className={`burger-menu ${open ? "open" : ""}`}>
         <ul>
           <li>
             <a href="#">Mes fiches</a>

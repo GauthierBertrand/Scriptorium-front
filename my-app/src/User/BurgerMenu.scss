@@ -1,173 +1,115 @@
-.navbar {
+.user-info {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  height: 60px;
-  padding: 0 20px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 1000;
-
-  & .menu {
-    display: flex;
-    align-items: center;
-  }
-
-  & .menu button {
-    border: none;
-    background-color: transparent;
-    font-size: 16px;
-    cursor: pointer;
-    color: #333;
-    margin-left: 10px;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  & .user-info {
-    font-size: 16px;
     margin-right: 10px;
   }
 
-  & .burger {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-    position: relative;
-    z-index: 1001;
-  }
+.burger {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  padding: 0;
+  border: solid 1px red;
+  cursor: pointer;
 
-  & .line {
-    width: 20px;
-    height: 3px;
-    background-color: #333;
-    margin: 3px 0;
-    transition: all 0.3s ease;
-  }
+.bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  margin-bottom: 5px;
+  position: relative;
+  transition: transform 0.3s;
+  z-index: 100;
+  
 
-  & .burger-menu {
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: black;
     position: absolute;
-    top: 60px;
-    right: 0;
-    z-index: 1000;
-    background-color: #ffffff;
-    border: 1px solid #e5e5e5;
-    padding: 10px;
-    display: none;
+    left: 0;
+    transition: transform 0.3s;
+  }
 
-    & ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+  &::before {
+    transform: translateY(-8px);
+  }
+
+  &::after {
+    transform: translateY(8px);
+  }
+}
+
+&.open {
+  .bar {
+    transform: rotate(45deg);
+
+    &::before {
+      transform: rotate(90deg) translateY(0);
     }
 
-    & li {
-      margin-bottom: 10px;
-      font-size: 16px;
-      color: #333;
+    &::after {
+      transform: rotate(-90deg) translateY(0);
+    }
+  }
+}
+}
+
+.burger-menu {
+  display: none;
+  position: absolute;
+  top: 33px;
+  right: 5px;
+  text-align: center;
+  padding: 7px 15px;
+  border: solid 1px black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      &:hover {
+        background-color: yellow;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.open {
+    display: block;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+
+    a {
+      color: black;
+      text-decoration: none;
 
       &:hover {
         text-decoration: underline;
       }
     }
-
-    &.open {
-      display: block;
-    }
   }
+}
 
-  & .auth-buttons {
-    display: flex;
-    align-items: center;
-  }
 
-  & .auth-buttons button {
-    border: none;
-    background-color: transparent;
-    font-size: 16px;
-    cursor: pointer;
-    color: #333;
-    margin-left: 10px;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  & .login-form {
-    position: fixed;
-    top: 60px;
-    right: 0;
-    background-color: #fff;
-    width: 300px;
-    height: 100%;
-    transform: translateX(100%);
-    transition: transform
-    0.3s ease-in-out;
-    z-index: 999;
-    display: none;
-    & .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 10px;
-    
-      & label {
-        margin-bottom: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #333;
-      }
-    
-      & input {
-        height: 30px;
-        font-size: 16px;
-        padding: 5px;
-        border: 1px solid #e5e5e5;
-      }
-    }
-    
-    & .form-actions {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-    
-    & button {
-      border: none;
-      background-color: #333;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      padding: 5px 20px;
-    
-      &:hover {
-        background-color: #444;
-      }
-    }
-    }
-    
-    &.open .burger-menu {
-    display: block;
-    }
-    
-    & .burger-menu .line:first-child {
-    transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    &.open .burger-menu .line:nth-child(2) {
-    opacity: 0;
-    }
-    
-    & .burger-menu .line:last-child {
-    transform: rotate(-45deg) translate(5px, -5px);
-    }
-    }
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
