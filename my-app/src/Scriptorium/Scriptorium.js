@@ -1,8 +1,8 @@
 // import Class from "../Class/Class";
 // import Race from "../Race/Race";
 // import General from "../General/General";
-// import Generator from "../Generator/Generator";
-// import Stat from "../Stat/Stat";
+import Generator from "../Generator/Generator";
+import Stat from "../Stat/Stat";
 // import Way from "../Way/Way";
 // import Preview from "../Preview/Preview";
 // import User from "../User/User";
@@ -10,6 +10,7 @@
 // import Sheet from "../Sheet/Sheet";
 // import Profile from "../Profile/Profile";
 // import Register from "../Register/Register";
+
 
 
 const Scriptorium = () => {
@@ -27,8 +28,8 @@ const Scriptorium = () => {
         />
       ))} */}
       {/* <General /> */}
-      {/* <Generator /> */}
-      {/* <Stat/> */}
+      <Generator />
+      <Stat/>
       {/* <Way /> */}
       {/* <Preview /> */}
       {/* <Notice /> */}

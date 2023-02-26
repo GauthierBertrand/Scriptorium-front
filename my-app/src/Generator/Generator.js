@@ -12,9 +12,6 @@ const Generator = () => {
       const rolls = [roll];
       for (let i = 0; i < 3; i++) {
         let newRoll = Math.floor(Math.random() * 6) + 1;
-        while (rolls.includes(newRoll)) {
-          newRoll = Math.floor(Math.random() * 6) + 1;
-        }
         rolls.push(newRoll);
       }
       const minRoll = Math.min(...rolls);
@@ -26,7 +23,7 @@ const Generator = () => {
   };
 
   const generateStandardArray = () => {
-    setDiceRolls([10, 11, 12, 13, 14, 15]);
+    setDiceRolls([15, 14, 13, 12, 11, 10]);
     setSelectedGeneration('standard');
   };
 
