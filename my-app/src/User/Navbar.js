@@ -3,6 +3,7 @@ import { UserContext } from "../UserContext";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import "./BurgerMenu.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -17,6 +18,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUser(null);
+    setOpen(false);
   };
 
   const handleShowLoginForm = () => {
@@ -29,6 +31,7 @@ const Navbar = () => {
     setShowLoginForm(false);
   };
 
+  const isLoggedIn = user != null;
   return (
     <div>
       <nav className="navbar">
@@ -46,30 +49,32 @@ const Navbar = () => {
             </div>
           )}
         </div>
+        {isLoggedIn && (
         <div className="burger" onClick={handleBurgerClick}>
           <div className="line"></div>
           <div className="line"></div>
           <div className="line"></div>
         </div>
+      )}
       </nav>
       {showLoginForm && <LoginForm onSuccess={() => setShowLoginForm(false)} />}
       {showSignUpForm && <SignUpForm onSuccess={() => setShowSignUpForm(false)} />}
       <div className={`burger-menu ${open ? "open" : ""}`}>
         <ul>
           <li>
-            <a href="#">Mes fiches</a>
+            <Link className="link" to="/mes-fiches">Mes fiches</Link>
           </li>
           <li>
-            <a href="#">Paramètres</a>
+            <Link className="link" to="/parametres">Paramètres</Link>
           </li>
           <li>
-            <a href="#">Mention légales</a>
+            <Link className="link" to="mentions-legales">Mention légales</Link>
           </li>
           {user && (
             <li>
-              <a href="#" onClick={handleLogout}>
+              <Link className="link" to="#" onClick={handleLogout}>
                 Log Out
-              </a>
+              </Link>
             </li>
           )}
         </ul>
