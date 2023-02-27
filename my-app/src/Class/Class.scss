@@ -2,6 +2,7 @@
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
+    position: relative;
 
     .class-title {
         font-size: 1.5rem;
@@ -86,7 +87,7 @@
     }    
 
     .class-description {
-        height: 25vh;
+        height: 18vh;
         max-height: 30vh;
         overflow: scroll;
     
@@ -131,6 +132,9 @@
     }
 
     .next-page {
+        position: relative;
+        bottom: 2.2em;
+        left: 16vw;
         z-index: 100;
     }
 }
