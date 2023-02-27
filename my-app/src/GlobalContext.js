@@ -9,10 +9,12 @@ export const GlobalContext = createContext({
   classBonus: { HP: 0 },
   selectedRace: null,
   selectedClass: 0,
+  classesStats: [],
   setSelectedRace: () => {},
   setSelectedClass: () => {},
   setRaceBonus: () => {},
   setClassBonus: () => {},
+  setClassStats: () => {},
 });
 
 const GlobalProvider = (props) => {

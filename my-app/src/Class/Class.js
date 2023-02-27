@@ -20,7 +20,6 @@ SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 const Class = () => {
     const {
         selectedClass,
-        setSelectedClass,
         classesStats,
         setClassesStats,
         classBonus,
