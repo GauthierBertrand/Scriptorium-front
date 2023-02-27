@@ -13,11 +13,24 @@ export const GlobalContext = createContext({
   setSelectedClass: () => {},
   setRaceBonus: () => {},
   setClassBonus: () => {},
+  setPrimaryStats: () => {},
+  setSecondaryStats: () => {},
+  statModifiers: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+  setStatModifiers: () => {},
+  stats: [],
+  setStats: () => {},
+  selectedRaceAbility: null,
+  setSelectedRaceAbility: () => {},
 });
 
 const GlobalProvider = (props) => {
   const [diceRolls, setDiceRolls] = useState(Array(6).fill(0));
   console.log(diceRolls);
+
+  const [selectedRace, setSelectedRace] = useState(null);
+  const [selectedRaceAbility, setSelectedRaceAbility] = useState(null);
+
+  
   const [stats, setStats] = useState(Array(6).fill(""));
   const [primaryStats, setPrimaryStats] = useState({
     STR: 0,
@@ -73,8 +86,6 @@ const GlobalProvider = (props) => {
     melee: 0,
     magic: 0,
   });
-  const [selectedRace, setSelectedRace] = useState(null);
-  const [selectedClass, setSelectedClass] = useState(null);
 
   useEffect(() => {
     const { STR, DEX, CON, INT, WIS, CHA } = primaryStats;
@@ -101,6 +112,8 @@ const GlobalProvider = (props) => {
     setSecondaryStats(newSecondaryStats);
   }, [primaryStats, raceBonus, classBonus, statModifiers, secondaryStats.AC]);
 
+  
+
   return (
     <GlobalContext.Provider
       value={{
@@ -119,9 +132,9 @@ const GlobalProvider = (props) => {
         classBonus,
         setClassBonus,
         selectedRace,
-        selectedClass,
         setSelectedRace,
-        setSelectedClass,
+        selectedRaceAbility,
+        setSelectedRaceAbility,
       }}
     >
       {props.children}

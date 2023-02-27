@@ -1,5 +1,5 @@
 // import Class from "../Class/Class";
-// import Race from "../Race/Race";
+import Race from "../Race/Race";
 // import General from "../General/General";
 import Generator from "../Generator/Generator";
 import Stat from "../Stat/Stat";
@@ -19,32 +19,18 @@ const Scriptorium = () => {
   return (
     <div>
       <UserProvider>
-          <Navbar />
-        </UserProvider>
-        <Routes>
-          <Route path="/profile" component={ProtectedRoute(Profile)} />
-          <Route path="/parametres" component={ProtectedRoute(Settings)} />
+        <Navbar />
+      </UserProvider>
+      <Routes>
+        <Route path="/profile" component={ProtectedRoute(Profile)} />
+        <Route path="/parametres" component={ProtectedRoute(Settings)} />
         {/* <Route path="/mentions-legales" component={(MentionsLegales)} /> */}
         {/* <Route path="/classe" element={<Class/>} /> */}
-        {/* {races.map((race, index) => (
-          <Route 
-            key={index}
-            path="/general" 
-            element={(props) => (
-              <Race
-                {...props}
-                name={race.name}
-                description={race.description}
-                bonus1={race.bonus1}
-                bonus2={race.bonus2}
-              />
-            )}
-          />
-        ))} */}
-      {/* <Route path="/general" element={<General/>} /> */}
-          <Route path="/generation-des-stats" element={<Generator/>} />
-          <Route path="/stats" element={<Stat/>} />
-          {/* <Route path="/voies" element={<Way/>} />
+        <Route path="/races" element={<Race/>} />
+        {/* <Route path="/general" element={<General/>} /> */}
+        <Route path="/generation-des-stats" element={<Generator />} />
+        <Route path="/stats" element={<Stat />} />
+        {/* <Route path="/voies" element={<Way/>} />
           <Route path="/apercu" element={<Preview/>} />
           <Route path="/mentions-legales" element={<Notice/>} />
           <Route path="/fiches" element={<Sheet/>} />
