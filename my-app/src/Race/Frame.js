@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "../GlobalContext";
 import { useSwipeable } from "react-swipeable";
+import { Link } from "react-router-dom";
 import "./Frame.scss";
 
 
@@ -62,6 +63,7 @@ const Frame = ({ name, description, picture, racialAbilities }) => {
               </button>
             )}
             {racialAbilities?.[1]?.name && (
+              <Link to="/generation-des-stats">
               <button
                 className={`race-bonus ${
                   selectedRaceAbility === racialAbilities[1].name
@@ -72,6 +74,7 @@ const Frame = ({ name, description, picture, racialAbilities }) => {
               >
                 {racialAbilities[1].name}
               </button>
+              </Link>
             )}
           </div>
         </div>
