@@ -19,7 +19,7 @@ const Scriptorium = () => {
   return (
     <div>
       <UserProvider>
-          {/* <Navbar /> */}
+          <Navbar />
         </UserProvider>
         <Routes>
           {/* <Route path="/profile" component={ProtectedRoute(Profile)} /> */}
