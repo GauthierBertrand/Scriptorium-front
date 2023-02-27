@@ -72,7 +72,7 @@ const Navbar = () => {
           </li>
           {user && (
             <li>
-              <Link to="/classes" onClick={handleLogout}>
+              <Link to="/classe" onClick={handleLogout}>
                 Log Out
               </Link>
             </li>
