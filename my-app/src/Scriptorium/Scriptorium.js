@@ -5,7 +5,7 @@ import Class from "../Class/Class";
 // import Stat from "../Stat/Stat";
 // import Way from "../Way/Way";
 // import Preview from "../Preview/Preview";
-// import Navbar from "../User/Navbar";
+import Navbar from "../User/Navbar";
 // import Notice from "../Notice/Notice";
 // import Sheet from "../Sheet/Sheet";
 // import Profile from "../Profile/Profile";
