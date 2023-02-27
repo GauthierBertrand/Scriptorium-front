@@ -3,6 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { Link } from "react-router-dom";
+
 import axios from "axios";
 
 import { GlobalContext } from "../GlobalContext";
@@ -14,6 +16,8 @@ import "swiper/css/mousewheel";
 
 import "./../reset.css";
 import "./Class.scss";
+
+import next from "./../assets/images/next.png";
 
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
@@ -103,7 +107,6 @@ const Class = () => {
                 </p>
             )}
             </div>
-
             <Swiper
                 className="class-carrousel"
                 loop={true}
@@ -122,6 +125,13 @@ const Class = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
+            <Link to="/races">
+                <img
+                className="next-page"
+                src={next}
+                alt="Chevron pointing down for the next page"
+                />
+            </Link>
         </div>
     );
 };
