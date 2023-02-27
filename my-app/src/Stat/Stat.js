@@ -6,9 +6,9 @@ import acIcon from "./ac.png";
 import rangedIcon from "./ranged.png";
 import meleeIcon from "./melee.png";
 import magicIcon from "./magic.png";
-import next from "./next.png";
+import next from "./../assets/images/next.png";
 import { GlobalContext } from "../GlobalContext";
-import { Link, link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Stat = () => {
   const {
