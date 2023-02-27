@@ -56,11 +56,6 @@ const Class = () => {
         })
     }, []);
 
-    // useEffect(() => {
-    //     console.log(classesStats);
-    //     console.log(equipment);
-    // }, [classesStats, equipment]);
-
     return (
         
         <div className="class-container">
