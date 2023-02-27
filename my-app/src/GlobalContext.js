@@ -8,7 +8,7 @@ export const GlobalContext = createContext({
   raceBonus: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
   classBonus: { HP: 0 },
   selectedRace: null,
-  selectedClass: 0,
+  selectedClass: null,
   classesStats: [],
   setSelectedRace: () => {},
   setSelectedClass: () => {},
@@ -37,8 +37,6 @@ const GlobalProvider = (props) => {
     melee: 0,
     magic: 0,
   });
-  console.log(primaryStats.DEX);
-  console.log(secondaryStats.INIT);
   const [statModifiers, setStatModifiers] = useState({
     STR: 0,
     DEX: 0,
@@ -61,27 +59,23 @@ const GlobalProvider = (props) => {
     melee: 0,
     magic: 0,
   });
-  const [classBonus, setClassBonus] = useState({
-    STR: 0,
-    DEX: 0,
-    CON: 0,
-    INT: 0,
-    WIS: 0,
-    CHA: 0,
-    HP: 8,
-    INIT: 0,
-    AC: 0,
-    ranged: 0,
-    melee: 0,
-    magic: 0,
-  });
+  const [classBonus, setClassBonus] = useState([{
+    HP: 0
+  }]);
   const [selectedRace, setSelectedRace] = useState(null);
   const [selectedClass, setSelectedClass] = useState(0);
-  const [classesStats, setClassesStats] = useState([]);
+  const [classesStats, setClassStats] = useState([]);
 
   const handleSelectClass = (index) => {
     setSelectedClass(index);
-}
+  }
+
+  const handleClassBonus = () => {
+    if (classBonus[selectedClass]) {
+      return classBonus[selectedClass].HP;
+    }
+    console.log(classBonus);
+  }
 
   useEffect(() => {
     const { STR, DEX, CON, INT, WIS, CHA } = primaryStats;
@@ -98,15 +92,16 @@ const GlobalProvider = (props) => {
 
   useEffect(() => {
     const newSecondaryStats = {
-      HP: classBonus.HP + statModifiers.CON,
-      INIT: primaryStats.DEX + raceBonus.DEX + classBonus.DEX,
+      HP: handleClassBonus() + statModifiers.CON,
+      INIT: primaryStats.DEX + raceBonus.DEX,
       AC: secondaryStats.AC,
-      ranged: statModifiers.DEX + raceBonus.DEX + classBonus.DEX,
-      melee: statModifiers.STR + raceBonus.STR + classBonus.STR,
-      magic: statModifiers.INT + raceBonus.INT + classBonus.INT,
+      ranged: statModifiers.DEX + raceBonus.DEX,
+      melee: statModifiers.STR + raceBonus.STR,
+      magic: statModifiers.INT + raceBonus.INT,
     };
     setSecondaryStats(newSecondaryStats);
-  }, [primaryStats, raceBonus, classBonus, statModifiers, secondaryStats.AC]);
+    console.log(newSecondaryStats);
+  }, [primaryStats, raceBonus, classBonus, statModifiers, secondaryStats.AC, selectedClass]);
 
   return (
     <GlobalContext.Provider
@@ -131,7 +126,7 @@ const GlobalProvider = (props) => {
         setSelectedClass,
         handleSelectClass,
         classesStats,
-        setClassesStats,
+        setClassStats,
       }}
     >
       {props.children}

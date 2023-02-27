@@ -25,8 +25,7 @@ const Class = () => {
     const {
         selectedClass,
         classesStats,
-        setClassesStats,
-        classBonus,
+        setClassStats,
         setClassBonus,
         handleSelectClass,
     } = useContext(GlobalContext);
@@ -51,11 +50,17 @@ const Class = () => {
                     isRecommended: stat[1]
                 })),
             }));
-            setClassesStats(statsData);
+            setClassStats(statsData);
             const equipmentData  = classData.map((classObject) => (
                 classObject.equipments
             ));
             setEquipment(equipmentData);
+            const classBonusData = classData.map((classObject) => ({
+                // class: classObject.name,
+                HP: classObject.hit_die
+            }));
+            console.log(classBonusData);
+            setClassBonus(classBonusData);
         })
         .catch((error) => {
             alert("Erreur API : Les données des classes n'ont pas pu être récupérées.");
@@ -115,6 +120,7 @@ const Class = () => {
                 centeredSlides={true}
                 slidesPerView={3}
                 spaceBetween={3}
+                onRealIndexChange={(swiper) => {handleSelectClass(swiper.realIndex)}}
                 onSlideChange={(swiper) => {handleSelectClass(swiper.realIndex)}}>
                 {classes.map((classObj) => (
                     <SwiperSlide key={classObj.id}>
@@ -125,7 +131,7 @@ const Class = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <Link to="/races">
+            <Link to="/generation-des-stats">
                 <img
                 className="next-page"
                 src={next}
