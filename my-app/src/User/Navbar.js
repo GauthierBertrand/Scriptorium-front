@@ -16,8 +16,9 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setUser(null);
+    setOpen(false);
   };
 
   const handleShowLoginForm = () => {
@@ -30,14 +31,15 @@ const Navbar = () => {
     setShowLoginForm(false);
   };
 
+  const isLoggedIn = user != null;
   return (
     <div>
       <nav className="navbar">
         <div className="menu">
           {user ? (
-            <div className="user-info">{`Logged in as ${user.username}`}</div>
+            <div className="user-info">{`${user.username}`}</div>
           ) : (
-            <div className='auth-buttons'>
+            <div className="auth-buttons">
               <button type="button" onClick={handleShowLoginForm}>
                 Connexion
               </button>
@@ -47,15 +49,17 @@ const Navbar = () => {
             </div>
           )}
         </div>
+        {isLoggedIn && (
         <div className="burger" onClick={handleBurgerClick}>
           <div className="line"></div>
           <div className="line"></div>
           <div className="line"></div>
         </div>
+      )}
       </nav>
       {showLoginForm && <LoginForm onSuccess={() => setShowLoginForm(false)} />}
       {showSignUpForm && <SignUpForm onSuccess={() => setShowSignUpForm(false)} />}
-      <div className={`burger-menu ${open ? 'open' : ''}`}>
+      <div className={`burger-menu ${open ? "open" : ""}`}>
         <ul>
           <li>
             <Link to="/fiches">Mes fiches</Link>
@@ -68,7 +72,7 @@ const Navbar = () => {
           </li>
           {user && (
             <li>
-              <Link to="/classes" onClick={handleLogout}>
+              <Link to="/classe" onClick={handleLogout}>
                 Log Out
               </Link>
             </li>
