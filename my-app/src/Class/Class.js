@@ -56,10 +56,10 @@ const Class = () => {
         })
     }, []);
 
-    useEffect(() => {
-        console.log(classesStats);
-        console.log(equipment);
-    }, [classesStats, equipment]);
+    // useEffect(() => {
+    //     console.log(classesStats);
+    //     console.log(equipment);
+    // }, [classesStats, equipment]);
 
     return (
         
@@ -86,20 +86,24 @@ const Class = () => {
                     </div>
                 )}
                 <img className="class-img" src="https://fakeimg.pl/1000x800/EFC874/" alt="Classe" />
-                <div className="class-stat">           
-                    {classesStats[selectedClass].stat.map((statObj, index) => (
-                        <div className={statObj.isRecommended ? "class-stat-name recommended" : "class-stat-name"}
-                            key={index}>
-                                {statObj.name.substr(0, 3)}
-                        </div>  
-                    ))}
-                </div>
+                {classesStats[selectedClass] && (
+                    <div className="class-stat">           
+                        {classesStats[selectedClass].stat.map((statObj, index) => (
+                            <div className={statObj.isRecommended ? "class-stat-name recommended" : "class-stat-name"}
+                                key={index}>
+                                    {statObj.name.substr(0, 3)}
+                            </div>  
+                        ))}
+                    </div>
+                )}
             </div>
 
             <div className="class-description">
+            {classes[selectedClass] && (
                 <p className="class-description-text">
                     {classes[selectedClass].description}
                 </p>
+            )}
             </div>
 
             <Swiper
