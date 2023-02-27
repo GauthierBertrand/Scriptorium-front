@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import axios from "axios";
+
+import { GlobalContext } from "../GlobalContext";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -11,25 +13,27 @@ import "swiper/css/keyboard";
 import "swiper/css/mousewheel";
 
 import "./../reset.css";
-
 import "./Class.scss";
 
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
 const Class = () => {
+    const {
+        selectedClass,
+        setSelectedClass,
+        classesStats,
+        setClassesStats,
+        classBonus,
+        setClassBonus,
+        handleSelectClass,
+    } = useContext(GlobalContext);
     const [equipmentModal, setEquipmentModal] = useState(false);
     const [classes, setClasses] = useState([]);
     const [equipment, setEquipment] = useState([]);
-    const [classesStats, setClassesStats] = useState([]);
-    const [selectedClass, setSelectedClass] = useState(0);
 
     const handleToggleEquipment = () => {
         setEquipmentModal(!equipmentModal);
     };
-    
-    const handleSelectClass = (index) => {
-        setSelectedClass(index);
-    }
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/classes")

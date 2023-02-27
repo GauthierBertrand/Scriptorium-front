@@ -6,9 +6,9 @@ export const GlobalContext = createContext({
   primaryStats: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
   secondaryStats: { HP: 0, INIT: 0, AC: 0, ranged: 0, melee: 0, magic: 0 },
   raceBonus: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
-  classBonus: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+  classBonus: { HP: 0 },
   selectedRace: null,
-  selectedClass: null,
+  selectedClass: 0,
   setSelectedRace: () => {},
   setSelectedClass: () => {},
   setRaceBonus: () => {},
@@ -74,7 +74,12 @@ const GlobalProvider = (props) => {
     magic: 0,
   });
   const [selectedRace, setSelectedRace] = useState(null);
-  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedClass, setSelectedClass] = useState(0);
+  const [classesStats, setClassesStats] = useState([]);
+
+  const handleSelectClass = (index) => {
+    setSelectedClass(index);
+}
 
   useEffect(() => {
     const { STR, DEX, CON, INT, WIS, CHA } = primaryStats;
@@ -122,6 +127,9 @@ const GlobalProvider = (props) => {
         selectedClass,
         setSelectedRace,
         setSelectedClass,
+        handleSelectClass,
+        classesStats,
+        setClassesStats,
       }}
     >
       {props.children}
