@@ -11,10 +11,8 @@ const Race = () => {
   const {
     selectedRace,
     setSelectedRace,
-    selectedRaceAbility,
     setSelectedRaceAbility,
     setRaceBonus,
-    raceBonus,
   } = useContext(GlobalContext);
 
   useEffect(() => {

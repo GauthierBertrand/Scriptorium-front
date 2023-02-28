@@ -10,7 +10,6 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
     setSelectedRace,
     selectedRaceAbility,
     setSelectedRaceAbility,
-    setRaceBonus,
   } = useContext(GlobalContext);
 
   const handlers = useSwipeable({
