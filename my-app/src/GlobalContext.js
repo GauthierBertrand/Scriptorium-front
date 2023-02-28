@@ -23,6 +23,7 @@ export const GlobalContext = createContext({
   setStats: () => {},
   selectedRaceAbility: null,
   setSelectedRaceAbility: () => {},
+  finalPrimaryStats: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
 });
 
 const GlobalProvider = (props) => {
@@ -82,15 +83,24 @@ const GlobalProvider = (props) => {
     }
   };
 
+  const finalPrimaryStats = {
+    FOR: primaryStats.FOR + raceBonus.FOR,
+    DEX: primaryStats.DEX + raceBonus.DEX,
+    CON: primaryStats.CON + raceBonus.CON,
+    INT: primaryStats.INT + raceBonus.INT,
+    SAG: primaryStats.SAG + raceBonus.SAG,
+    CHA: primaryStats.CHA + raceBonus.CHA,
+  };
+
   useEffect(() => {
-    const { FOR, DEX, CON, INT, SAG, CHA } = primaryStats;
+    const { FOR, DEX, CON, INT, SAG, CHA } = finalPrimaryStats;
     const newStatModifiers = {
-      FOR: FOR === 0 ? 0 : Math.floor((FOR - 10) / 2),
-      DEX: DEX === 0 ? 0 : Math.floor((DEX - 10) / 2),
-      CON: CON === 0 ? 0 : Math.floor((CON - 10) / 2),
-      INT: INT === 0 ? 0 : Math.floor((INT - 10) / 2),
-      SAG: SAG === 0 ? 0 : Math.floor((SAG - 10) / 2),
-      CHA: CHA === 0 ? 0 : Math.floor((CHA - 10) / 2),
+      FOR: FOR <= 0 ? 0 : Math.floor((FOR - 10) / 2),
+      DEX: DEX <= 0 ? 0 : Math.floor((DEX - 10) / 2),
+      CON: CON <= 0 ? 0 : Math.floor((CON - 10) / 2),
+      INT: INT <= 0 ? 0 : Math.floor((INT - 10) / 2),
+      SAG: SAG <= 0 ? 0 : Math.floor((SAG - 10) / 2),
+      CHA: CHA <= 0 ? 0 : Math.floor((CHA - 10) / 2),
     };
     setStatModifiers(newStatModifiers);
   }, [primaryStats, raceBonus, classBonus]);
@@ -98,11 +108,11 @@ const GlobalProvider = (props) => {
   useEffect(() => {
     const newSecondaryStats = {
       HP: handleClassBonus() + statModifiers.CON,
-      INIT: primaryStats.DEX + raceBonus.DEX,
+      INIT: finalPrimaryStats.DEX,
       AC: secondaryStats.AC,
-      ranged: statModifiers.DEX + raceBonus.DEX,
-      melee: statModifiers.FOR + raceBonus.FOR,
-      magic: statModifiers.INT + raceBonus.INT,
+      ranged: statModifiers.DEX,
+      melee: statModifiers.FOR,
+      magic: statModifiers.INT,
     };
     setSecondaryStats(newSecondaryStats);
   }, [
@@ -141,6 +151,7 @@ const GlobalProvider = (props) => {
         setClassStats,
         handleSelectClass,
         handleClassBonus,
+        finalPrimaryStats,
       }}
     >
       {props.children}

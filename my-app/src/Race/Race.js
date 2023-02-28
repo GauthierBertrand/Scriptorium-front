@@ -33,14 +33,24 @@ const Race = () => {
     } else {
       setSelectedRace(raceIndex);
       const raceStats = races[raceIndex]?.stats || {};
-      setRaceBonus((prevRaceBonus) => ({ ...prevRaceBonus, ...raceStats }));
+      const newRaceBonus = {
+        FOR: raceStats.FOR || 0,
+        DEX: raceStats.DEX || 0,
+        CON: raceStats.CON || 0,
+        INT: raceStats.INT || 0,
+        SAG: raceStats.SAG || 0,
+        CHA: raceStats.CHA || 0,
+      };
+      setRaceBonus((prevRaceBonus) => ({
+        ...Object.fromEntries(
+          Object.keys(prevRaceBonus).map((key) => [key, 0])
+        ),
+        ...newRaceBonus,
+      }));
     }
     setSelectedRaceAbility("");
   };
-  
-  
-  
-
+ 
   return (
     <div className="races-container">
       <h1 className="races-title">Races</h1>
