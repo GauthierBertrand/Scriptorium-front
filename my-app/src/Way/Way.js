@@ -19,6 +19,17 @@ const Way = () => {
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
     const [ways, setWays] = useState([]);
+    const [waysBonus, setWaysBonus] = useState([{
+        FOR: 0,
+        DEX: 0,
+        CON: 0,
+        INT: 0,
+        SAG: 0,
+        CHA: 0,
+        INIT: 0,
+        DEF: 0,
+        PV: 0
+    }]);
 
     const handleToggleDescription = () => {
         setDescriptionOpen(!descriptionOpen);
@@ -30,12 +41,38 @@ const Way = () => {
             const waysData = response.data.ways;
             console.log(waysData);
             setWays(waysData);
+            waysData.map((way) => (
+                way.wayAbilities.map((wayAbility) => {
+                    if (typeof wayAbility.bonus === 'object' && wayAbility.bonus !== null) {
+                        // console.log(wayAbility.bonus);
+                        const wayBonusName1 = Object.keys(wayAbility.bonus)[0];
+                        const wayBonusName2 = Object.keys(wayAbility.bonus)[1];
+                        const wayBonusValue1 = Object.values(wayAbility.bonus)[0];
+                        const wayBonusValue2 = Object.values(wayAbility.bonus)[1];
+                        if (wayBonusName2) {
+                            const wayBonuses = {
+                                [wayBonusName1]: wayBonusValue1,
+                                [wayBonusName2]: wayBonusValue2
+                            }
+                            // console.log(wayBonuses);
+                            setWaysBonus(wayBonuses);
+                        } else {
+                            const wayBonus = {
+                                [wayBonusName1]: wayBonusValue1
+                            }
+                            // console.log(wayBonus);
+                            setWaysBonus(wayBonus);
+                        }  
+                    }
+                })
+            ))
         })
         .catch((error) => {
             alert("Erreur API : Les données des voies n'ont pas pu être récupérées.");
             console.error(error);
         })
     }, []);
+    console.log(waysBonus);
 
     return (
         <>
@@ -73,8 +110,8 @@ const Way = () => {
                 </div>
             </div>
             <div className="way-points">
-                <button className="remaining-points">3</button>
-                <div className="remaining-points-text">points disponibles</div>
+                <button className="remaining-points">1</button>
+                <div className="remaining-points-text">point disponible</div>
             </div>
         </div>
 
