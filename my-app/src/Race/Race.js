@@ -33,10 +33,11 @@ const Race = () => {
     } else {
       setSelectedRace(raceIndex);
       const raceStats = races[raceIndex]?.stats || {};
-      setRaceBonus(raceStats);
+      setRaceBonus((prevRaceBonus) => ({ ...prevRaceBonus, ...raceStats }));
     }
-    setSelectedRaceAbility(""); // clear selected race ability when collapsing a race
+    setSelectedRaceAbility("");
   };
+  
   
   
 
