@@ -25,7 +25,7 @@ const Scriptorium = () => {
         <Route path="/profile" component={ProtectedRoute(Profile)} />
         <Route path="/parametres" component={ProtectedRoute(Settings)} />
         {/* <Route path="/mentions-legales" component={(MentionsLegales)} /> */}
-        <Route path="/classe" element={<Class/>} />
+        <Route path="/classes" element={<Class/>} />
         <Route path="/races" element={<Race/>} />
         {/* <Route path="/general" element={<General/>} /> */}
         <Route path="/generation-des-stats" element={<Generator />} />

@@ -131,7 +131,7 @@ const Class = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <Link to="/generation-des-stats">
+            <Link to="/races">
                 <img
                 className="next-page"
                 src={next}
