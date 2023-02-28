@@ -4,7 +4,7 @@ export const GlobalContext = createContext({
   diceRolls: [],
   setDiceRolls: () => {},
   primaryStats: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
-  secondaryStats: { HP: 0, INIT: 0, AC: 0, ranged: 0, melee: 0, magic: 0 },
+  secondaryStats: { HP: 0, INIT: 0, AC: 0, DIST: 0, CAC: 0, MAG: 0 },
   raceBonus: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
   classBonus: { HP: 0 },
   selectedRace: null,
@@ -15,26 +15,11 @@ export const GlobalContext = createContext({
   setRaceBonus: () => {},
   setClassBonus: () => {},
   setClassStats: () => {},
-  setPrimaryStats: () => {},
-  setSecondaryStats: () => {},
-  statModifiers: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
-  setStatModifiers: () => {},
-  stats: [],
-  setStats: () => {},
-  selectedRaceAbility: null,
-  setSelectedRaceAbility: () => {},
-  finalPrimaryStats: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
 });
 
 const GlobalProvider = (props) => {
   const [diceRolls, setDiceRolls] = useState(Array(6).fill(0));
-
-  const [selectedRace, setSelectedRace] = useState(null);
-  const [selectedRaceAbility, setSelectedRaceAbility] = useState(null);
-
-  const [selectedClass, setSelectedClass] = useState(0);
-  const [classesStats, setClassStats] = useState([]);
-
+  console.log(diceRolls);
   const [stats, setStats] = useState(Array(6).fill(""));
   const [primaryStats, setPrimaryStats] = useState({
     FOR: 0,
@@ -45,12 +30,12 @@ const GlobalProvider = (props) => {
     CHA: 0,
   });
   const [secondaryStats, setSecondaryStats] = useState({
-    HP: 0,
+    HP: 8,
     INIT: 0,
     AC: 0,
-    ranged: 0,
-    melee: 0,
-    magic: 0,
+    DIST: 0,
+    CAC: 0,
+    MAG: 0,
   });
   const [statModifiers, setStatModifiers] = useState({
     FOR: 0,
@@ -67,40 +52,40 @@ const GlobalProvider = (props) => {
     INT: 0,
     SAG: 0,
     CHA: 0,
+    HP: 8,
+    INIT: 0,
+    AC: 0,
+    DIST: 0,
+    CAC: 0,
+    MAG: 0,
   });
-  console.log(raceBonus);
-  const [classBonus, setClassBonus] = useState({
-    HP: 0,
-  });
+  const [classBonus, setClassBonus] = useState([{
+    HP: 0
+  }]);
+  const [selectedRace, setSelectedRace] = useState(null);
+  const [selectedClass, setSelectedClass] = useState(0);
+  const [classesStats, setClassStats] = useState([]);
 
   const handleSelectClass = (index) => {
     setSelectedClass(index);
-  };
+  }
 
   const handleClassBonus = () => {
     if (classBonus[selectedClass]) {
       return classBonus[selectedClass].HP;
     }
-  };
-
-  const finalPrimaryStats = {
-    FOR: primaryStats.FOR + raceBonus.FOR,
-    DEX: primaryStats.DEX + raceBonus.DEX,
-    CON: primaryStats.CON + raceBonus.CON,
-    INT: primaryStats.INT + raceBonus.INT,
-    SAG: primaryStats.SAG + raceBonus.SAG,
-    CHA: primaryStats.CHA + raceBonus.CHA,
-  };
+    console.log(classBonus);
+  }
 
   useEffect(() => {
-    const { FOR, DEX, CON, INT, SAG, CHA } = finalPrimaryStats;
+    const { FOR, DEX, CON, INT, SAG, CHA } = primaryStats;
     const newStatModifiers = {
-      FOR: FOR <= 0 ? 0 : Math.floor((FOR - 10) / 2),
-      DEX: DEX <= 0 ? 0 : Math.floor((DEX - 10) / 2),
-      CON: CON <= 0 ? 0 : Math.floor((CON - 10) / 2),
-      INT: INT <= 0 ? 0 : Math.floor((INT - 10) / 2),
-      SAG: SAG <= 0 ? 0 : Math.floor((SAG - 10) / 2),
-      CHA: CHA <= 0 ? 0 : Math.floor((CHA - 10) / 2),
+      FOR: FOR === 0 ? 0 : Math.floor((FOR - 10) / 2),
+      DEX: DEX === 0 ? 0 : Math.floor((DEX - 10) / 2),
+      CON: CON === 0 ? 0 : Math.floor((CON - 10) / 2),
+      INT: INT === 0 ? 0 : Math.floor((INT - 10) / 2),
+      SAG: SAG === 0 ? 0 : Math.floor((SAG - 10) / 2),
+      CHA: CHA === 0 ? 0 : Math.floor((CHA - 10) / 2),
     };
     setStatModifiers(newStatModifiers);
   }, [primaryStats, raceBonus, classBonus]);
@@ -108,21 +93,15 @@ const GlobalProvider = (props) => {
   useEffect(() => {
     const newSecondaryStats = {
       HP: handleClassBonus() + statModifiers.CON,
-      INIT: finalPrimaryStats.DEX,
+      INIT: primaryStats.DEX + raceBonus.DEX,
       AC: secondaryStats.AC,
-      ranged: statModifiers.DEX,
-      melee: statModifiers.FOR,
-      magic: statModifiers.INT,
+      DIST: statModifiers.DEX + raceBonus.DEX,
+      CAC: statModifiers.FOR + raceBonus.FOR,
+      MAG: statModifiers.INT + raceBonus.INT,
     };
     setSecondaryStats(newSecondaryStats);
-  }, [
-    primaryStats,
-    raceBonus,
-    classBonus,
-    statModifiers,
-    secondaryStats.AC,
-    selectedClass,
-  ]);
+    console.log(newSecondaryStats);
+  }, [primaryStats, raceBonus, classBonus, statModifiers, secondaryStats.AC, selectedClass]);
 
   return (
     <GlobalContext.Provider
@@ -142,16 +121,12 @@ const GlobalProvider = (props) => {
         classBonus,
         setClassBonus,
         selectedRace,
-        setSelectedRace,
-        selectedRaceAbility,
-        setSelectedRaceAbility,
         selectedClass,
+        setSelectedRace,
         setSelectedClass,
+        handleSelectClass,
         classesStats,
         setClassStats,
-        handleSelectClass,
-        handleClassBonus,
-        finalPrimaryStats,
       }}
     >
       {props.children}

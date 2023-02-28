@@ -19,6 +19,7 @@ const Stat = () => {
     secondaryStats,
     statModifiers,
     setPrimaryStats,
+    finalPrimaryStats
   } = useContext(GlobalContext);
   const [footerArray, setFooterArray] = useState(diceRolls);
 
@@ -156,11 +157,11 @@ const Stat = () => {
         })}
       </div>
       <div className="primary-stat-container">
-        {Object.keys(primaryStats).map((key, index) => (
+        {Object.keys(finalPrimaryStats).map((key, index) => (
           <PrimaryStatItem
             key={key}
             name={key}
-            value={primaryStats[key]}
+            value={finalPrimaryStats[key]}
             index={index}
             statModifiers={statModifiers}
             handleRemoveStat={handleRemoveStat}
