@@ -71,7 +71,7 @@ const Way = () => {
         console.log(selectedWayAbility);
         let newWayBonus = {};
         if (selectedWayAbility.bonus !== null) {
-            console.log(selectedWayAbility.bonus)
+            // console.log(selectedWayAbility.bonus);
             newWayBonus = {
                 FOR: selectedWayAbility.bonus.FOR ? selectedWayAbility.bonus.FOR : 0,
                 DEX: selectedWayAbility.bonus.DEX ? selectedWayAbility.bonus.DEX : 0,
@@ -86,10 +86,10 @@ const Way = () => {
         } else {
             newWayBonus = "Pas de bonus";
         }
-        console.log(newWayBonus);
-        // setWayBonus(newWayBonus);
-        // console.log(wayBonus);
-        // if (typeof wayBonus === 'object' && wayAbility.bonus !== null) {
+        // console.log(newWayBonus);
+        setWayBonus(newWayBonus);
+        console.log(wayBonus);
+        // if (typeof wayBonus === 'object' && wayBonus.bonus !== null) {
         //     Object.entries(wayBonus).map(([key, value]) => {
         //         console.log(key, value);
         //     })
