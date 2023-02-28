@@ -30,7 +30,7 @@ const GlobalProvider = (props) => {
   const [selectedRace, setSelectedRace] = useState(null);
   const [selectedRaceAbility, setSelectedRaceAbility] = useState(null);
 
-  
+
   const [stats, setStats] = useState(Array(6).fill(""));
   const [primaryStats, setPrimaryStats] = useState({
     STR: 0,
@@ -59,19 +59,14 @@ const GlobalProvider = (props) => {
     CHA: 0,
   });
   const [raceBonus, setRaceBonus] = useState({
-    STR: 0,
+    FOR: 0,
     DEX: 0,
     CON: 0,
     INT: 0,
-    WIS: 0,
+    SAG: 0,
     CHA: 0,
-    HP: 8,
-    INIT: 0,
-    AC: 0,
-    ranged: 0,
-    melee: 0,
-    magic: 0,
   });
+  console.log(raceBonus);
   const [classBonus, setClassBonus] = useState({
     STR: 0,
     DEX: 0,
@@ -79,7 +74,7 @@ const GlobalProvider = (props) => {
     INT: 0,
     WIS: 0,
     CHA: 0,
-    HP: 8,
+    HP: 0,
     INIT: 0,
     AC: 0,
     ranged: 0,

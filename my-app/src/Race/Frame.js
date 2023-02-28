@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import "./Frame.scss";
 
 
-const Frame = ({ name, description, picture, racialAbilities }) => {
+const Frame = ({ name, description, picture, racialAbilities, raceIndex }) => {
   const {
     selectedRace,
     setSelectedRace,
     selectedRaceAbility,
     setSelectedRaceAbility,
+    setRaceBonus,
   } = useContext(GlobalContext);
 
   const handlers = useSwipeable({
@@ -19,6 +20,10 @@ const Frame = ({ name, description, picture, racialAbilities }) => {
     },
     delta: 200,
   });
+
+  const handleClick = () => {
+    handleRaceClick(raceIndex);
+  };
 
   const handleRaceAbilityClick = (raceAbility) => {
     setSelectedRaceAbility((prevSelectedRaceAbility) => {
@@ -33,12 +38,13 @@ const Frame = ({ name, description, picture, racialAbilities }) => {
   const handleRaceClick = () => {
     if (selectedRace === name) {
       setSelectedRace(null);
+      setRaceBonus({});
     } else {
       setSelectedRace(name);
+      setRaceBonus(racialAbilities[0].stats); // set race bonus to the stats of the first racial ability
     }
     setSelectedRaceAbility("");
   };
-
   return (
     <div className={`race ${selectedRace === name ? "expanded" : ""}`}>
       <div className="race-header" onClick={handleRaceClick} {...handlers}>
