@@ -30,8 +30,8 @@ const Scriptorium = () => {
         {/* <Route path="/general" element={<General/>} /> */}
         <Route path="/generation-des-stats" element={<Generator />} />
         <Route path="/stats" element={<Stat />} />
-        {/* <Route path="/voies" element={<Way/>} />
-          <Route path="/apercu" element={<Preview/>} />
+         <Route path="/voies" element={<Way/>} />
+        {/*  <Route path="/apercu" element={<Preview/>} />
           <Route path="/mentions-legales" element={<Notice/>} />
           <Route path="/fiches" element={<Sheet/>} />
           <Route path="/profil" element={<Profile/>} /> */}
