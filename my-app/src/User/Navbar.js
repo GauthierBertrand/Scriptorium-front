@@ -65,7 +65,7 @@ const Navbar = () => {
             <Link to="/fiches">Mes fiches</Link>
           </li>
           <li>
-            <Link to="/paramètres">Paramètres</Link>
+            <Link to="/parametres">Paramètres</Link>
           </li>
           <li>
             <Link to="mentions-legales">Mention légales</Link>
