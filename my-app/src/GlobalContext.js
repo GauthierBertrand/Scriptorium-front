@@ -3,10 +3,10 @@ import { createContext, useState, useEffect } from "react";
 export const GlobalContext = createContext({
   diceRolls: [],
   setDiceRolls: () => {},
-  primaryStats: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+  primaryStats: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
   secondaryStats: { HP: 0, INIT: 0, AC: 0, ranged: 0, melee: 0, magic: 0 },
-  raceBonus: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
-  classBonus: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+  raceBonus: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
+  classBonus: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
   selectedRace: null,
   selectedClass: null,
   setSelectedRace: () => {},
@@ -15,7 +15,7 @@ export const GlobalContext = createContext({
   setClassBonus: () => {},
   setPrimaryStats: () => {},
   setSecondaryStats: () => {},
-  statModifiers: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+  statModifiers: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
   setStatModifiers: () => {},
   stats: [],
   setStats: () => {},
@@ -33,11 +33,11 @@ const GlobalProvider = (props) => {
 
   const [stats, setStats] = useState(Array(6).fill(""));
   const [primaryStats, setPrimaryStats] = useState({
-    STR: 0,
+    FOR: 0,
     DEX: 0,
     CON: 0,
     INT: 0,
-    WIS: 0,
+    SAG: 0,
     CHA: 0,
   });
   const [secondaryStats, setSecondaryStats] = useState({
@@ -51,11 +51,11 @@ const GlobalProvider = (props) => {
   console.log(primaryStats.DEX);
   console.log(secondaryStats.INIT);
   const [statModifiers, setStatModifiers] = useState({
-    STR: 0,
+    FOR: 0,
     DEX: 0,
     CON: 0,
     INT: 0,
-    WIS: 0,
+    SAG: 0,
     CHA: 0,
   });
   const [raceBonus, setRaceBonus] = useState({
@@ -68,11 +68,11 @@ const GlobalProvider = (props) => {
   });
   console.log(raceBonus);
   const [classBonus, setClassBonus] = useState({
-    STR: 0,
+    FOR: 0,
     DEX: 0,
     CON: 0,
     INT: 0,
-    WIS: 0,
+    SAG: 0,
     CHA: 0,
     HP: 0,
     INIT: 0,
@@ -83,13 +83,13 @@ const GlobalProvider = (props) => {
   });
 
   useEffect(() => {
-    const { STR, DEX, CON, INT, WIS, CHA } = primaryStats;
+    const { FOR, DEX, CON, INT, SAG, CHA } = primaryStats;
     const newStatModifiers = {
-      STR: STR === 0 ? 0 : Math.floor((STR - 10) / 2),
+      FOR: FOR === 0 ? 0 : Math.floor((FOR - 10) / 2),
       DEX: DEX === 0 ? 0 : Math.floor((DEX - 10) / 2),
       CON: CON === 0 ? 0 : Math.floor((CON - 10) / 2),
       INT: INT === 0 ? 0 : Math.floor((INT - 10) / 2),
-      WIS: WIS === 0 ? 0 : Math.floor((WIS - 10) / 2),
+      SAG: SAG === 0 ? 0 : Math.floor((SAG - 10) / 2),
       CHA: CHA === 0 ? 0 : Math.floor((CHA - 10) / 2),
     };
     setStatModifiers(newStatModifiers);
@@ -100,9 +100,9 @@ const GlobalProvider = (props) => {
       HP: classBonus.HP + statModifiers.CON,
       INIT: primaryStats.DEX + raceBonus.DEX + classBonus.DEX,
       AC: secondaryStats.AC,
-      ranged: statModifiers.DEX + raceBonus.DEX + classBonus.DEX,
-      melee: statModifiers.STR + raceBonus.STR + classBonus.STR,
-      magic: statModifiers.INT + raceBonus.INT + classBonus.INT,
+      ranged: statModifiers.DEX + raceBonus.DEX,
+      melee: statModifiers.FOR + raceBonus.FOR,
+      magic: statModifiers.INT + raceBonus.INT,
     };
     setSecondaryStats(newSecondaryStats);
   }, [primaryStats, raceBonus, classBonus, statModifiers, secondaryStats.AC]);

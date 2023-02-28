@@ -11,15 +11,17 @@ const Race = () => {
   const {
     selectedRace,
     setSelectedRace,
+    selectedRaceAbility,
     setSelectedRaceAbility,
-    raceBonus,
     setRaceBonus,
+    raceBonus,
   } = useContext(GlobalContext);
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/races").then((response) => {
       setRaces(response.data.races);
-      console.log(response.data.races[0].stats);
+      console.log(response.data.races);
+
     });
   }, []);
 
@@ -30,9 +32,13 @@ const Race = () => {
       setRaceBonus({});
     } else {
       setSelectedRace(raceIndex);
-      setRaceBonus(races[raceIndex].stats);
+      const raceStats = races[raceIndex]?.stats || {};
+      setRaceBonus(raceStats);
     }
+    setSelectedRaceAbility(""); // clear selected race ability when collapsing a race
   };
+  
+  
 
   return (
     <div className="races-container">

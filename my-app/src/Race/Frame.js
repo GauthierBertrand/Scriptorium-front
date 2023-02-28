@@ -4,8 +4,7 @@ import { useSwipeable } from "react-swipeable";
 import { Link } from "react-router-dom";
 import "./Frame.scss";
 
-
-const Frame = ({ name, description, picture, racialAbilities, raceIndex }) => {
+const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleRaceClick }) => {
   const {
     selectedRace,
     setSelectedRace,
@@ -35,51 +34,47 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex }) => {
     });
   };
 
-  const handleRaceClick = () => {
-    if (selectedRace === name) {
-      setSelectedRace(null);
-      setRaceBonus({});
-    } else {
-      setSelectedRace(name);
-      setRaceBonus(racialAbilities[0].stats); // set race bonus to the stats of the first racial ability
-    }
-    setSelectedRaceAbility("");
-  };
   return (
-    <div className={`race ${selectedRace === name ? "expanded" : ""}`}>
-      <div className="race-header" onClick={handleRaceClick} {...handlers}>
+    <div className={`race ${selectedRace === raceIndex ? "expanded" : ""}`}>
+      <div className="race-header" onClick={handleClick} {...handlers}>
         <img className="race-picture" src={picture} alt={name} />
         <h3 className="race-title">{name}</h3>
       </div>
 
-      {selectedRace === name && (
+      {selectedRace === raceIndex && (
         <div className="race-content">
           <p>{description}</p>
           <div className="race-bonuses">
             {racialAbilities?.[0]?.name && (
+              <Link to="/generation-des-stats">
               <button
                 className={`race-bonus ${
                   selectedRaceAbility === racialAbilities[0].name
                     ? "selected"
                     : ""
                 }`}
-                onClick={() => handleRaceAbilityClick(racialAbilities[0].name)}
+                onClick={() => {
+                  handleRaceAbilityClick(racialAbilities[0].name);
+                }}
               >
                 {racialAbilities[0].name}
               </button>
+              </Link>
             )}
             {racialAbilities?.[1]?.name && (
               <Link to="/generation-des-stats">
-              <button
-                className={`race-bonus ${
-                  selectedRaceAbility === racialAbilities[1].name
-                    ? "selected"
-                    : ""
-                }`}
-                onClick={() => handleRaceAbilityClick(racialAbilities[1].name)}
-              >
-                {racialAbilities[1].name}
-              </button>
+                <button
+                  className={`race-bonus ${
+                    selectedRaceAbility === racialAbilities[1].name
+                      ? "selected"
+                      : ""
+                  }`}
+                  onClick={() => {
+                    handleRaceAbilityClick(racialAbilities[1].name);
+                  }}
+                >
+                  {racialAbilities[1].name}
+                </button>
               </Link>
             )}
           </div>
