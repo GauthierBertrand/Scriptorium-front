@@ -3,9 +3,9 @@ import "./Stat.scss";
 import hpIcon from "./hp.png";
 import initIcon from "./init.png";
 import acIcon from "./ac.png";
-import rangedIcon from "./ranged.png";
-import meleeIcon from "./melee.png";
-import magicIcon from "./magic.png";
+import distIcon from "./ranged.png";
+import cacIcon from "./melee.png";
+import magIcon from "./magic.png";
 import next from "./../assets/images/next.png";
 import { GlobalContext } from "../GlobalContext";
 import { Link } from "react-router-dom";
@@ -135,9 +135,9 @@ const Stat = () => {
     HP: hpIcon,
     INIT: initIcon,
     AC: acIcon,
-    ranged: rangedIcon,
-    melee: meleeIcon,
-    magic: magicIcon,
+    DIST: distIcon,
+    CAC: cacIcon,
+    MAG: magIcon,
   };
 
   return (

@@ -2,6 +2,7 @@
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
+    position: relative;
 
     .class-title {
         font-size: 1.5rem;
@@ -21,30 +22,33 @@
             position: absolute;
             right: 0.5em;
             top: 2.5em;
-            width: 70%;
+            width: 85%;
+            max-width: 20em;
             max-height: 60%;
             height: auto;
-            padding: 0.5em 0;
+            padding: 0.5em;
             border: 1px solid #fff;
             background-color: rgba(255, 255, 255, 0.8);
             z-index: 100;
             overflow: scroll;
 
             .equipment-item {
+
+                &-title {
                 display: flex;
                 align-items: center;
-                justify-content: space-evenly;
-                flex-wrap: wrap;
-                margin-bottom: 1em;
+                justify-content: flex-start;
 
-                &-img, &-name {
-                    padding-bottom: 0.5em;
+                    &-img {
+                        padding-right: 0.5em;
+                    }
                 }
 
                 &-description {
-                    width: 60vw;
+                    padding-left: 5em;
                     font-size: 0.8em;
-                    text-align: right;
+                    text-align: left;
+                    margin-bottom: 0.5em;
                 }
             }
         }
@@ -83,14 +87,13 @@
     }    
 
     .class-description {
-        height: 25vh;
+        height: 18vh;
         max-height: 30vh;
         overflow: scroll;
     
         &-text {
             padding: 0 1em;
             text-align: left;
-            font-size: 0.9em;
         }
     }
 
@@ -126,6 +129,13 @@
                 transform: translateY(30%);
             }           
         }        
+    }
+
+    .next-page {
+        position: relative;
+        bottom: 2.2em;
+        left: 16vw;
+        z-index: 100;
     }
 }
 
