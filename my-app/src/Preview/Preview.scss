@@ -1,0 +1,27 @@
+.preview-container {
+    height: auto;
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+
+    .preview {
+        margin: 2em;
+    }
+
+    .generate {
+        margin-top: 3em;
+
+        &-button {
+            padding: 1em;
+            background-color: #EFC874;
+            font-size: 1.2em;
+            border-radius: 2em;
+
+            &:hover {
+                background-color: #2e2616;
+                color: #EFC874;
+            }
+        }
+
+    }
+}

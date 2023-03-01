@@ -1,38 +1,26 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
+
+import axios from "axios"; // For API post request
+
+import "./Preview.scss";
 
 const Preview = () => {
     const {
         // Classes
         classBonus,
-        setClassBonus,
         selectedClass,
-        setSelectedClass,
         classesStats,
-        setClassStats,
-        handleSelectClass,
-        handleClassBonus,
         // Races
         raceBonus,
-        setRaceBonus,
         selectedRace,
-        setSelectedRace,
         selectedRaceAbility,
-        setSelectedRaceAbility,
-        // Stats (generator)
-        diceRolls,
-        setDiceRolls,
         // Stats
-        primaryStats,
-        setPrimaryStats,
         secondaryStats,
-        setSecondaryStats,
         statModifiers,
-        setStatModifiers,
         stats,
-        setStats,
         finalPrimaryStats,
         // Ways
     } = useContext(GlobalContext);
@@ -40,20 +28,37 @@ const Preview = () => {
     const {
          // Classes
          equipment,
-         setEquipment,
          // General
          currentImage,
-         setCurrentImage,
          formValues,
-         setFormValues,
          selectedReligion,
-         setSelectedReligion,
          // Ways
     } = useContext(SheetContext);
 
+    const handleGeneration = () => {
+        // La magie de la génération de fiche
+    };
+
+    useEffect(() => {
+        // const sheetData = ...;
+        // axios.post("http://localhost:3001/api/sheets", sheetData)
+        //     .then((response) => {
+        //         console.log(response);
+        //     })
+        //     .catch((error) => {
+        //         alert("Erreur API : La fiche n'a pas pu être générée.");
+        //         console.error(error);
+        //     });
+    }, []);
+
     return(
         <div className="preview-container">
-
+            <div className="preview">
+                <img className="preview-image" src="https://fakeimg.pl/250x450/EFC874/?text=Preview" alt="Prévisualisation de votre fiche de personnage" />
+            </div>
+            <div className="generate">
+                <button className="generate-button" onClick={handleGeneration}>Générer ma fiche</button>
+            </div>
         </div>
     );
 };
