@@ -47,12 +47,29 @@ const Way = () => {
 
     const handleSelectWay = (swiperId) => {
         setSelectedWayId(swiperId);
-        console.log(ways[selectedWayId]);
+        console.log(swiperId);
+        console.log(ways[swiperId]);
     }
 
     const handleSelectAbility = (wayAbility) => {
+        // console.log(wayAbility);
         setSelectedWayAbility(wayAbility);
+        if (selectedWayAbility.bonus && selectedWayAbility.bonus !== null) {
+            setWayBonus((prevState) => ( {
+                    FOR : (prevState.FOR || 0) + (wayAbility.bonus.FOR || 0),
+                    DEX : (prevState.DEX || 0) + (wayAbility.bonus.DEX || 0),
+                    CON : (prevState.CON || 0) + (wayAbility.bonus.CON || 0),
+                    INT : (prevState.INT || 0) + (wayAbility.bonus.INT || 0),
+                    SAG : (prevState.SAG || 0) + (wayAbility.bonus.SAG || 0),
+                    CHA : (prevState.CHA || 0) + (wayAbility.bonus.CHA || 0),
+                    INIT : (prevState.INIT || 0) + (wayAbility.bonus.INIT || 0),
+                    DEF : (prevState.DEF || 0) + (wayAbility.bonus.DEF || 0),
+                    PV : (prevState.PV || 0) + (wayAbility.bonus.PV || 0),
+            }));
+        }
+        console.log(wayBonus);
     }
+
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/ways")
@@ -67,34 +84,53 @@ const Way = () => {
         })
     }, []);
 
-    useEffect(() => {
-        console.log(selectedWayAbility);
-        let newWayBonus = {};
-        if (selectedWayAbility.bonus !== null) {
-            // console.log(selectedWayAbility.bonus);
-            newWayBonus = {
-                FOR: selectedWayAbility.bonus.FOR ? selectedWayAbility.bonus.FOR : 0,
-                DEX: selectedWayAbility.bonus.DEX ? selectedWayAbility.bonus.DEX : 0,
-                CON: selectedWayAbility.bonus.CON ? selectedWayAbility.bonus.CON : 0,
-                INT: selectedWayAbility.bonus.INT ? selectedWayAbility.bonus.INT : 0,
-                SAG: selectedWayAbility.bonus.SAG ? selectedWayAbility.bonus.SAG : 0,
-                CHA: selectedWayAbility.bonus.CHA ? selectedWayAbility.bonus.CHA : 0,
-                INIT: selectedWayAbility.bonus.INIT ? selectedWayAbility.bonus.INIT : 0,
-                DEF: selectedWayAbility.bonus.DEF ? selectedWayAbility.bonus.DEF : 0,
-                PV: selectedWayAbility.bonus.PV ? selectedWayAbility.bonus.PV : 0,
-            };
-        } else {
-            newWayBonus = "Pas de bonus";
-        }
-        // console.log(newWayBonus);
-        setWayBonus(newWayBonus);
-        console.log(wayBonus);
-        // if (typeof wayBonus === 'object' && wayBonus.bonus !== null) {
-        //     Object.entries(wayBonus).map(([key, value]) => {
-        //         console.log(key, value);
-        //     })
-        // };
-    }, [selectedWayAbility]);
+    // useEffect(() => {
+    //     console.log(selectedWayAbility);
+    //     if (selectedWayAbility.bonus !== null) {
+    //         setWayBonus({
+
+    //                 FOR : (selectedWayAbility.bonus.FOR || 0),
+    //                 DEX : (selectedWayAbility.bonus.DEX || 0),
+    //                 CON : (selectedWayAbility.bonus.CON || 0),
+    //                 INT : (selectedWayAbility.bonus.INT || 0),
+    //                 SAG : (selectedWayAbility.bonus.SAG || 0),
+    //                 CHA : (selectedWayAbility.bonus.CHA || 0),
+    //                 INIT: (selectedWayAbility.bonus.INIT || 0),
+    //                 DEF : (selectedWayAbility.bonus.DEF || 0),
+    //                 PV  : (selectedWayAbility.bonus.PV || 0),
+    //         });
+    //     }
+    //     console.log(wayBonus);
+    // }, [selectedWayAbility]);
+
+    // useEffect(() => {
+    //     console.log(selectedWayAbility);
+    //     let newWayBonus = {};
+    //     if (selectedWayAbility.bonus !== null) {
+    //         // console.log(selectedWayAbility.bonus);
+    //         newWayBonus = {
+    //             FOR: selectedWayAbility.bonus.FOR ? selectedWayAbility.bonus.FOR : 0,
+    //             DEX: selectedWayAbility.bonus.DEX ? selectedWayAbility.bonus.DEX : 0,
+    //             CON: selectedWayAbility.bonus.CON ? selectedWayAbility.bonus.CON : 0,
+    //             INT: selectedWayAbility.bonus.INT ? selectedWayAbility.bonus.INT : 0,
+    //             SAG: selectedWayAbility.bonus.SAG ? selectedWayAbility.bonus.SAG : 0,
+    //             CHA: selectedWayAbility.bonus.CHA ? selectedWayAbility.bonus.CHA : 0,
+    //             INIT: selectedWayAbility.bonus.INIT ? selectedWayAbility.bonus.INIT : 0,
+    //             DEF: selectedWayAbility.bonus.DEF ? selectedWayAbility.bonus.DEF : 0,
+    //             PV: selectedWayAbility.bonus.PV ? selectedWayAbility.bonus.PV : 0,
+    //         };
+    //     } else {
+    //         newWayBonus = "Pas de bonus";
+    //     }
+    //     // console.log(newWayBonus);
+    //     setWayBonus(newWayBonus);
+    //     console.log(wayBonus);
+    //     // if (typeof wayBonus === 'object' && wayBonus.bonus !== null) {
+    //     //     Object.entries(wayBonus).map(([key, value]) => {
+    //     //         console.log(key, value);
+    //     //     })
+    //     // };
+    // }, [selectedWayAbility]);
 
     return (
         <>
@@ -142,7 +178,7 @@ const Way = () => {
             navigation={false}
             keyboard={true}
             mousewheel={false}
-            onRealIndexChange={(swiper) => {handleSelectWay(swiper.realIndex)}}>
+            onSlideChangeTransitionEnd={(swiper) => {handleSelectWay(swiper.realIndex)}}>
             {ways.map((way) => (
                 <SwiperSlide key={way.id}>
                     <div className="way-container">
