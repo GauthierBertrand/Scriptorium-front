@@ -42,12 +42,14 @@ const SheetProvider = (props) => {
             // Classes
             equipment,
             setEquipment,
+            // General
             currentImage,
             setCurrentImage,
             formValues,
             setFormValues,
             selectedReligion,
             setSelectedReligion,
+            // Ways
         }}>
             {props.children}
         </SheetContext.Provider>
