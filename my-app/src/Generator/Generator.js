@@ -3,6 +3,8 @@ import "./Generator.scss";
 import { GlobalContext } from "../GlobalContext";
 import { NavLink } from "react-router-dom";
 
+// TODO : Traduire en français les textes du dom lignes 43-44 et 58-60
+
 const Generator = () => {
   const { diceRolls, setDiceRolls } = useContext(GlobalContext);
   const [selectedGeneration, setSelectedGeneration] = useState(null);

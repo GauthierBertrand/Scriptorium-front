@@ -31,12 +31,11 @@ const Class = () => {
         handleSelectClass,
     } = useContext(GlobalContext);
     const {
-    //     equipment,
-    //     setEquipment,
+        equipment,
+        setEquipment,
     } = useContext(SheetContext);
     const [equipmentModal, setEquipmentModal] = useState(false);
     const [classes, setClasses] = useState([]);
-    const [equipment, setEquipment] = useState([]);
 
     const handleToggleEquipment = () => {
         setEquipmentModal(!equipmentModal);
@@ -61,8 +60,7 @@ const Class = () => {
             ));
             setEquipment(equipmentData);
             const classBonusData = classData.map((classObject) => ({
-                // class: classObject.name,
-                HP: classObject.hit_die
+                PV: classObject.hit_die
             }));
             console.log(classBonusData);
             setClassBonus(classBonusData);

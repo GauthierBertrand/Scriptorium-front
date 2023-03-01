@@ -1,14 +1,28 @@
 import { useSwipeable } from "react-swipeable";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import { SheetContext } from "../SheetContext";
+
 import "./General.scss";
 import "./Modal.scss";
 
-import maleOrc from "./male-orc.jpg";
-import femaleOrc from "./female-orc.png";
-import mars from "./mars.png";
-import venus from "./venus.png";
+import maleOrc from "../assets/images/male-orc.jpg";
+import femaleOrc from "../assets/images/female-orc.png";
+import mars from "../assets/images/mars.png";
+import venus from "../assets/images/venus.png";
+
+// TODO : Dynamiser les religions avec un axios
 
 const General = ({religions}) => {
+  const {
+      currentImage,
+      setCurrentImage,
+      formValues,
+      setFormValues,
+      selectedReligion,
+      setSelectedReligion,
+    } = useContext(SheetContext);
+
   const [direction, setDirection] = useState(null);
   const handlers = useSwipeable({
     onSwiped: (eventData) => {
@@ -20,18 +34,7 @@ const General = ({religions}) => {
     trackTouch: true,
   });
   const [modalOpen, setModalOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState(maleOrc);
-  const [formValues, setFormValues] = useState({
-    firstName: "",
-    lastName: "",
-    eyeColor: "",
-    age: "",
-    height: "",
-    weight: "",
-    hairColor: ""
-  });
 
-  const [selectedReligion, setSelectedReligion] = useState(null);
   const handleReligionChange = (event) => {
     const religionName = event.target.value;
     const religion = religions.find((religion) => religion.name === religionName);
@@ -108,11 +111,11 @@ const General = ({religions}) => {
       <div className="religion-header">
           Religion:  
         <select className="religion-dropdown" onChange={handleReligionChange}>
-          {religions.map((religion) => (
+          {/* {religions.map((religion) => (
             <option key={religion.name} value={religion.name}>
               {religion.name}
             </option>
-          ))}
+          ))} */}
         </select>
       </div>
       <div className="religion-description">{selectedReligion?.description}</div>

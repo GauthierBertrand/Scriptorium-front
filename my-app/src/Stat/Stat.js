@@ -133,7 +133,7 @@ const Stat = () => {
   };
 
   const iconMap = {
-    HP: hpIcon,
+    PV: hpIcon,
     INIT: initIcon,
     AC: acIcon,
     DIST: distIcon,

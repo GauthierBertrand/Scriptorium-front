@@ -1,6 +1,6 @@
 import Class from "../Class/Class";
 import Race from "../Race/Race";
-// import General from "../General/General";
+import General from "../General/General";
 import Generator from "../Generator/Generator";
 import Stat from "../Stat/Stat";
 // import Way from "../Way/Way";
@@ -14,6 +14,7 @@ import Settings from "../User/Settings";
 import ProtectedRoute from "../User/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import { UserProvider } from "../UserContext";
+import SheetProvider from "../SheetContext";
 
 const Scriptorium = () => {
   return (
@@ -21,13 +22,14 @@ const Scriptorium = () => {
       <UserProvider>
         <Navbar />
       </UserProvider>
+      <SheetProvider>
       <Routes>
         <Route path="/profile" component={ProtectedRoute(Profile)} />
         <Route path="/parametres" component={ProtectedRoute(Settings)} />
         {/* <Route path="/mentions-legales" component={(MentionsLegales)} /> */}
         <Route path="/classes" element={<Class/>} />
         <Route path="/races" element={<Race/>} />
-        {/* <Route path="/general" element={<General/>} /> */}
+        <Route path="/general" element={<General/>} />
         <Route path="/generation-des-stats" element={<Generator />} />
         <Route path="/stats" element={<Stat />} />
         {/* <Route path="/voies" element={<Way/>} />
@@ -37,6 +39,7 @@ const Scriptorium = () => {
           <Route path="/profil" element={<Profile/>} /> */}
         {/* <Register /> */}
       </Routes>
+      </SheetProvider> 
     </div>
   );
 };
