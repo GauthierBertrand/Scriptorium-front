@@ -1,29 +1,34 @@
 import { createContext, useState, useEffect } from "react";
 
 export const GlobalContext = createContext({
+  // Classes
+  classBonus: { PV: 0 },
+  setClassBonus: () => {},
+  selectedClass: null,
+  setSelectedClass: () => {},
+  classesStats: [],
+  setClassStats: () => {},
+  // Races
+  raceBonus: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
+  setRaceBonus: () => {},
+  selectedRace: null,
+  setSelectedRace: () => {},
+  selectedRaceAbility: null,
+  setSelectedRaceAbility: () => {},
+  // Stats (generator)
   diceRolls: [],
   setDiceRolls: () => {},
+  // Stats
   primaryStats: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
-  secondaryStats: { HP: 0, INIT: 0, AC: 0, ranged: 0, melee: 0, magic: 0 },
-  raceBonus: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
-  classBonus: { HP: 0 },
-  selectedRace: null,
-  selectedClass: null,
-  classesStats: [],
-  setSelectedRace: () => {},
-  setSelectedClass: () => {},
-  setRaceBonus: () => {},
-  setClassBonus: () => {},
-  setClassStats: () => {},
   setPrimaryStats: () => {},
+  secondaryStats: { PV: 0, INIT: 0, AC: 0, ranged: 0, melee: 0, magic: 0 },
   setSecondaryStats: () => {},
   statModifiers: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
   setStatModifiers: () => {},
   stats: [],
   setStats: () => {},
-  selectedRaceAbility: null,
-  setSelectedRaceAbility: () => {},
   finalPrimaryStats: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
+  // Ways
 });
 
 const GlobalProvider = (props) => {
@@ -45,7 +50,7 @@ const GlobalProvider = (props) => {
     CHA: 0,
   });
   const [secondaryStats, setSecondaryStats] = useState({
-    HP: 0,
+    PV: 0,
     INIT: 0,
     AC: 0,
     ranged: 0,
@@ -70,7 +75,7 @@ const GlobalProvider = (props) => {
   });
   console.log(raceBonus);
   const [classBonus, setClassBonus] = useState({
-    HP: 0,
+    PV: 0,
   });
 
   const handleSelectClass = (index) => {
@@ -79,7 +84,7 @@ const GlobalProvider = (props) => {
 
   const handleClassBonus = () => {
     if (classBonus[selectedClass]) {
-      return classBonus[selectedClass].HP;
+      return classBonus[selectedClass].PV;
     }
   };
 
@@ -107,7 +112,7 @@ const GlobalProvider = (props) => {
 
   useEffect(() => {
     const newSecondaryStats = {
-      HP: handleClassBonus() + statModifiers.CON,
+      PV: handleClassBonus() + statModifiers.CON,
       INIT: finalPrimaryStats.DEX,
       AC: secondaryStats.AC,
       ranged: statModifiers.DEX,
@@ -127,8 +132,26 @@ const GlobalProvider = (props) => {
   return (
     <GlobalContext.Provider
       value={{
+        // Classes
+        classBonus,
+        setClassBonus,
+        selectedClass,
+        setSelectedClass,
+        classesStats,
+        setClassStats,
+        handleSelectClass,
+        handleClassBonus,
+        // Races
+        raceBonus,
+        setRaceBonus,
+        selectedRace,
+        setSelectedRace,
+        selectedRaceAbility,
+        setSelectedRaceAbility,
+        // Stats (generator)
         diceRolls,
         setDiceRolls,
+        // Stats
         primaryStats,
         setPrimaryStats,
         secondaryStats,
@@ -137,21 +160,8 @@ const GlobalProvider = (props) => {
         setStatModifiers,
         stats,
         setStats,
-        raceBonus,
-        setRaceBonus,
-        classBonus,
-        setClassBonus,
-        selectedRace,
-        setSelectedRace,
-        selectedRaceAbility,
-        setSelectedRaceAbility,
-        selectedClass,
-        setSelectedClass,
-        classesStats,
-        setClassStats,
-        handleSelectClass,
-        handleClassBonus,
         finalPrimaryStats,
+        // Ways
       }}
     >
       {props.children}

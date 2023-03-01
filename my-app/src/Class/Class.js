@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import { GlobalContext } from "../GlobalContext";
+import { SheetContext } from "../SheetContext";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -29,6 +30,10 @@ const Class = () => {
         setClassBonus,
         handleSelectClass,
     } = useContext(GlobalContext);
+    const {
+    //     equipment,
+    //     setEquipment,
+    } = useContext(SheetContext);
     const [equipmentModal, setEquipmentModal] = useState(false);
     const [classes, setClasses] = useState([]);
     const [equipment, setEquipment] = useState([]);
