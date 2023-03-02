@@ -40,6 +40,7 @@ const Preview = () => {
     };
 
     useEffect(() => {
+        
         const sheetData = {
             character_name: formValues.firstName + " " + formValues.lastName,
             // race_name: "",
@@ -62,7 +63,7 @@ const Preview = () => {
             // classe: 1,
             // way_abilities: [1, 2],
             // racialAbility: 1
-        };
+        };console.log(sheetData);
         // axios.post("http://localhost:3001/api/generator", sheetData)
         //     .then((response) => {
         //         console.log(response);

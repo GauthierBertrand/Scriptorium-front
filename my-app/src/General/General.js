@@ -100,8 +100,8 @@ const General = ({religions}) => {
             <div className="general-form-row">
               <div>
               <input className="general-form-row-input" type="text" id="age" name="age" placeholder="Âge" value={formValues.age} onChange={handleChange} />
-              <input className="general-form-row-input" type="text" id="height" name="height" placeholder="Taille" value={formValues.height} onChange={handleChange} />
-              <input className="general-form-row-input" type="text" id="weight" name="weight" placeholder="Poids" value={formValues.weight} onChange={handleChange} />
+              <input className="general-form-row-input" type="text" id="height" name="height" placeholder="Taille en cm" value={formValues.height} onChange={handleChange} />
+              <input className="general-form-row-input" type="text" id="weight" name="weight" placeholder="Poids en kg" value={formValues.weight} onChange={handleChange} />
               </div>
               <input className="general-form-row-input" type="text" id="hairColor" name="hairColor" placeholder="Couleur des cheveux" value={formValues.hairColor} onChange={handleChange} />
             </div>

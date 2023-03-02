@@ -16,7 +16,8 @@ export const SheetContext = createContext({
         age: "",
         height: "",
         weight: "",
-        hairColor: ""
+        hairColor: "",
+        backstory: ""
     },
     selectedReligion: null,
     setSelectedReligion: () => {},
@@ -35,7 +36,7 @@ const SheetProvider = (props) => {
         height: "",
         weight: "",
         hairColor: "",
-        backstory: "",
+        backstory: ""
     });
     const [selectedReligion, setSelectedReligion] = useState(null);
     return (
