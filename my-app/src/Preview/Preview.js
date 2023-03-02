@@ -10,18 +10,11 @@ import "./Preview.scss";
 const Preview = () => {
     const {
         // Classes
-        classBonus,
-        selectedClass,
         classId,
-        classesStats,
         // Races
-        raceBonus,
-        selectedRace,
         selectedRaceAbility,
         // Stats
         secondaryStats,
-        statModifiers,
-        stats,
         finalPrimaryStats,
         // Ways
     } = useContext(GlobalContext);
@@ -52,7 +45,7 @@ const Preview = () => {
             description: formValues.backstory,
             age: Number(formValues.age),
             level: 1,
-            picture: "",
+            picture: "", // currentImage
             height: Number(formValues.height),
             weight: Number(formValues.weight),
             hair: formValues.hairColor,
@@ -65,14 +58,15 @@ const Preview = () => {
                 Intelligence: finalPrimaryStats.INT,
             },
             classe: classId,
-            way_abilities: [357, 358], // A dynamiser quand l'id des compétences de voies choisies seront implémentées dans le JSON
-            racialAbility: 11 // A dynamiser quand l'id de la compétence raciale choisie sera implémentée dans le JSON
+            way_abilities: [12, 13], // A dynamiser quand l'id des compétences de voies choisies seront implémentées dans le JSON
+            racialAbility: 6 // A dynamiser quand l'id de la compétence raciale choisie sera implémentée dans le JSON
         };
         console.log(sheetData);
-        axios.post("http://localhost:8080/api/generator", sheetData)
+        axios.post("http://localhost:8080/api/generator", sheetData, {responseType: 'arraybuffer'})
             .then((response) => {
-                // const blob = new Blob([response.data], {type: 'application/pdf'});
-                // const pdfUrl = URL.createObjectURL(blob);
+                const blob = new Blob([response.data], {type: 'application/pdf'});
+                const pdfUrl = window.URL.createObjectURL(blob);
+                window.open(pdfUrl);
 
                 console.log(response);
             })
@@ -82,13 +76,13 @@ const Preview = () => {
             });
     }, []);
 
-    const handleDownload = () => {
-        const link = document.createElement('a');
-        link.href = pdfUrl;
-        link.setAttribute('download', 'sheet.pdf');
-        document.body.appendChild(link);
-        link.click();
-    };
+    // const handleDownload = () => {
+    //     const link = document.createElement('a');
+    //     link.href = pdfUrl;
+    //     link.setAttribute('download', 'sheet.pdf');
+    //     document.body.appendChild(link);
+    //     link.click();
+    // };
 
     return(
         <div className="preview-container">
@@ -98,7 +92,7 @@ const Preview = () => {
             <div className="generate">
                 <button className="generate-button" onClick={handleGeneration}>Générer ma fiche</button>
             </div>
-            <a href={pdfUrl} download="sheet.pdf">Sheet</a>
+            {/* <a href={pdfUrl} download="sheet.pdf">Sheet</a> */}
         </div>
     );
 };
