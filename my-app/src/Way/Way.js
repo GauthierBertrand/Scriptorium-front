@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
+import next from "../assets/images/next.png";
 
 import axios from "axios";
 
@@ -223,7 +225,17 @@ const Way = () => {
                 </SwiperSlide>
             ))}
         </Swiper>
+
+        <Link to="/aperçu">
+            <img
+              className="next-page"
+              src={next}
+              alt="Chevron pointing down for the next page"
+            />
+          </Link>
     </>
+
+
     );
 };
 
