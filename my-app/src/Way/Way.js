@@ -226,7 +226,7 @@ const Way = () => {
             ))}
         </Swiper>
 
-        <Link to="/aperçu">
+        <Link to="/apercu">
             <img
               className="next-page"
               src={next}
