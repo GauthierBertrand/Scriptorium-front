@@ -41,12 +41,11 @@ const Preview = () => {
         // La magie de la génération de fiche
     };
 
-    useEffect(() => {
-        
+    useEffect(() => {       
         const sheetData = {
             character_name: formValues.firstName + " " + formValues.lastName,
             race_name: raceName,
-            religion_name: "", // A dynamiser quand la religion sera récupérable de l'API
+            religion_name: "Fromage", // A dynamiser quand la religion sera récupérable de l'API
             description: formValues.backstory,
             age: formValues.age,
             level: 1,
@@ -72,7 +71,7 @@ const Preview = () => {
                 console.log(response);
             })
             .catch((error) => {
-                alert("Erreur API : La fiche n'a pas pu être générée.");
+                alert("Erreur API : Les données de la fiche n'ont pas pu être envoyées.");
                 console.error(error);
             });
     }, []);
