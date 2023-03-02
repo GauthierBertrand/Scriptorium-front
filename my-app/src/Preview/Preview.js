@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
@@ -37,6 +37,8 @@ const Preview = () => {
          // Ways
     } = useContext(SheetContext);
 
+    const [pdfUrl, setPdfUrl] = useState(null);
+
     const handleGeneration = () => {
         // La magie de la génération de fiche
     };
@@ -62,19 +64,31 @@ const Preview = () => {
                 Intelligence: finalPrimaryStats.INT,
             },
             classe: classId,
-            way_abilities: [1, 2], // A dynamiser quand l'id des compétences de voies choisies seront implémentées dans le JSON
-            racialAbility: 1 // A dynamiser quand l'id de la compétence raciale choisie sera implémentée dans le JSON
+            way_abilities: [357, 358], // A dynamiser quand l'id des compétences de voies choisies seront implémentées dans le JSON
+            racialAbility: 11 // A dynamiser quand l'id de la compétence raciale choisie sera implémentée dans le JSON
         };
         console.log(sheetData);
-        axios.post("http://localhost:8080/api/generator", sheetData)
+        axios.post("http://localhost:8080/api/generator", sheetData, {responseType: 'blob'})
             .then((response) => {
+                const blob = new Blob([response.data], {type: 'application/pdf'});
+                const pdfUrl = URL.createObjectURL(blob);
+                
+
                 console.log(response);
             })
             .catch((error) => {
-                alert("Erreur API : Les données de la fiche n'ont pas pu être envoyées.");
+                // alert("Erreur API : Les données de la fiche n'ont pas pu être envoyées.");
                 console.error(error);
             });
     }, []);
+
+    const handleDownload = () => {
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.setAttribute('download', 'sheet.pdf');
+        document.body.appendChild(link);
+        link.click();
+    };
 
     return(
         <div className="preview-container">
@@ -84,6 +98,7 @@ const Preview = () => {
             <div className="generate">
                 <button className="generate-button" onClick={handleGeneration}>Générer ma fiche</button>
             </div>
+            <a href={pdfUrl} download="sheet.pdf">Sheet</a>
         </div>
     );
 };

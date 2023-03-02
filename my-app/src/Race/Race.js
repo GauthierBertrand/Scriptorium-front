@@ -32,6 +32,7 @@ const Race = () => {
       setSelectedRace(null);
       setSelectedRaceAbility("");
       setRaceBonus({});
+      setRaceName("Fiche Test");
     } else {
       setSelectedRace(raceIndex);
       const raceStats = races[raceIndex]?.stats || {};
