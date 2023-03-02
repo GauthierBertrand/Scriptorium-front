@@ -34,7 +34,8 @@ const SheetProvider = (props) => {
         age: "",
         height: "",
         weight: "",
-        hairColor: ""
+        hairColor: "",
+        backstory: "",
     });
     const [selectedReligion, setSelectedReligion] = useState(null);
     return (

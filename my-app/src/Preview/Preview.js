@@ -44,7 +44,7 @@ const Preview = () => {
             character_name: formValues.firstName + " " + formValues.lastName,
             // race_name: "",
             // religion_name: "",
-            description: formValues.description,
+            description: formValues.backstory,
             age: formValues.age,
             level: 1,
             picture: "",
