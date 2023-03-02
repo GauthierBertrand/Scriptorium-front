@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { GlobalContext } from "../GlobalContext";
+import { SheetContext } from "../SheetContext";
 import axios from "axios";
 import "./Race.scss";
 import Frame from "./Frame";
@@ -14,6 +15,9 @@ const Race = () => {
     setSelectedRaceAbility,
     setRaceBonus,
   } = useContext(GlobalContext);
+  const {
+    setRaceName
+  } = useContext(SheetContext);
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/races").then((response) => {
@@ -45,6 +49,8 @@ const Race = () => {
         ),
         ...newRaceBonus,
       }));
+      const raceName = races[raceIndex]?.name || null;
+      setRaceName(raceName);
     }
     setSelectedRaceAbility("");
   };

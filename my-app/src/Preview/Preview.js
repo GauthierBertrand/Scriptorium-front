@@ -17,6 +17,7 @@ const Preview = () => {
         raceBonus,
         selectedRace,
         selectedRaceAbility,
+        raceName,
         // Stats
         secondaryStats,
         statModifiers,
@@ -43,7 +44,7 @@ const Preview = () => {
         
         const sheetData = {
             character_name: formValues.firstName + " " + formValues.lastName,
-            // race_name: "",
+            race_name: raceName,
             // religion_name: "",
             description: formValues.backstory,
             age: formValues.age,

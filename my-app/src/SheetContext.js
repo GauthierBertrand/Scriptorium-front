@@ -3,6 +3,9 @@ import { createContext, useState } from "react";
 import maleOrc from "./assets/images/male-orc.jpg";
 
 export const SheetContext = createContext({
+    // Races
+    raceName: null,
+    setRaceName: () => {},
     // Classes
     equipment: [],
     setEquipment: () => {},
@@ -24,6 +27,8 @@ export const SheetContext = createContext({
 });
 
 const SheetProvider = (props) => {
+    // Races
+    const [raceName, setRaceName] = useState(null);
     // Classes
     const [equipment, setEquipment] = useState([]);
     // General
@@ -41,6 +46,9 @@ const SheetProvider = (props) => {
     const [selectedReligion, setSelectedReligion] = useState(null);
     return (
         <SheetContext.Provider value={{
+            // Race
+            raceName,
+            setRaceName,
             // Classes
             equipment,
             setEquipment,
