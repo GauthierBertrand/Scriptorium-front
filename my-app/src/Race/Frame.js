@@ -24,11 +24,12 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
   };
 
   const handleRaceAbilityClick = (raceAbility) => {
+    console.log(raceAbility);
     setSelectedRaceAbility((prevSelectedRaceAbility) => {
-      if (prevSelectedRaceAbility === raceAbility) {
+      if (prevSelectedRaceAbility === raceAbility.name) {
         return "";
       } else {
-        return raceAbility;
+        return raceAbility.name;
       }
     });
   };
@@ -53,7 +54,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
                     : ""
                 }`}
                 onClick={() => {
-                  handleRaceAbilityClick(racialAbilities[0].name);
+                  handleRaceAbilityClick(racialAbilities[0]);
                 }}
               >
                 {racialAbilities[0].name}
@@ -69,7 +70,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
                       : ""
                   }`}
                   onClick={() => {
-                    handleRaceAbilityClick(racialAbilities[1].name);
+                    handleRaceAbilityClick(racialAbilities[1]);
                   }}
                 >
                   {racialAbilities[1].name}
