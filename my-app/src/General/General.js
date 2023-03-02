@@ -120,7 +120,7 @@ const General = ({religions}) => {
       </div>
       <div className="religion-description">{selectedReligion?.description}</div>
       <div className="backstory-box">
-        <textarea className="backstory-input" placeholder="Entrez votre histoire ici" value={formValues.backstory} onChange={handleChange} />
+        <textarea className="backstory-input" id="backstory" name="backstory" placeholder="Entrez votre histoire ici" value={formValues.backstory} onChange={handleChange} />
       </div>
     </div>
       </div>
