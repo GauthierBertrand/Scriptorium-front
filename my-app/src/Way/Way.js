@@ -59,10 +59,6 @@ const Way = () => {
 
     const handleSelectAbility = (wayAbility) => {
         setSelectedWayAbility(wayAbility);
-        console.log(wayAbility);
-
-          // deduct the cost from remaining points
-        setRemainingPoints((prevPoints) => prevPoints - wayAbility.cost);
       
         setSelectedAbilityNames((prevSelectedAbilityNames) => {
           if (prevSelectedAbilityNames.includes(wayAbility.name)) {
@@ -79,36 +75,52 @@ const Way = () => {
               PV: prevWayBonus.PV - (wayAbility.bonus?.PV || 0),
             }));
             
+            // add the cost back to remaining points
+            setRemainingPoints((prevPoints) => prevPoints + wayAbility.cost);
+      
             return prevSelectedAbilityNames.filter((name) => name !== wayAbility.name);
           } else {
-            // Ability is not selected, add it and add its bonus to wayBonus
-            setWayBonus((prevWayBonus) => ({
-              FOR: prevWayBonus.FOR + (wayAbility.bonus?.FOR || 0),
-              DEX: prevWayBonus.DEX + (wayAbility.bonus?.DEX || 0),
-              CON: prevWayBonus.CON + (wayAbility.bonus?.CON || 0),
-              INT: prevWayBonus.INT + (wayAbility.bonus?.INT || 0),
-              SAG: prevWayBonus.SAG + (wayAbility.bonus?.SAG || 0),
-              CHA: prevWayBonus.CHA + (wayAbility.bonus?.CHA || 0),
-              INIT: prevWayBonus.INIT + (wayAbility.bonus?.INIT || 0),
-              DEF: prevWayBonus.DEF + (wayAbility.bonus?.DEF || 0),
-              PV: prevWayBonus.PV + (wayAbility.bonus?.PV || 0),
-            }));
+            // Ability is not selected, check if there are enough points before adding it
+            if (remainingPoints >= wayAbility.cost) {
+              // Deduct the cost from remaining points
+              setRemainingPoints((prevPoints) => prevPoints - wayAbility.cost);
       
-            return [...prevSelectedAbilityNames, wayAbility.name];
+              // Add the ability and its bonus to selected abilities and wayBonus
+              setWayBonus((prevWayBonus) => ({
+                FOR: prevWayBonus.FOR + (wayAbility.bonus?.FOR || 0),
+                DEX: prevWayBonus.DEX + (wayAbility.bonus?.DEX || 0),
+                CON: prevWayBonus.CON + (wayAbility.bonus?.CON || 0),
+                INT: prevWayBonus.INT + (wayAbility.bonus?.INT || 0),
+                SAG: prevWayBonus.SAG + (wayAbility.bonus?.SAG || 0),
+                CHA: prevWayBonus.CHA + (wayAbility.bonus?.CHA || 0),
+                INIT: prevWayBonus.INIT + (wayAbility.bonus?.INIT || 0),
+                DEF: prevWayBonus.DEF + (wayAbility.bonus?.DEF || 0),
+                PV: prevWayBonus.PV + (wayAbility.bonus?.PV || 0),
+              }));
+        
+              return [...prevSelectedAbilityNames, wayAbility.name];
+            } else {
+              // There are not enough points, do nothing
+              return prevSelectedAbilityNames;
+            }
           }
         });
+      
         setSelectedAbilityTraits((prevSelectedAbilityTraits) => {
-            if (prevSelectedAbilityTraits.includes(wayAbility.traits[0])) {
+            const trait = wayAbility.traits;
+          
+            // Check if the trait is already selected
+            const isSelected = prevSelectedAbilityTraits.includes(trait);
+          
+            if (isSelected) {
               // Trait is already selected, remove it
-              return prevSelectedAbilityTraits.filter((trait) => trait !== wayAbility.traits[0]);
+              return prevSelectedAbilityTraits.filter((t) => t !== trait);
             } else {
               // Trait is not selected, add it
-              return [...prevSelectedAbilityTraits, wayAbility.traits];
+              return [...prevSelectedAbilityTraits, trait];
             }
           });
       };
-
-      
 
 
     useEffect(() => {
