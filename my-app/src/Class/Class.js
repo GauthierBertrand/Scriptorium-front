@@ -73,7 +73,6 @@ const Class = () => {
     }, []);
 
     return (
-        
         <div className="class-container">
             <h1 className="class-title">
                 Classes

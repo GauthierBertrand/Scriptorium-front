@@ -18,7 +18,6 @@ const Preview = () => {
         raceBonus,
         selectedRace,
         selectedRaceAbility,
-        raceName,
         // Stats
         secondaryStats,
         statModifiers,
@@ -30,6 +29,8 @@ const Preview = () => {
     const {
          // Classes
          equipment,
+         // Race
+         raceName,
          // General
          currentImage,
          formValues,
@@ -49,11 +50,11 @@ const Preview = () => {
             race_name: raceName,
             religion_name: "Fromage", // A dynamiser quand la religion sera récupérable de l'API
             description: formValues.backstory,
-            age: formValues.age,
+            age: Number(formValues.age),
             level: 1,
             picture: "",
-            height: formValues.height,
-            weight: formValues.weight,
+            height: Number(formValues.height),
+            weight: Number(formValues.weight),
             hair: formValues.hairColor,
             stats: {
                 Dextérité: finalPrimaryStats.DEX,
