@@ -12,6 +12,7 @@ const Preview = () => {
         // Classes
         classBonus,
         selectedClass,
+        classId,
         classesStats,
         // Races
         raceBonus,
@@ -61,7 +62,7 @@ const Preview = () => {
                 Sagesse: finalPrimaryStats.SAG,
                 Intelligence: finalPrimaryStats.INT,
             },
-            // classe: 1,
+            classe: classId,
             // way_abilities: [1, 2],
             // racialAbility: 1
         };console.log(sheetData);

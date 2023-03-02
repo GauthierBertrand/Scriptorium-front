@@ -2,6 +2,10 @@ import { createContext, useState, useEffect } from "react";
 
 export const GlobalContext = createContext({
   // Classes
+  classes: [],
+  setClasses: () => {},
+  classId: null,
+  setClassId: () => {},
   classBonus: { PV: 0 },
   setClassBonus: () => {},
   selectedClass: null,
@@ -21,7 +25,7 @@ export const GlobalContext = createContext({
   // Stats
   primaryStats: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
   setPrimaryStats: () => {},
-  secondaryStats: { PV: 0, INIT: 0, AC: 0, ranged: 0, melee: 0, magic: 0 },
+  secondaryStats: { PV: 0, INIT: 0, AC: 0, DIST: 0, CAC: 0, MAG: 0 },
   setSecondaryStats: () => {},
   statModifiers: { FOR: 0, DEX: 0, CON: 0, INT: 0, SAG: 0, CHA: 0 },
   setStatModifiers: () => {},
@@ -37,7 +41,9 @@ const GlobalProvider = (props) => {
   const [selectedRace, setSelectedRace] = useState(null);
   const [selectedRaceAbility, setSelectedRaceAbility] = useState(null);
 
+  const [classes, setClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState(0);
+  const [classId, setClassId] = useState(null);
   const [classesStats, setClassStats] = useState([]);
 
   const [stats, setStats] = useState(Array(6).fill(""));
@@ -53,9 +59,9 @@ const GlobalProvider = (props) => {
     PV: 0,
     INIT: 0,
     AC: 0,
-    ranged: 0,
-    melee: 0,
-    magic: 0,
+    DIST: 0,
+    CAC: 0,
+    MAG: 0,
   });
   const [statModifiers, setStatModifiers] = useState({
     FOR: 0,
@@ -80,6 +86,8 @@ const GlobalProvider = (props) => {
 
   const handleSelectClass = (index) => {
     setSelectedClass(index);
+    const selectedClassId = classes[index].id;
+    setClassId(selectedClassId);
   };
 
   const handleClassBonus = () => {
@@ -115,9 +123,9 @@ const GlobalProvider = (props) => {
       PV: handleClassBonus() + statModifiers.CON,
       INIT: finalPrimaryStats.DEX,
       AC: secondaryStats.AC,
-      ranged: statModifiers.DEX,
-      melee: statModifiers.FOR,
-      magic: statModifiers.INT,
+      DIST: statModifiers.DEX,
+      CAC: statModifiers.FOR,
+      MAG: statModifiers.INT,
     };
     setSecondaryStats(newSecondaryStats);
   }, [
@@ -133,6 +141,9 @@ const GlobalProvider = (props) => {
     <GlobalContext.Provider
       value={{
         // Classes
+        classes,
+        setClasses,
+        classId,
         classBonus,
         setClassBonus,
         selectedClass,

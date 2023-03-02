@@ -24,6 +24,8 @@ SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
 const Class = () => {
     const {
+        classes,
+        setClasses,
         selectedClass,
         classesStats,
         setClassStats,
@@ -35,7 +37,6 @@ const Class = () => {
         setEquipment,
     } = useContext(SheetContext);
     const [equipmentModal, setEquipmentModal] = useState(false);
-    const [classes, setClasses] = useState([]);
 
     const handleToggleEquipment = () => {
         setEquipmentModal(!equipmentModal);
