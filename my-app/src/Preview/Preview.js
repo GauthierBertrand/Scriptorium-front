@@ -46,7 +46,7 @@ const Preview = () => {
         const sheetData = {
             character_name: formValues.firstName + " " + formValues.lastName,
             race_name: raceName,
-            // religion_name: "",
+            religion_name: "", // A dynamiser quand la religion sera récupérable de l'API
             description: formValues.backstory,
             age: formValues.age,
             level: 1,
@@ -63,17 +63,18 @@ const Preview = () => {
                 Intelligence: finalPrimaryStats.INT,
             },
             classe: classId,
-            // way_abilities: [1, 2],
-            // racialAbility: 1
-        };console.log(sheetData);
-        // axios.post("http://localhost:3001/api/generator", sheetData)
-        //     .then((response) => {
-        //         console.log(response);
-        //     })
-        //     .catch((error) => {
-        //         alert("Erreur API : La fiche n'a pas pu être générée.");
-        //         console.error(error);
-        //     });
+            way_abilities: [1, 2], // A dynamiser quand l'id des compétences de voies choisies seront implémentées dans le JSON
+            racialAbility: 1 // A dynamiser quand l'id de la compétence raciale choisie sera implémentée dans le JSON
+        };
+        console.log(sheetData);
+        axios.post("http://localhost:8080/api/generator", sheetData)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                alert("Erreur API : La fiche n'a pas pu être générée.");
+                console.error(error);
+            });
     }, []);
 
     return(

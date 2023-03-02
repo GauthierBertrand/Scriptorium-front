@@ -46,7 +46,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
           <p>{description}</p>
           <div className="race-bonuses">
             {racialAbilities?.[0]?.name && (
-              <Link to="/generation-des-stats">
+              <Link to="/general">
               <button
                 className={`race-bonus ${
                   selectedRaceAbility === racialAbilities[0].name
@@ -62,7 +62,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
               </Link>
             )}
             {racialAbilities?.[1]?.name && (
-              <Link to="/generation-des-stats">
+              <Link to="/general">
                 <button
                   className={`race-bonus ${
                     selectedRaceAbility === racialAbilities[1].name

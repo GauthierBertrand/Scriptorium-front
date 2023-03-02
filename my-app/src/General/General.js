@@ -1,6 +1,8 @@
 import { useSwipeable } from "react-swipeable";
 import React, { useState, useContext } from "react";
 
+import { Link } from "react-router-dom";
+
 import { SheetContext } from "../SheetContext";
 
 import "./General.scss";
@@ -10,6 +12,7 @@ import maleOrc from "../assets/images/male-orc.jpg";
 import femaleOrc from "../assets/images/female-orc.png";
 import mars from "../assets/images/mars.png";
 import venus from "../assets/images/venus.png";
+import next from "../assets/images/next.png";
 
 // TODO : Dynamiser les religions avec un axios
 
@@ -124,7 +127,13 @@ const General = ({religions}) => {
       </div>
     </div>
       </div>
-
+      <Link to="/generation-des-stats">
+          <img
+          className="next-page"
+          src={next}
+          alt="Chevron pointing down for the next page"
+          />
+      </Link>
   </>
   );
 };
