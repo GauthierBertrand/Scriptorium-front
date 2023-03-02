@@ -129,7 +129,7 @@ const Class = () => {
                     <SwiperSlide key={classObj.id}>
                         <div className="class-carrousel-item">
                             <img className="class-carrousel-img" src={classObj.picture} alt="Classe" />
-                            <p>{classObj.name} </p>
+                            <p>{classObj.name}</p>
                         </div>
                     </SwiperSlide>
                 ))}

@@ -40,8 +40,30 @@ const Preview = () => {
     };
 
     useEffect(() => {
-        // const sheetData = ...;
-        // axios.post("http://localhost:3001/api/sheets", sheetData)
+        const sheetData = {
+            character_name: formValues.firstName + " " + formValues.lastName,
+            // race_name: "",
+            // religion_name: "",
+            description: formValues.description,
+            age: formValues.age,
+            level: 1,
+            picture: "",
+            height: formValues.height,
+            weight: formValues.weight,
+            hair: formValues.hairColor,
+            stats: {
+                Dextérité: finalPrimaryStats.DEX,
+                Constitution: finalPrimaryStats.CON,
+                Force: finalPrimaryStats.FOR,
+                Charisme: finalPrimaryStats.CHA,
+                Sagesse: finalPrimaryStats.SAG,
+                Intelligence: finalPrimaryStats.INT,
+            },
+            // classe: 1,
+            // way_abilities: [1, 2],
+            // racialAbility: 1
+        };
+        // axios.post("http://localhost:3001/api/generator", sheetData)
         //     .then((response) => {
         //         console.log(response);
         //     })
