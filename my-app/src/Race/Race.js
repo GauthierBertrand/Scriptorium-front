@@ -50,7 +50,7 @@ const Race = () => {
         ),
         ...newRaceBonus,
       }));
-      const raceName = races[raceIndex]?.name || null;
+      const raceName = races[raceIndex]?.name || "";
       setRaceName(raceName);
     }
     setSelectedRaceAbility("");

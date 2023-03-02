@@ -4,7 +4,7 @@ import maleOrc from "./assets/images/male-orc.jpg";
 
 export const SheetContext = createContext({
     // Races
-    raceName: null,
+    raceName: "",
     setRaceName: () => {},
     // Classes
     equipment: [],
@@ -28,7 +28,7 @@ export const SheetContext = createContext({
 
 const SheetProvider = (props) => {
     // Races
-    const [raceName, setRaceName] = useState(null);
+    const [raceName, setRaceName] = useState("");
     // Classes
     const [equipment, setEquipment] = useState([]);
     // General

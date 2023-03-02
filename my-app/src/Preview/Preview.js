@@ -68,11 +68,10 @@ const Preview = () => {
             racialAbility: 11 // A dynamiser quand l'id de la compétence raciale choisie sera implémentée dans le JSON
         };
         console.log(sheetData);
-        axios.post("http://localhost:8080/api/generator", sheetData, {responseType: 'blob'})
+        axios.post("http://localhost:8080/api/generator", sheetData)
             .then((response) => {
-                const blob = new Blob([response.data], {type: 'application/pdf'});
-                const pdfUrl = URL.createObjectURL(blob);
-                
+                // const blob = new Blob([response.data], {type: 'application/pdf'});
+                // const pdfUrl = URL.createObjectURL(blob);
 
                 console.log(response);
             })
