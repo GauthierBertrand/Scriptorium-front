@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 
 import { SheetContext } from "../SheetContext";
 
-import "./General.scss";
-import "./Modal.scss";
+// import "./General.scss";
+// import "./Modal.scss";
+import "./figma.scss"
 
 import maleOrc from "../assets/images/male-orc.jpg";
 import femaleOrc from "../assets/images/female-orc.png";
@@ -16,15 +17,15 @@ import next from "../assets/images/next.png";
 
 // TODO : Dynamiser les religions avec un axios
 
-const General = ({religions}) => {
+const General = ({ religions }) => {
   const {
-      currentImage,
-      setCurrentImage,
-      formValues,
-      setFormValues,
-      selectedReligion,
-      setSelectedReligion,
-    } = useContext(SheetContext);
+    currentImage,
+    setCurrentImage,
+    formValues,
+    setFormValues,
+    selectedReligion,
+    setSelectedReligion,
+  } = useContext(SheetContext);
 
   const [direction, setDirection] = useState(null);
   const handlers = useSwipeable({
@@ -75,7 +76,7 @@ const General = ({religions}) => {
 
   return (
     <>
-      <button className="general-button" onClick={handleOpenModal}>
+      {/* <button className="general-button" onClick={handleOpenModal}>
       </button>
       {modalOpen && (
         <div className={`general-modal ${direction}`} {...handlers}>
@@ -86,55 +87,52 @@ const General = ({religions}) => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
       <div className="general-page">
+      <div className="general-gender-image">
+        <img className="selected-image" src={currentImage} alt="image du sexe sélectionné" />
+      </div>
         <form className="general-form">
-          <div className="general-form-head">
-            <div className="general-form-head-left">
-              <input type="text" id="firstName" name="firstName" placeholder="Prénom" value={formValues.firstName} onChange={handleChange} />
+            <div className="general-form-first-row">
               <input type="text" id="lastName" name="lastName" placeholder="Nom" value={formValues.lastName} onChange={handleChange} />
+              <input className="general-form-row-input" type="number" id="age" name="age" placeholder="Âge" value={formValues.age} onChange={handleChange} />
               <input type="text" id="eyeColor" name="eyeColor" placeholder="Couleur des yeux" value={formValues.eyeColor} onChange={handleChange} />
             </div>
-            <div className="general-form-head-right">
-              <img className="selected-image" src={currentImage} alt="image du sexe sélectionné" />
-            </div>
-          </div>
-          <div className="general-form-right">
-            <div className="general-form-row">
-              <div>
-              <input className="general-form-row-input" type="number" id="age" name="age" placeholder="Âge" value={formValues.age} onChange={handleChange} />
-              <input className="general-form-row-input" type="number" id="height" name="height" placeholder="Taille en cm" value={formValues.height} onChange={handleChange} />
-              <input className="general-form-row-input" type="number" id="weight" name="weight" placeholder="Poids en kg" value={formValues.weight} onChange={handleChange} />
+            <div className="general-form-second-row">
+              <input type="text" id="firstName" name="firstName" placeholder="Prénom" value={formValues.firstName} onChange={handleChange} />
+              <div className="second-row-measures">
+              <input className="measures-input" type="number" id="weight" name="weight" placeholder="Poids kg" value={formValues.weight} onChange={handleChange} />
+                <input className="measures-input" type="number" id="height" name="height" placeholder="Taille cm" value={formValues.height} onChange={handleChange} />
               </div>
               <input className="general-form-row-input" type="text" id="hairColor" name="hairColor" placeholder="Couleur des cheveux" value={formValues.hairColor} onChange={handleChange} />
             </div>
-          </div>
+            <div className="backstory-box">
+              <h1>Histoire</h1>
+              <input className="backstory-box-input" id="backstory" name="backstory" placeholder="Entrez votre histoire ici" value={formValues.backstory} onChange={handleChange} />
+            </div>
         </form>
         <div className="religion-box">
-      <div className="religion-header">
-          Religion:  
-        <select className="religion-dropdown" onChange={handleReligionChange}>
-          {/* {religions.map((religion) => (
+          <div className="religion-header">
+            Religion:
+            <select className="religion-dropdown" onChange={handleReligionChange}>
+              {/* {religions.map((religion) => (
             <option key={religion.name} value={religion.name}>
               {religion.name}
             </option>
           ))} */}
-        </select>
-      </div>
-      <div className="religion-description">{selectedReligion?.description}</div>
-      <div className="backstory-box">
-        <textarea className="backstory-input" id="backstory" name="backstory" placeholder="Entrez votre histoire ici" value={formValues.backstory} onChange={handleChange} />
-      </div>
-    </div>
+            </select>
+          </div>
+          <div className="religion-description">{selectedReligion?.description}</div>
+        </div>
       </div>
       <Link to="/generation-des-stats">
-          <img
+        <img
           className="next-page"
           src={next}
           alt="Chevron pointing down for the next page"
-          />
+        />
       </Link>
-  </>
+    </>
   );
 };
 
