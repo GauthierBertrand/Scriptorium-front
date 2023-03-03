@@ -1,145 +1,145 @@
-@import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
-body {
-    font-family: 'Glass Antiqua', cursive;
-    color: #FFFFFF;
-    font-size: 25px;
-    line-height: 26px;
-    font-weight: 400;
-    text-align: center;
-    background-color: #0D1717;
-}
+// @import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
+// body {
+//     font-family: 'Glass Antiqua', cursive;
+//     color: #FFFFFF;
+//     font-size: 25px;
+//     line-height: 26px;
+//     font-weight: 400;
+//     text-align: center;
+//     background-color: #0D1717;
+// }
 
-.general-page {
-    display: flex;
-    height: 100vh;
+// .general-page {
+//     display: flex;
+//     height: 100vh;
 
-    input::placeholder {
-        font-family: 'Glass Antiqua', cursive;
-        font-size: 26px;
-        font-weight: 400;
-        color: #FFFFFF;
-      }
+//     input::placeholder {
+//         font-family: 'Glass Antiqua', cursive;
+//         font-size: 26px;
+//         font-weight: 400;
+//         color: #FFFFFF;
+//       }
     
-}
+// }
 
-.general-gender-image {
-    max-height: 100%;
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// .general-gender-image {
+//     max-height: 100%;
+//     width: 33%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
 
-    .selected-image {
-        width: 433px;
-        height: 841px;
-        object-fit: cover;
-    }
-}
-
-
-.general-form {
-    height: 100%;
-    width: 33%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1rem;
-    input {
-        width: 204px;
-        height: 66px;
-        text-align: center;
-        background: #000000;
-        font-weight: bolder;
-        font-size: 20px;
-        color: #FFFFFF;
-        border-radius: 10px;
-        border: none;
-    }
+//     .selected-image {
+//         width: 433px;
+//         height: 841px;
+//         object-fit: cover;
+//     }
+// }
 
 
-    &-first-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    &-first-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        > input {
-            width: 204px;
-            height: 66px;
-            text-align: center;
-        }
-    }
-
-    &-second-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        > input {
-            width: 204px;
-            height: 66px;
-            text-align: center;
-        }
-    }
-}
-
-.second-row-measures {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 33px;
-    flex: 1 0 0;
-
-    .measures-input {
-        width: 88px;
-        height: 66px;
-        text-align: center;
-    }
-}
-
-.backstory-box {
-    width: 100%;
-    height: 261px;
-    padding: 1rem 0;
-    display: flex;
-    flex-direction: column;
-
-    input {
-        width: calc(100% - 0.25rem);
-        height: 80%;
-        border-radius: 0 0 10px 10px;
-    }
-
-    h1 {
-        background: #000000;
-        font-weight: 400;
-        border-radius: 10px 10px 0 0;
-        text-align: left;
-        padding: 2rem;
-    }
-}
+// .general-form {
+//     height: 100%;
+//     width: 33%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     padding: 1rem;
+//     input {
+//         width: 204px;
+//         height: 66px;
+//         text-align: center;
+//         background: #000000;
+//         font-weight: bolder;
+//         font-size: 20px;
+//         color: #FFFFFF;
+//         border-radius: 10px;
+//         border: none;
+//     }
 
 
-.religion-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 33%;
-}
+//     &-first-row {
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+//     }
 
-.religion-description {
-    background: #000000;
-    border-radius: 10px ;
-    padding: 2rem;
-    width: 410px;
-    height: 443px;
-}
+//     &-first-row {
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+
+//         > input {
+//             width: 204px;
+//             height: 66px;
+//             text-align: center;
+//         }
+//     }
+
+//     &-second-row {
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+
+//         > input {
+//             width: 204px;
+//             height: 66px;
+//             text-align: center;
+//         }
+//     }
+// }
+
+// .second-row-measures {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     margin: 0 33px;
+//     flex: 1 0 0;
+
+//     .measures-input {
+//         width: 88px;
+//         height: 66px;
+//         text-align: center;
+//     }
+// }
+
+// .backstory-box {
+//     width: 100%;
+//     height: 261px;
+//     padding: 1rem 0;
+//     display: flex;
+//     flex-direction: column;
+
+//     input {
+//         width: calc(100% - 0.25rem);
+//         height: 80%;
+//         border-radius: 0 0 10px 10px;
+//     }
+
+//     h1 {
+//         background: #000000;
+//         font-weight: 400;
+//         border-radius: 10px 10px 0 0;
+//         text-align: left;
+//         padding: 2rem;
+//     }
+// }
+
+
+// .religion-box {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     width: 33%;
+// }
+
+// .religion-description {
+//     background: #000000;
+//     border-radius: 10px ;
+//     padding: 2rem;
+//     width: 410px;
+//     height: 443px;
+// }
 
 
 

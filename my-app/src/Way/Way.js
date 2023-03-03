@@ -151,25 +151,24 @@ const Way = () => {
         <>
         <div className="stats-header">
             <div className="stats-header-mod">
-                <div className="stat-info">
-                    For
-                    <div className="stat-mod">+2</div>
-                </div>
+            {Object.entries(finalPrimaryStats).map((stat) => (
+                    <div className="stat-info" key={stat}>
+                        {stat[0]}
+                        <div className="stat-mod">
+                            {statModifiers[stat[0]] >= 0 ? "+" : ""}{statModifiers[stat[0]]}
+                        </div>
+                    </div>
+                ))}
+                
             </div>
             <div className="stats-header-other">
                 <div className="stat-atk">
-                    <div className="stat-type atk">
+                {Object.entries(secondaryStats).map((stat) => (
+                   <div className="stat-type atk">
                         <img src="https://fakeimg.pl/16/000" alt="Type d'attaque" />
-                        <div className="stat-type-value">12</div>
-                    </div>
-                    <div className="stat-type atk">
-                        <img src="https://fakeimg.pl/16/000" alt="Type d'attaque" />
-                        <div className="stat-type-value">12</div>
-                    </div>
-                    <div className="stat-type atk">
-                        <img src="https://fakeimg.pl/16/000" alt="Type d'attaque" />
-                        <div className="stat-type-value">12</div>
-                    </div>
+                        <div className="stat-type-value">{stat[1]}</div>
+                    </div> 
+                ))}
                 </div>
                 <div className="stat-def">
                     <div className="stat-type def">
