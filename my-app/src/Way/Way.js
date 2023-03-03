@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
-import next from "../assets/images/next.png";
+
+import { GlobalContext } from "./../GlobalContext";
 
 import axios from "axios";
+
+import next from "../assets/images/next.png";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -18,6 +21,13 @@ import "./Way.scss";
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
 const Way = () => {
+    const {
+        statModifiers,
+        setStatModifiers,
+        finalPrimaryStats,
+        secondaryStats,
+        setSecondaryStats,
+    } = useContext(GlobalContext);
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
     const [ways, setWays] = useState([]);
