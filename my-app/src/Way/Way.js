@@ -162,28 +162,16 @@ const Way = () => {
                 
             </div>
             <div className="stats-header-other">
-                <div className="stat-atk">
-                {Object.entries(secondaryStats).map((stat) => (
-                   <div className="stat-type atk">
-                        <img src="https://fakeimg.pl/16/000" alt="Type d'attaque" />
+                {Object.entries(secondaryStats).map((stat) => (  
+                    <div className={stat[0] === "DIST" || stat[0] === "CAC" || stat[0] === "MAG" ? "stat-type atk" : "stat-type def"}>
+                        <img src="https://fakeimg.pl/20/747DEF/?text=PV" alt={stat[0]} />
                         <div className="stat-type-value">{stat[1]}</div>
-                    </div> 
+                    </div>    
                 ))}
-                </div>
-                <div className="stat-def">
-                    <div className="stat-type def">
-                        <img src="https://fakeimg.pl/16/000" alt="Type de défense" />
-                        <div className="stat-type-value">12</div>
-                    </div>
-                    <div className="stat-type def">
-                        <img src="https://fakeimg.pl/16/000" alt="Type de défense" />
-                        <div className="stat-type-value">12</div>
-                    </div>
-                </div>
             </div>
             <div className="way-points">
                 <button className="remaining-points">{remainingPoints}</button>
-                <div className="remaining-points-text">{remainingPoints === 1 ? "point disponible" : "points disponibles"}</div>
+                <div className="remaining-points-text">{remainingPoints > 1 ? "points disponibles" : "point disponible"}</div>
             </div>
         </div>
 
@@ -198,12 +186,12 @@ const Way = () => {
                     <div className="way-container">
                         <div className="way-name" onClick={handleToggleDescription}>
                             {way.name}
+                            <button className={`race ${descriptionOpen ? "way-button open" : "way-button"}`}
+                                    onClick={handleToggleDescription}>
+                                        &#9207;
+                            </button>    
                         </div>
-                        <button className={`race ${descriptionOpen ? "way-button hidden" : "way-button"}`}
-                                onClick={handleToggleDescription}>
-                                    &#9207;
-                        </button>
-                        
+
                     {descriptionOpen && (
                         way.wayAbilities.map((wayAbility, index) => (     
                             <div className={`way-ability-container ${selectedAbilityNames.includes(wayAbility.name) ? 'selected' : ''}`} key={index} onClick={() => {handleSelectAbility(wayAbility)}}>
@@ -216,10 +204,6 @@ const Way = () => {
                                         {wayAbility.description}
                                     </div>
                                 </div>
-                                <button className="way-button open"
-                                    onClick={handleToggleDescription}>
-                                        &#9207;
-                                </button>
                             </div>
                         ))   
                     )}
@@ -227,7 +211,7 @@ const Way = () => {
                         {!descriptionOpen && (
                             <div className="way-changes-container">
                                 <h3 className="changes-summary">
-                                    Résumé des changements :
+                                    Résumé des changements liés aux traits :
                                 </h3>
                                 <div className="way-changes">
                                     {/* <img src="#" alt="Logo décoratif des changements"/> */}
