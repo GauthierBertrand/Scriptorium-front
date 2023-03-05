@@ -68,12 +68,12 @@ const Navbar = () => {
             <Link to="/parametres">Paramètres</Link>
           </li>
           <li>
-            <Link to="mentions-legales">Mention légales</Link>
+            <Link to="mentions-legales">Mentions légales</Link>
           </li>
           {user && (
             <li>
               <Link to="/classes" onClick={handleLogout}>
-                Log Out
+                Déconnexion
               </Link>
             </li>
           )}
