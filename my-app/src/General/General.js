@@ -89,27 +89,25 @@ const General = ({ religions }) => {
         </div>
       )} */}
       <div className="general-page">
-      <div className="general-gender-image">
-        <img className="selected-image" src={currentImage} alt="image du sexe sélectionné" />
-      </div>
+        <div className="general-gender-image">
+          <img className="selected-image" src={currentImage} alt="image du sexe sélectionné" />
+        </div>
         <form className="general-form">
-            <div className="general-form-first-row">
-              <input type="text" id="lastName" name="lastName" placeholder="Nom" value={formValues.lastName} onChange={handleChange} />
-              <input className="general-form-row-input" type="number" id="age" name="age" placeholder="Âge" value={formValues.age} onChange={handleChange} />
-              <input type="text" id="eyeColor" name="eyeColor" placeholder="Couleur des yeux" value={formValues.eyeColor} onChange={handleChange} />
+          <div className="general-inputs">
+            <input type="text" id="lastName" name="lastName" placeholder="Nom" value={formValues.lastName} onChange={handleChange} />
+            <input type="number" id="age" name="age" placeholder="Âge" value={formValues.age} onChange={handleChange} min="0" />
+            <input type="text" id="eyeColor" name="eyeColor" placeholder="Couleur des yeux" value={formValues.eyeColor} onChange={handleChange} />
+            <input type="text" id="firstName" name="firstName" placeholder="Prénom" value={formValues.firstName} onChange={handleChange} />
+            <div className="measures">
+              <input className="measures-input" type="number" id="weight" name="weight" placeholder="Poids kg" value={formValues.weight} onChange={handleChange} min="0" />
+              <input className="measures-input" type="number" id="height" name="height" placeholder="Taille cm" value={formValues.height} onChange={handleChange} min="0" />
             </div>
-            <div className="general-form-second-row">
-              <input type="text" id="firstName" name="firstName" placeholder="Prénom" value={formValues.firstName} onChange={handleChange} />
-              <div className="second-row-measures">
-              <input className="measures-input" type="number" id="weight" name="weight" placeholder="Poids kg" value={formValues.weight} onChange={handleChange} />
-                <input className="measures-input" type="number" id="height" name="height" placeholder="Taille cm" value={formValues.height} onChange={handleChange} />
-              </div>
-              <input className="general-form-row-input" type="text" id="hairColor" name="hairColor" placeholder="Couleur des cheveux" value={formValues.hairColor} onChange={handleChange} />
-            </div>
-            <div className="backstory-box">
-              <h1>Histoire</h1>
-              <input className="backstory-box-input" id="backstory" name="backstory" placeholder="Entrez votre histoire ici" value={formValues.backstory} onChange={handleChange} />
-            </div>
+            <input type="text" id="hairColor" name="hairColor" placeholder="Couleur des cheveux" value={formValues.hairColor} onChange={handleChange} />
+          </div>
+          <div className="backstory-box">
+            <h1>Histoire</h1>
+            <textarea className="backstory-box-input" id="backstory" name="backstory" placeholder="Votre histoire" value={formValues.backstory} onChange={handleChange} />
+          </div>
         </form>
         <div className="religion-box">
           <div className="religion-header">
@@ -137,3 +135,5 @@ const General = ({ religions }) => {
 };
 
 export default General;
+
+
