@@ -163,7 +163,7 @@ const Way = () => {
             </div>
             <div className="stats-header-other">
                 {Object.entries(secondaryStats).map((stat) => (  
-                    <div className={stat[0] === "DIST" || stat[0] === "CAC" || stat[0] === "MAG" ? "stat-type atk" : "stat-type def"}>
+                    <div className={stat[0] === "DIST" || stat[0] === "CAC" || stat[0] === "MAG" ? "stat-type atk" : "stat-type def"} key={stat}>
                         <img src="https://fakeimg.pl/20/747DEF/?text=PV" alt={stat[0]} />
                         <div className="stat-type-value">{stat[1]}</div>
                     </div>    
