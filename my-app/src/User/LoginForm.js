@@ -36,11 +36,11 @@ function LoginForm(props) {
   return (
     <form onSubmit={handleSubmit}>
       {errorMessage && <div>{errorMessage}</div>}
-      <label htmlFor="username">Username</label>
+      <label htmlFor="username">Nom d'utilisateur</label>
       <input type="text" id="username" value={username} onChange={(event) => setUsername(event.target.value)} />
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password">Mot de passe</label>
       <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-      <button type="submit">Log In</button>
+      <button type="submit">Connexion</button>
     </form>
   );
 }

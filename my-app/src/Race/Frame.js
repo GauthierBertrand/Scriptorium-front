@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "../GlobalContext";
+import { SheetContext } from "../SheetContext";
 import { useSwipeable } from "react-swipeable";
 import { Link } from "react-router-dom";
 import "./Frame.scss";
@@ -11,6 +12,11 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
     selectedRaceAbility,
     setSelectedRaceAbility,
   } = useContext(GlobalContext);
+
+  const {
+    selectedRaceAbilityId,
+    setSelectedRaceAbilityId
+  } = useContext(SheetContext);
 
   const handlers = useSwipeable({
     onSwipedRight: (eventData) => {
@@ -32,6 +38,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
         return raceAbility.name;
       }
     });
+    setSelectedRaceAbilityId(raceAbility.id);
   };
 
   return (

@@ -6,6 +6,8 @@ export const SheetContext = createContext({
     // Races
     raceName: "",
     setRaceName: () => {},
+    selectedRaceAbilityId: null,
+    setSelectedRaceAbilityId: () => {},
     // Classes
     equipment: [],
     setEquipment: () => {},
@@ -24,11 +26,15 @@ export const SheetContext = createContext({
     },
     selectedReligion: null,
     setSelectedReligion: () => {},
+    // Ways
+    selectedWayAbilityId: [],
+    setSelectedWayAbilityId: () => {},
 });
 
 const SheetProvider = (props) => {
     // Races
     const [raceName, setRaceName] = useState("");
+    const [selectedRaceAbilityId, setSelectedRaceAbilityId] = useState(null);
     // Classes
     const [equipment, setEquipment] = useState([]);
     // General
@@ -44,11 +50,16 @@ const SheetProvider = (props) => {
         backstory: ""
     });
     const [selectedReligion, setSelectedReligion] = useState(null);
+    // Ways
+    const [selectedWayAbilityId, setSelectedWayAbilityId] = useState(null);
+
     return (
         <SheetContext.Provider value={{
             // Race
             raceName,
             setRaceName,
+            selectedRaceAbilityId,
+            setSelectedRaceAbilityId,
             // Classes
             equipment,
             setEquipment,
@@ -60,6 +71,8 @@ const SheetProvider = (props) => {
             selectedReligion,
             setSelectedReligion,
             // Ways
+            selectedWayAbilityId,
+            setSelectedWayAbilityId
         }}>
             {props.children}
         </SheetContext.Provider>
