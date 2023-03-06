@@ -3,8 +3,6 @@ import "./Generator.scss";
 import { GlobalContext } from "../GlobalContext";
 import { NavLink } from "react-router-dom";
 
-// TODO : Traduire en français les textes du dom lignes 43-44 et 58-60
-
 const Generator = () => {
   const { diceRolls, setDiceRolls } = useContext(GlobalContext);
   const [selectedGeneration, setSelectedGeneration] = useState(null);
@@ -26,7 +24,7 @@ const Generator = () => {
   };
 
   const generateStandardArray = () => {
-    setDiceRolls([15, 14, 13, 12, 11, 10]);
+    setDiceRolls([15, 14, 13, 12, 10, 8]);
     setSelectedGeneration("standard");
   };
 
@@ -41,9 +39,8 @@ const Generator = () => {
             onClick={rollDice}
           >
             <h1>Random Rolls</h1>
-            Roll 4 six-sided dice, drop the lowest, and add up the remaining
-            three to generate one ability score. Repeat this process six times
-            to generate all ability scores.
+            Lancer 4 dés à 6 faces, et faire la somme des 3 meilleurs. Répéter ce processus 6 fois
+            pour générer les 6 valeurs de stats.
           </button>
         </NavLink>
       </div>
@@ -55,9 +52,9 @@ const Generator = () => {
             }`}
             onClick={generateStandardArray}
           >
-            <h1>Standard array</h1>
+            <h1>Série standard</h1>
             <div className="explanation-text">
-              Use the standard array of ability scores: 15, 14, 13, 12, 11, 10.
+              Utiliser la série standard pour générer les 6 valeurs de stats : 15, 14, 13, 12, 10, 8.
             </div>
           </button>
         </NavLink>
