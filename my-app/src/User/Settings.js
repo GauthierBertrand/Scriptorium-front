@@ -12,7 +12,7 @@ const Settings = () => {
 
     // Check if the new password and verify password match
     if (newPassword !== verifyPassword) {
-      alert('New password and verify password do not match');
+      alert('Les mots de passe ne correspondent pas');
       return;
     }
 
@@ -40,10 +40,10 @@ const Settings = () => {
         setNewPassword('');
         setVerifyPassword('');
 
-        alert('Password changed successfully');
+        alert('Votre mot de passe a bien été changé');
       })
       .catch((error) => {
-        alert(`Error changing password: ${error.message}`);
+        alert(`Erreur lors du changement de mot de passe : ${error.message}`);
       });
   };
 
@@ -73,17 +73,17 @@ const Settings = () => {
         history.push('/login');
       })
       .catch((error) => {
-        alert(`Error deleting account: ${error.message}`);
+        alert(`Erreur lors de la suppression du compte : ${error.message}`);
       });
   };
 
   return (
     <div>
-      <h1>Settings</h1>
+      <h1>Paramètres</h1>
       <form onSubmit={handleChangePassword}>
-        <h2>Change password</h2>
+        <h2>Changer le mot de passe</h2>
         <label>
-          Current password:
+          Mot de passe actuel :
           <input
             type="password"
             value={currentPassword}
@@ -92,7 +92,7 @@ const Settings = () => {
           />
         </label>
         <label>
-          New password:
+          Nouveau mot de passe :
           <input
             type="password"
             value={newPassword}
@@ -101,7 +101,7 @@ const Settings = () => {
           />
         </label>
         <label>
-          Verify password:
+          Confirmation du mot de passe :
           <input
             type="password"
             value={verifyPassword}
@@ -110,15 +110,15 @@ const Settings = () => {
           />
         </label>
         {newPassword !== verifyPassword && (
-          <p style={{ color: 'red' }}>New password and verify password do not match</p>
+          <p style={{ color: 'red' }}>Les mots de passe ne correspondent pas</p>
         )}
-        <button type="submit">Change password</button>
+        <button type="submit">Changer le mot de passe</button>
       </form>
       <form onSubmit={handleDeleteAccount}>
-        <h2>Delete account</h2>
-        <p>Are you sure you want to delete your account?</p>
+        <h2>Supprimer mon compte</h2>
+        <p>Etes-vous sûr.e de vouloir supprimer votre compte ?</p>
         <label>
-        Current password:
+        Mot de passe actuel :
         <input
             type="password"
             value={currentPassword}
@@ -126,7 +126,7 @@ const Settings = () => {
             required
         />
         </label>
-        <button type="submit">Delete account</button>
+        <button type="submit">Supprimer mon compte</button>
     </form>
     </div>
     );

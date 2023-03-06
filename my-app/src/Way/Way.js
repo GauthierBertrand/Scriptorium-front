@@ -23,10 +23,8 @@ SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 const Way = () => {
     const {
         statModifiers,
-        setStatModifiers,
         finalPrimaryStats,
         secondaryStats,
-        setSecondaryStats,
     } = useContext(GlobalContext);
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
@@ -237,7 +235,7 @@ const Way = () => {
               src={next}
               alt="Chevron pointing down for the next page"
             />
-          </Link>
+        </Link>
     </>
 
 
