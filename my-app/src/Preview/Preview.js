@@ -1,7 +1,10 @@
 import { useContext, useEffect, useState } from "react";
+import { PDFViewer } from '@react-pdf/renderer';
 
 import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
+
+import Sheet from "./Sheet";
 
 import axios from "axios"; // For API post request
 
@@ -32,9 +35,18 @@ const Preview = () => {
     } = useContext(SheetContext);
 
     const [pdfUrl, setPdfUrl] = useState(null);
+    const [numPage, setNumPage] = useState(null);
+
+    const onDocumentLoadSuccess = ({ numPages }) => {
+        setNumPage(numPages);
+    };
 
     const handleGeneration = () => {
-        // La magie de la génération de fiche
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.setAttribute('download', 'fiche.pdf');
+        document.body.appendChild(link);
+        link.click();
     };
 
     useEffect(() => {       
@@ -45,10 +57,11 @@ const Preview = () => {
             description: formValues.backstory,
             age: Number(formValues.age),
             level: 1,
-            picture: "", // currentImage
+            picture: currentImage,
             height: Number(formValues.height),
             weight: Number(formValues.weight),
             hair: formValues.hairColor,
+            eyes: formValues.eyeColor,
             stats: {
                 Dextérité: finalPrimaryStats.DEX,
                 Constitution: finalPrimaryStats.CON,
@@ -57,16 +70,18 @@ const Preview = () => {
                 Sagesse: finalPrimaryStats.SAG,
                 Intelligence: finalPrimaryStats.INT,
             },
+            user: null,
             classe: classId,
             way_abilities: [12, 13], // A dynamiser quand l'id des compétences de voies choisies seront implémentées dans le JSON
             racialAbility: 6 // A dynamiser quand l'id de la compétence raciale choisie sera implémentée dans le JSON
         };
         console.log(sheetData);
-        axios.post("http://localhost:8080/api/generator", sheetData, {responseType: 'arraybuffer'})
+        axios.post("http://localhost:8080/api/generator", sheetData, {responseType: 'arraybuffer', headers: {'accept': 'application/json'}})
             .then((response) => {
                 const blob = new Blob([response.data], {type: 'application/pdf'});
-                const pdfUrl = window.URL.createObjectURL(blob);
-                window.open(pdfUrl);
+                setPdfUrl(URL.createObjectURL(blob));
+                // window.open(pdfUrl);
+                console.log(pdfUrl);
 
                 console.log(response);
             })
@@ -76,23 +91,19 @@ const Preview = () => {
             });
     }, []);
 
-    // const handleDownload = () => {
-    //     const link = document.createElement('a');
-    //     link.href = pdfUrl;
-    //     link.setAttribute('download', 'sheet.pdf');
-    //     document.body.appendChild(link);
-    //     link.click();
-    // };
-
-    return(
+    return (
         <div className="preview-container">
             <div className="preview">
-                <img className="preview-image" src="https://fakeimg.pl/250x450/EFC874/?text=Preview" alt="Prévisualisation de votre fiche de personnage" />
+                {/* <img className="preview-image" src="https://fakeimg.pl/250x450/EFC874/?text=Preview" alt="Prévisualisation de votre fiche de personnage" /> */}
+                {pdfUrl &&
+                <PDFViewer>
+                    <Sheet pdfUrl={pdfUrl} onDocumentLoadSuccess={onDocumentLoadSuccess}/>
+                </PDFViewer>
+                }
             </div>
             <div className="generate">
                 <button className="generate-button" onClick={handleGeneration}>Générer ma fiche</button>
             </div>
-            {/* <a href={pdfUrl} download="sheet.pdf">Sheet</a> */}
         </div>
     );
 };
