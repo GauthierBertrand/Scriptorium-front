@@ -23,6 +23,7 @@ SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
 const Way = () => {
     const {
+        classId,
         statModifiers,
         finalPrimaryStats,
         secondaryStats,
@@ -31,6 +32,7 @@ const Way = () => {
     const {
         selectedWayAbilityId,
         setSelectedWayAbilityId,
+        updateSelectedWayAbilityId,
     } = useContext(SheetContext);
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
@@ -61,6 +63,7 @@ const Way = () => {
     const [remainingPoints, setRemainingPoints] = useState(2);
 
 
+
     const handleToggleDescription = () => {
         setDescriptionOpen(!descriptionOpen);
     }
@@ -72,21 +75,8 @@ const Way = () => {
     }
 
     const handleSelectAbility = (wayAbility) => {
+
         setSelectedWayAbility(wayAbility);
-        setSelectedWayAbilityId([wayAbility.id]);
-        setSelectedWayAbilityId((prevSelectedWayAbilityId) => {
-            if (!prevSelectedWayAbilityId.includes(wayAbility.id)) {
-                // Ability is not already selected, add it to the array
-                return [...prevSelectedWayAbilityId, wayAbility.id];
-            }
-            // if ([...prevSelectedWayAbilityId, wayAbility.id].length > 2) {
-            //     // Abilities array is full, remove the first element
-            //     [...prevSelectedWayAbilityId, wayAbility.id].shift();
-            //     return [...prevSelectedWayAbilityId, wayAbility.id];
-            // }
-            
-        });
-        console.log(selectedWayAbilityId);
       
         setSelectedAbilityNames((prevSelectedAbilityNames) => {
           if (prevSelectedAbilityNames.includes(wayAbility.name)) {
@@ -105,7 +95,12 @@ const Way = () => {
             
             // Add the cost back to remaining points
             setRemainingPoints((prevPoints) => prevPoints + wayAbility.cost);
-      
+
+            // Remove or add the id of selectedWayAbilityId
+            setSelectedWayAbilityId((prevSelectedWayAbilityId) => {
+                return updateSelectedWayAbilityId(wayAbility.id);
+             });
+             
             return prevSelectedAbilityNames.filter((name) => name !== wayAbility.name);
           } else {
             // Ability is not selected, check if there are enough points before adding it
@@ -150,9 +145,15 @@ const Way = () => {
           });
       };
 
+      useEffect(() => {
+        setTimeout(() => {
+            console.log(selectedWayAbilityId);
+          }, 0);
+      }, [selectedWayAbilityId]);
+
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/ways")
+        axios.get("http://localhost:8080/api/ways") // (`http://localhost:8080/api/ways/${classId}`)
         .then((response) => {
             const waysData = response.data.ways;
             console.log(waysData);
