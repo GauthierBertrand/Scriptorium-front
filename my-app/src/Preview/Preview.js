@@ -6,7 +6,7 @@ import { SheetContext } from "../SheetContext";
 
 import Sheet from "./Sheet";
 
-import axios from "axios"; // For API post request
+import axios from "axios";
 
 import "./Preview.scss";
 
@@ -20,13 +20,15 @@ const Preview = () => {
         secondaryStats,
         finalPrimaryStats,
         // Ways
+        selectedWayAbilityId
     } = useContext(GlobalContext);
 
     const {
          // Classes
          equipment,
-         // Race
+         // Races
          raceName,
+         selectedRaceAbilityId,
          // General
          currentImage,
          formValues,
@@ -53,7 +55,7 @@ const Preview = () => {
         const sheetData = {
             character_name: formValues.firstName + " " + formValues.lastName,
             race_name: raceName,
-            religion_name: "Fromage", // A dynamiser quand la religion sera récupérable de l'API
+            religion_name: "Fromage", // A dynamiser quand la religion sera récupérable de l'API (vide pour l'instant)
             description: formValues.backstory,
             age: Number(formValues.age),
             level: 1,
@@ -72,8 +74,8 @@ const Preview = () => {
             },
             user: null,
             classe: classId,
-            way_abilities: [12, 13], // A dynamiser quand l'id des compétences de voies choisies seront implémentées dans le JSON
-            racialAbility: 6 // A dynamiser quand l'id de la compétence raciale choisie sera implémentée dans le JSON
+            way_abilities: selectedWayAbilityId, // WIP : Tableau avec 2 valeurs, voir comment les assigner correctement
+            racialAbility: selectedRaceAbilityId
         };
         console.log(sheetData);
         axios.post("http://localhost:8080/api/generator", sheetData, {responseType: 'arraybuffer', headers: {'accept': 'application/json'}})

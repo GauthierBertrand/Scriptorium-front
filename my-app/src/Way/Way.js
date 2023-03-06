@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 
 import { GlobalContext } from "./../GlobalContext";
+import { SheetContext } from "./../SheetContext";
 
 import axios from "axios";
 
@@ -26,6 +27,11 @@ const Way = () => {
         finalPrimaryStats,
         secondaryStats,
     } = useContext(GlobalContext);
+
+    const {
+        selectedWayAbilityId,
+        setSelectedWayAbilityId,
+    } = useContext(SheetContext);
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
     const [ways, setWays] = useState([]);
@@ -67,6 +73,20 @@ const Way = () => {
 
     const handleSelectAbility = (wayAbility) => {
         setSelectedWayAbility(wayAbility);
+        setSelectedWayAbilityId([wayAbility.id]);
+        setSelectedWayAbilityId((prevSelectedWayAbilityId) => {
+            if (!prevSelectedWayAbilityId.includes(wayAbility.id)) {
+                // Ability is not already selected, add it to the array
+                return [...prevSelectedWayAbilityId, wayAbility.id];
+            }
+            // if ([...prevSelectedWayAbilityId, wayAbility.id].length > 2) {
+            //     // Abilities array is full, remove the first element
+            //     [...prevSelectedWayAbilityId, wayAbility.id].shift();
+            //     return [...prevSelectedWayAbilityId, wayAbility.id];
+            // }
+            
+        });
+        console.log(selectedWayAbilityId);
       
         setSelectedAbilityNames((prevSelectedAbilityNames) => {
           if (prevSelectedAbilityNames.includes(wayAbility.name)) {
@@ -83,7 +103,7 @@ const Way = () => {
               PV: prevWayBonus.PV - (wayAbility.bonus?.PV || 0),
             }));
             
-            // add the cost back to remaining points
+            // Add the cost back to remaining points
             setRemainingPoints((prevPoints) => prevPoints + wayAbility.cost);
       
             return prevSelectedAbilityNames.filter((name) => name !== wayAbility.name);
