@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import './BurgerMenu.scss';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -16,7 +17,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    Cookies.remove('token');
     setUser(null);
     setOpen(false);
   };
@@ -37,7 +38,7 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="menu">
           {user ? (
-            <div className="user-info">{`${user.username}`}</div>
+            <div className="user-info">{`${user.pseudo}`}</div>
           ) : (
             <div className="auth-buttons">
               <button type="button" onClick={handleShowLoginForm}>

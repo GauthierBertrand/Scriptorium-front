@@ -8,7 +8,21 @@ const SignUpForm = (props) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const handleResendActivation = async (event) => {
+    event.preventDefault();
+
+    try {
+      await axios.post('http://localhost:8080/resend-activation', {
+        email: email,
+      });
+      setSuccessMessage('Un nouvel e-mail d\'activation a été envoyé.');
+    } catch (error) {
+      setErrorMessage('Une erreur s\'est produite lors de l\'envoi de l\'e-mail d\'activation.');
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,26 +32,30 @@ const SignUpForm = (props) => {
       return;
     }
 
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?=.*\d).{8,64}$/;
+    if (!passwordRegex.test(password)) {
+      setErrorMessage('Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.');
+      return;
+    }
+
     try {
       const response = await axios.post('http://localhost:8080/inscription', {
         pseudo: pseudo,
         email: email,
         password: password
       });
-      setSuccessMessage('Inscription réussie. Vous pouvez maintenant vous connecter.');
+      setSuccessMessage('Inscription réussie. Veuillez activer votre compte en cliquant sur le lien qui vous a été envoyé par e-mail.');
+      setIsSubmitted(true);
       setPseudo('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-      setTimeout(() => {
-        setSuccessMessage('');
-        props.onSuccess();
-      }, 5000);
     } catch (error) {
       setErrorMessage('Une erreur s\'est produite lors de l\'inscription.');
       console.log(error);
     }
   };
+
 
   return (
     <div className="modal">
@@ -58,13 +76,19 @@ const SignUpForm = (props) => {
               <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
               <input type="password" id="confirmPassword" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
               <button type="submit">S'inscrire</button>
-              <button type="button" onClick={props.onClose}>Annuler</button>
-            </form>
-          </>
-        )}
-      </div>
-    </div>
-  );
+          {isSubmitted && (
+            <>
+              <button type="button" onClick={handleResendActivation}>Renvoyer l'e-mail d'activation</button>
+              {successMessage && <div className="success-message">{successMessage}</div>}
+            </>
+          )}
+          {!isSubmitted && <button type="button" onClick={props.onClose}>Annuler</button>}
+        </form>
+      </>
+    )}
+  </div>
+</div>
+);
 };
 
 export default SignUpForm;
