@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import Cookies from 'js-cookie';
 import { UserContext } from '../UserContext';
@@ -28,15 +27,8 @@ const Profile = () => {
     })
   }, []);
 
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    Cookies.remove('token');
-    navigate('/classes');
-  };
-
   return ( 
     <div className="sheet-container">
-    <button onClick={handleLogout}>Logout</button>
       <h1>Mes fiches enregistrées</h1>
       <div className="sheet-list">
         {sheetsList.map((sheet, index) => (

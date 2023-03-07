@@ -6,7 +6,7 @@ import Stat from "../Stat/Stat";
 import Way from "../Way/Way";
 import Preview from "../Preview/Preview";
 import Navbar from "../User/Navbar";
-// import Notice from "../Notice/Notice";
+import Notice from "../Notice/Notice";
 import Profile from "../User/Profile";
 import Settings from "../User/Settings";
 import ProtectedRoute from "../User/ProtectedRoute";
@@ -51,7 +51,7 @@ const Scriptorium = () => {
              <UserProvider>
                 <Preview />
              </UserProvider>} />
-          {/*  <Route path="/mentions-legales" element={<Notice/>} /> */}
+           <Route path="/mentions-legales" element={<Notice/>} />
         </Routes>
       </SheetProvider>
     </div>
