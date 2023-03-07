@@ -79,12 +79,6 @@ const Way = () => {
                 // Ability is not already selected, add it to the array
                 return [...prevSelectedWayAbilityId, wayAbility.id];
             }
-            // if ([...prevSelectedWayAbilityId, wayAbility.id].length > 2) {
-            //     // Abilities array is full, remove the first element
-            //     [...prevSelectedWayAbilityId, wayAbility.id].shift();
-            //     return [...prevSelectedWayAbilityId, wayAbility.id];
-            // }
-            
         });
         console.log(selectedWayAbilityId);
       

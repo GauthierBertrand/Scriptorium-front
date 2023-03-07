@@ -27,7 +27,9 @@ const Scriptorium = () => {
             path="/profile"
             element={
               <ProtectedRoute>
-                <Profile />
+                <UserProvider>
+                  <Profile />
+                </UserProvider>                
               </ProtectedRoute>
             }
           />
@@ -45,7 +47,10 @@ const Scriptorium = () => {
           <Route path="/generation-des-stats" element={<Generator />} />
           <Route path="/stats" element={<Stat />} />
           <Route path="/voies" element={<Way />} />
-          <Route path="/apercu" element={<Preview />} />
+          <Route path="/apercu" element={
+             <UserProvider>
+                <Preview />
+             </UserProvider>} />
           {/*  <Route path="/mentions-legales" element={<Notice/>} /> */}
         </Routes>
       </SheetProvider>
