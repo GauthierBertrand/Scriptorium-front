@@ -1,10 +1,12 @@
-import React from 'react';
-import Athenticated from './ProtectedRoute';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 
 const Profile = () => {
+  const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    window.location.reload();
+    Cookies.remove('token');
+    navigate('/classes');
   };
 
   return (
@@ -15,4 +17,4 @@ const Profile = () => {
   );
 };
 
-export default Athenticated(Profile);
+export default Profile;

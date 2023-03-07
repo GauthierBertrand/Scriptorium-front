@@ -5,7 +5,7 @@ const Settings = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
-  const history = useNavigate ();
+  const navigate = useNavigate ();
 
   const handleChangePassword = (e) => {
     e.preventDefault();
@@ -70,7 +70,7 @@ const Settings = () => {
       .then(() => {
         // Clear the local storage and redirect to the login page
         localStorage.removeItem('token');
-        history.push('/login');
+        navigate.push('/login');
       })
       .catch((error) => {
         alert(`Erreur lors de la suppression du compte : ${error.message}`);

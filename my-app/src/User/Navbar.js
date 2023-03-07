@@ -63,7 +63,7 @@ const Navbar = () => {
       <div className={`burger-menu ${open ? "open" : ""}`}>
         <ul>
           <li>
-            <Link to="/fiches">Mes fiches</Link>
+            <Link to="/profile">Mes fiches</Link>
           </li>
           <li>
             <Link to="/parametres">Paramètres</Link>

@@ -1,16 +1,14 @@
-import { Route, redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = localStorage.getItem('authToken') != null;
+const ProtectedRoute = ( { children }) => {
+  // const navigate = useNavigate();
+  const isAuthenticated = Cookies.get('token') != null;
+if (isAuthenticated) {
+  return children;
+};
 
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        isAuthenticated ? <Component {...props} /> : redirect("/login")
-      }
-    />
-  );
+return <Navigate to="/classes" />;
 };
 
 export default ProtectedRoute;
