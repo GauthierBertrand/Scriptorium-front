@@ -43,9 +43,9 @@ const SheetProvider = (props) => {
         firstName: "",
         lastName: "",
         eyeColor: "",
-        age: 0,
-        height: 0,
-        weight: 0,
+        age: null,
+        height: null,
+        weight: null,
         hairColor: "",
         backstory: ""
     });
