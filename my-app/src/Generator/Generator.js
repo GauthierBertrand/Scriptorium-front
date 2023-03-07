@@ -30,6 +30,7 @@ const Generator = () => {
 
   return (
     <div>
+      <h1>Génération des statistiques</h1>
       <div className="generator-container">
         <NavLink to="/stats" className="button-link">
           <button
