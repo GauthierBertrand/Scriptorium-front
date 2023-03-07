@@ -142,11 +142,11 @@ const Way = () => {
     useEffect(() => {
         // Update selectedWayAbilityId after selectedAbilityNames has been updated
         updateSelectedWayAbilityId(selectedWayAbility.id);
+        console.log(selectedWayAbilityId);
     }, [selectedAbilityNames]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/ways/8`)
-            // ${classId}
+        axios.get(`http://localhost:8080/api/ways/${classId}`)
             .then((response) => {
                 setWays(response.data.ways);
             })
@@ -209,6 +209,7 @@ const Way = () => {
                                             <div className="way-ability-name">
                                                 {wayAbility.name}
                                                 {wayAbility.limited && <>&nbsp;&#x24c1;</>}
+                                                {selectedWayAbilityId}
                                             </div>
                                             <div className="way-ability-description">
                                                 {wayAbility.description}
