@@ -65,7 +65,7 @@ const Preview = () => {
         },
         user: null,
         classe: classId,
-        way_abilities: selectedWayAbilityId, // WIP : Tableau avec 2 valeurs, voir comment les assigner correctement
+        way_abilities: [351, 352], // selectedWayAbilityId, // WIP : Tableau avec 2 valeurs, voir comment les assigner correctement
         racialAbility: selectedRaceAbilityId
     };
 
@@ -86,7 +86,8 @@ const Preview = () => {
             {responseType: 'arraybuffer',
             headers: {
                 'accept': 'application/json',
-                'Authorization':`Bearer ${token}`}})
+                'Authorization':`Bearer ${token}`
+            }})
                 .then((response) => {
                     console.log(response);
                 })
