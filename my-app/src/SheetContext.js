@@ -1,19 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback } from "react";
 
 import maleOrc from "./assets/images/male-orc.jpg";
 
 export const SheetContext = createContext({
     // Races
     raceName: "",
-    setRaceName: () => {},
+    setRaceName: () => { },
     selectedRaceAbilityId: null,
-    setSelectedRaceAbilityId: () => {},
+    setSelectedRaceAbilityId: () => { },
     // Classes
     equipment: [],
-    setEquipment: () => {},
+    setEquipment: () => { },
     // General
     currentImage: "",
-    setCurrentImage: () => {},
+    setCurrentImage: () => { },
     formValues: {
         firstName: "",
         lastName: "",
@@ -25,10 +25,11 @@ export const SheetContext = createContext({
         backstory: ""
     },
     selectedReligion: null,
-    setSelectedReligion: () => {},
+    setSelectedReligion: () => { },
     // Ways
-    selectedWayAbilityId: [],
-    setSelectedWayAbilityId: () => {},
+    selectedWayAbilityId: null,
+    setSelectedWayAbilityId: () => { },
+    updateSelectedWayAbilityId: () => { }
 });
 
 const SheetProvider = (props) => {
@@ -53,7 +54,7 @@ const SheetProvider = (props) => {
     // Ways
     const [selectedWayAbilityId, setSelectedWayAbilityId] = useState([]);
 
-    const updateSelectedWayAbilityId = (wayAbilityId) => {
+    const updateSelectedWayAbilityId = useCallback((wayAbilityId) => {
         setSelectedWayAbilityId((prevSelectedWayAbilityId) => {
             if (prevSelectedWayAbilityId.includes(wayAbilityId)) {
                 // Ability is already selected, remove it from the array
@@ -63,7 +64,7 @@ const SheetProvider = (props) => {
                 return [...prevSelectedWayAbilityId, wayAbilityId];
             }
         });
-    };
+    }, []);
 
     return (
         <SheetContext.Provider value={{
