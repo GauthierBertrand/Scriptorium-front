@@ -13,6 +13,7 @@ import ProtectedRoute from "../User/ProtectedRoute";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { UserProvider } from "../UserContext";
 import SheetProvider from "../SheetContext";
+import "./Scriptorium.scss";
 
 const Scriptorium = () => {
   return (
