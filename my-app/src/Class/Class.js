@@ -75,9 +75,9 @@ const Class = () => {
 
     return (
         <div className="class-container">
-            {/* <h1 className="class-title">
+            <h1 className="class-title">
                 Classes
-            </h1> */}
+            </h1>
 
             <div className="class-img-container">
                 <button className="equipment-button" onClick={handleToggleEquipment}>
