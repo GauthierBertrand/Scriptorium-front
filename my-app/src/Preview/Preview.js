@@ -22,7 +22,6 @@ const Preview = () => {
         secondaryStats,
         finalPrimaryStats,
         // Ways
-        selectedWayAbilityId
     } = useContext(GlobalContext);
 
     const {
@@ -36,6 +35,7 @@ const Preview = () => {
          formValues,
          selectedReligion,
          // Ways
+         selectedWayAbilityId
     } = useContext(SheetContext);
 
     const { user } = useContext(UserContext);
@@ -65,7 +65,7 @@ const Preview = () => {
         },
         user: null,
         classe: classId,
-        way_abilities: [351, 352], // selectedWayAbilityId, // WIP : Tableau avec 2 valeurs, voir comment les assigner correctement
+        way_abilities: selectedWayAbilityId, // WIP : Tableau avec 2 valeurs, voir comment les assigner correctement
         racialAbility: selectedRaceAbilityId
     };
 

@@ -75,15 +75,7 @@ const Way = () => {
     const handleSelectAbility = (wayAbility) => {
 
         setSelectedWayAbility(wayAbility);
-        setSelectedWayAbilityId([wayAbility.id]);
-        setSelectedWayAbilityId((prevSelectedWayAbilityId) => {
-            if (!prevSelectedWayAbilityId.includes(wayAbility.id)) {
-                // Ability is not already selected, add it to the array
-                return [...prevSelectedWayAbilityId, wayAbility.id];
-            }
-        });
-        console.log(selectedWayAbilityId);
-      
+
         setSelectedAbilityNames((prevSelectedAbilityNames) => {
             if (prevSelectedAbilityNames.includes(wayAbility.name)) {
                 // Ability is already selected, remove it and subtract its bonus from wayBonus
@@ -153,8 +145,7 @@ const Way = () => {
     }, [selectedAbilityNames]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/ways/8`)
-            // ${classId}
+        axios.get(`http://localhost:8080/api/ways/${classId}`)
             .then((response) => {
                 setWays(response.data.ways);
             })
