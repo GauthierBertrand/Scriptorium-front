@@ -66,7 +66,7 @@ const SignUpForm = (props) => {
           <>
             <h2>Inscription</h2>
             {errorMessage && <div className="error-message">{errorMessage}</div>}
-            <form onSubmit={handleSubmit}>
+            <form className="signup-form" onSubmit={handleSubmit}>
               <label htmlFor="username">Nom d'utilisateur</label>
               <input type="text" id="pseudo" value={pseudo} onChange={(event) => setPseudo(event.target.value)} />
               <label htmlFor="email">Adresse e-mail</label>

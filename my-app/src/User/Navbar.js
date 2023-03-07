@@ -34,7 +34,12 @@ const Navbar = () => {
 
   const isLoggedIn = user != null;
   return (
-    <div>
+    <div className="navbar-container">
+      <div className="logo">
+        <Link to="/classes">
+          <img src="https://fakeimg.pl/40x40/000/?text=Logo" alt="Logo" />
+        </Link>
+      </div>
       <nav className="navbar">
         <div className="menu">
           {user ? (

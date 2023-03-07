@@ -34,7 +34,7 @@ function LoginForm(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signin-form" onSubmit={handleSubmit}>
       {errorMessage && <div>{errorMessage}</div>}
       <label htmlFor="username">Nom d'utilisateur</label>
       <input type="text" id="username" value={username} onChange={(event) => setUsername(event.target.value)} />
