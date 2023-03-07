@@ -20,7 +20,6 @@ const Preview = () => {
         secondaryStats,
         finalPrimaryStats,
         // Ways
-        selectedWayAbilityId
     } = useContext(GlobalContext);
 
     const {
@@ -34,6 +33,8 @@ const Preview = () => {
          formValues,
          selectedReligion,
          // Ways
+        selectedWayAbilityId
+
     } = useContext(SheetContext);
 
     const [pdfUrl, setPdfUrl] = useState(null);
@@ -51,7 +52,8 @@ const Preview = () => {
         link.click();
     };
 
-    useEffect(() => {       
+    useEffect(() => {    
+        console.log(selectedWayAbilityId);   
         const sheetData = {
             character_name: formValues.firstName + " " + formValues.lastName,
             race_name: raceName,

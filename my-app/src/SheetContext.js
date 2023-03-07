@@ -52,20 +52,7 @@ const SheetProvider = (props) => {
     });
     const [selectedReligion, setSelectedReligion] = useState(null);
     // Ways
-    const [selectedWayAbilityId, setSelectedWayAbilityId] = useState(null);
-
-    const updateSelectedWayAbilityId = useCallback((wayAbilityId) => {
-        setSelectedWayAbilityId((prevSelectedWayAbilityId) => {
-            if (prevSelectedWayAbilityId.includes(wayAbilityId)) {
-                // Ability is already selected, remove it from the array
-                return prevSelectedWayAbilityId.filter((id) => id !== wayAbilityId);
-            } else {
-                
-                // Ability is not selected, add it to the array
-                return [...prevSelectedWayAbilityId, wayAbilityId];
-            }
-        });
-    }, []);
+    const [selectedWayAbilityId, setSelectedWayAbilityId] = useState([]);
 
     return (
         <SheetContext.Provider value={{
@@ -87,7 +74,6 @@ const SheetProvider = (props) => {
             // Ways
             selectedWayAbilityId,
             setSelectedWayAbilityId,
-            updateSelectedWayAbilityId
         }}>
             {props.children}
         </SheetContext.Provider>

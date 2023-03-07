@@ -31,21 +31,22 @@ const Way = () => {
 
     const {
         selectedWayAbilityId,
+        setSelectedWayAbilityId,
         updateSelectedWayAbilityId,
     } = useContext(SheetContext);
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
     const [ways, setWays] = useState([]);
-    const [selectedWayId, setSelectedWayId] = useState(0);
+    const [selectedWayId, setSelectedWayId] = useState(null);
     const [selectedWayAbility, setSelectedWayAbility] = useState({
         name: "",
         description: "",
         bonus: null,
-        cost: 0,
+        cost: null,
         level: 1,
         limited: false,
         traits: [],
-        id: 0,
+        id: null,
     });
     const [wayBonus, setWayBonus] = useState({
         FOR: 0,
@@ -63,7 +64,6 @@ const Way = () => {
     const [remainingPoints, setRemainingPoints] = useState(2);
 
 
-
     const handleToggleDescription = () => {
         setDescriptionOpen(!descriptionOpen);
     }
@@ -73,6 +73,28 @@ const Way = () => {
     }
 
     const handleSelectAbility = (wayAbility) => {
+        const { level } = wayAbility;
+
+        // Check if the level of the ability matches the number of abilities already selected in the way
+        const selectedWayAbilities = selectedWayAbilityId.filter( (id) => id !== wayAbility.id );
+
+        // Get the selected way for the current ability
+        const selectedWay = ways.find((way) => way.wayAbilities.includes(wayAbility));
+
+        // Check if the selected ability is the first level in the way
+        if (level === 1 && selectedWayAbilities.some((id) => selectedWay.wayAbilities.find((ability) => ability.id === id)?.level === 1)) {
+            return;
+        }
+
+        // Check if the level of the ability matches the number of abilities already selected in the way
+        if (level !== selectedWayAbilities.filter((id) => selectedWay.wayAbilities.find((ability) => ability.id === id)?.level < level).length + 1) {
+            return;
+        }
+
+        // Check if the user has already selected a higher level ability in the same way
+        if (selectedWayAbilities.some((id) => selectedWay.wayAbilities.find((ability) => ability.id === id)?.level > level)) {
+            return;
+        }
 
         setSelectedWayAbility(wayAbility);
 
@@ -94,6 +116,11 @@ const Way = () => {
                 // Add the cost back to remaining points
                 setRemainingPoints((prevPoints) => prevPoints + wayAbility.cost);
 
+                // Remove the ability id from the array
+                setSelectedWayAbilityId((prevSelectedWayAbilityId) =>
+                    prevSelectedWayAbilityId.filter((id) => id !== wayAbility.id)
+                );
+
                 return prevSelectedAbilityNames.filter((name) => name !== wayAbility.name);
             } else {
                 // Ability is not selected, check if there are enough points before adding it
@@ -113,6 +140,9 @@ const Way = () => {
                         DEF: prevWayBonus.DEF + (wayAbility.bonus?.DEF || 0),
                         PV: prevWayBonus.PV + (wayAbility.bonus?.PV || 0),
                     }));
+
+                    // Add the ability id to the array
+                    setSelectedWayAbilityId((prevSelectedWayAbilityId) => [...prevSelectedWayAbilityId, wayAbility.id,]);
 
                     return [...prevSelectedAbilityNames, wayAbility.name];
                 } else {
@@ -138,17 +168,11 @@ const Way = () => {
         });
     };
 
-
-    useEffect(() => {
-        // Update selectedWayAbilityId after selectedAbilityNames has been updated
-        updateSelectedWayAbilityId(selectedWayAbility.id);
-        console.log(selectedWayAbilityId);
-    }, [selectedAbilityNames]);
-
     useEffect(() => {
         axios.get(`http://localhost:8080/api/ways/${classId}`)
             .then((response) => {
                 setWays(response.data.ways);
+                console.log(response.data.ways);
             })
             .catch((error) => {
                 alert("Erreur API : Les données des voies n'ont pas pu être récupérées.");
@@ -209,7 +233,6 @@ const Way = () => {
                                             <div className="way-ability-name">
                                                 {wayAbility.name}
                                                 {wayAbility.limited && <>&nbsp;&#x24c1;</>}
-                                                {selectedWayAbilityId}
                                             </div>
                                             <div className="way-ability-description">
                                                 {wayAbility.description}
