@@ -1,36 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
+@use '../vars';
 
 body {
-    font-family: 'Glass Antiqua', cursive;
-    color: #FFF;
-    font-size: 24px;
-    line-height: 26px;
-    font-weight: 400;
-    text-align: center;
-    background-color: #0D1717;
-
-    input, textarea {
-        font-family: inherit;
-        font-size: inherit !important;
-        line-height: inherit;
-        font-weight: inherit;
-        background: #000000;
-        border-radius: 10px;
-        color: #FFF;
-        border: none;
-    }
-
-    ::placeholder {
-        text-align: center;
-        color: #FFF;
-      }
 
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
-    
 }
 
 .general-page {
