@@ -1,6 +1,7 @@
 @use '../vars';
 
 body {
+    max-height: 100%;
     font-family: vars.$font-family;
     color: vars.$font-color;
     font-size: 19px;
@@ -8,6 +9,11 @@ body {
     font-weight: 400;
     text-align: center;
     background-color: vars.$background-color;
+
+    h1 {
+        font-size: 1.8rem;
+        margin: 0.5em 0 0.8em;
+    }
 
     input, textarea {
         font-family: inherit;
@@ -23,5 +29,11 @@ body {
     ::placeholder {
         text-align: center;
         color: vars.$font-color;
-      }
+    }
+
+    .next-page {
+        position: relative;
+        left: 16vw;
+        z-index: 100;
+    }
 }

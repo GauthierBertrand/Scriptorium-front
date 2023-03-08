@@ -2,10 +2,9 @@ import { useState, useEffect, useContext } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import { Link } from "react-router-dom";
-
+import { Link, redirect } from "react-router-dom";
 import axios from "axios";
+import { ImageListItemBar } from '@mui/material';
 
 import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
@@ -76,7 +75,7 @@ const Class = () => {
     return (
         <div className="class-container">
             <h1 className="class-title">
-                Classes
+                Choisissez votre classe
             </h1>
 
             <div className="class-img-container">
@@ -97,16 +96,26 @@ const Class = () => {
                     </div>
                 )}
                 <img className="class-img" src={barde} alt="Classe" />
-                {classesStats[selectedClass] && (
-                    <div className="class-stat">           
+                
+                    {/* <div className="class-stat">           
                         {classesStats[selectedClass].stat.map((statObj, index) => (
                             <div className={statObj.isRecommended ? "class-stat-name recommended" : "class-stat-name"}
                                 key={index}>
                                     {statObj.name.substr(0, 3)}
                             </div>  
                         ))}
-                    </div>
-                )}
+                    </div> */}
+                
+                <ImageListItemBar
+                    title=
+                        <div className="class-stat">
+                            {classesStats[selectedClass] && (classesStats[selectedClass].stat.map((statObj, index) => (
+                                <span className={statObj.isRecommended ? "class-stat-name recommended" : "class-stat-name"}
+                                    key={index}>
+                                        {statObj.name.substr(0, 3)}
+                                </span>  
+                            )))}
+                        </div> />
             </div>
 
             <div className="class-description">
@@ -132,13 +141,16 @@ const Class = () => {
                     },
                     900: {
                         slidesPerView: 7
+                    },
+                    1500: {
+                        slidesPerView: 9
                     }
                 }}>
                 {classes.map((classObj) => (
                     <SwiperSlide key={classObj.id}>
                         <div className="class-carrousel-item">
-                            <img className="class-carrousel-img" src={classObj.picture} alt="Classe" />
-                            <p>{classObj.name}</p>
+                            <img className="class-carrousel-img" src={barde} alt="Classe" />
+                            <p className="class-carrousel-title">{classObj.name}</p>
                         </div>
                     </SwiperSlide>
                 ))}
