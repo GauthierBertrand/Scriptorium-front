@@ -11,20 +11,22 @@ export const UserProvider = ({ children }) => {
       try {
         // decode the token to get the user information
         const decodedToken = jwtDecode(token);
+        console.log('decodedToken:', decodedToken);
         return decodedToken; // decoded token should contain user info
       } catch (error) {
         console.error('Error decoding token:', error);
         Cookies.remove('token');
       }
     }
-    return null;
+    return null;    
   });
   
   // update cookies whenever user changes
   useEffect(() => {
+  const expirationTime = new Date(Date.now() + 3600000);  
     if (user) {
       const token = Cookies.get('token'); 
-      Cookies.set('token', token);
+      Cookies.set('token', token, { expires: expirationTime });
     } else {
       Cookies.remove('token');
     }
