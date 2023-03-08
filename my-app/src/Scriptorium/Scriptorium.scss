@@ -1,0 +1,27 @@
+@use '../vars';
+
+body {
+    font-family: vars.$font-family;
+    color: vars.$font-color;
+    font-size: 19px;
+    line-height: 22px;
+    font-weight: 400;
+    text-align: center;
+    background-color: vars.$background-color;
+
+    input, textarea {
+        font-family: inherit;
+        font-size: inherit !important;
+        line-height: inherit;
+        font-weight: inherit;
+        background: vars.$background-input;
+        border-radius: 10px;
+        color: vars.$font-color;
+        border: none;
+    }
+
+    ::placeholder {
+        text-align: center;
+        color: vars.$font-color;
+      }
+}

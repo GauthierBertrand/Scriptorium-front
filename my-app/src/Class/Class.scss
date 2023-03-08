@@ -1,12 +1,13 @@
+@use '../vars';
+
 .class-container {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: vars.$font-family;
     height: 100%;
     position: relative;
 
     .class-title {
-        font-size: 1.5rem;
-        font-weight: 600;
+        font-size: 2rem;
         margin: 0.5em 0;
     }
 
@@ -28,7 +29,8 @@
             height: auto;
             padding: 0.5em;
             border: 1px solid #fff;
-            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 0.5em;
+            background-color: vars.$background-input;
             z-index: 100;
             overflow: scroll;
 

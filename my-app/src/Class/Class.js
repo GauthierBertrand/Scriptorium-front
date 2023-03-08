@@ -19,6 +19,7 @@ import "./../reset.css";
 import "./Class.scss";
 
 import next from "./../assets/images/next.png";
+import barde from "./../assets/images/barde.png";
 
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
@@ -95,7 +96,7 @@ const Class = () => {
                     ))}
                     </div>
                 )}
-                <img className="class-img" src="https://fakeimg.pl/1000x800/EFC874/" alt="Classe" />
+                <img className="class-img" src={barde} alt="Classe" />
                 {classesStats[selectedClass] && (
                     <div className="class-stat">           
                         {classesStats[selectedClass].stat.map((statObj, index) => (

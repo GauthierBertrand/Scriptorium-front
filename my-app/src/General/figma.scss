@@ -1,151 +1,128 @@
-// @import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
-// body {
-//     font-family: 'Glass Antiqua', cursive;
-//     color: #FFFFFF;
-//     font-size: 25px;
-//     line-height: 26px;
-//     font-weight: 400;
-//     text-align: center;
-//     background-color: #0D1717;
-// }
+@use '../vars';
 
-// .general-page {
-//     display: flex;
-//     height: 100vh;
+body {
 
-//     input::placeholder {
-//         font-family: 'Glass Antiqua', cursive;
-//         font-size: 26px;
-//         font-weight: 400;
-//         color: #FFFFFF;
-//       }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+.general-page {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    height: 100vh;
+    align-items: center;
     
-// }
+    .general-gender-image {
+      padding: 10px;
+      margin: 10px;
 
-// .general-gender-image {
-//     max-height: 100%;
-//     width: 33%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
+        .selected-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+    }
+   
+    
+    .general-form {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      align-items: center;
+      grid-gap: 27px;
+      
+      .general-inputs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        grid-gap: 10px;
+        
+        input {
+          width: 100%;
+          margin: 4px 0;
+          padding: 10px;
+          font-size: 18px;
+          height: 60px;
+          box-sizing: border-box;
+          text-align: center;
+        }
+        
+        #lastName {
+          grid-row: 1 / 2;
+          grid-column: 1 / 2;
+        }
+        
+        #firstName {
+          grid-row: 2 / 3;
+          grid-column: 1 / 2;
+        }
+        
+        #age {
+          grid-row: 1 / 2;
+          grid-column: 2 / 3;
+        }
+        
+        #weight {
+          grid-row: 2 / 3;
+          grid-column: 2 / 3;
+        }
+        
+        #height {
+          grid-row: 2 / 3;
+          grid-column: 3 / 4;
+        }
+        
+        #eyeColor {
+          grid-row: 1 / 2;
+          grid-column: 3 / 4;
+        }
+        
+        #hairColor {
+          grid-row: 2 / 3;
+          grid-column: 3 / 4;
+        }
+      }
+      .measures {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        font-size: 20px;
+      }
+      
+      .backstory-box {
+        width: 100%;
+      }
+      
+      .backstory-box h1 {
+        font-size: 30px;
+        background-color: #000000;
+        padding: 30px 0 15px 30px;
+        text-align: start;
+        border-radius: 10px 10px 0 0;
+      }
+      
+      .backstory-box-input {
+        width: 100%;
+        height: 150px;
+        padding: 0 30px;
+        font-size: 18px;
+        box-sizing: border-box;
+        border-radius: 0 0 10px 10px;
+        border: none;
+        text-align: start;
+        resize: none;
+        vertical-align: top;
+        // text-align-last: center;
+      }
+    }
 
-//     .selected-image {
-//         width: 433px;
-//         height: 841px;
-//         object-fit: cover;
-//     }
-// }
-
-
-// .general-form {
-//     height: 100%;
-//     width: 33%;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     padding: 1rem;
-//     input {
-//         width: 204px;
-//         height: 66px;
-//         text-align: center;
-//         background: #000000;
-//         font-weight: bolder;
-//         font-size: 20px;
-//         color: #FFFFFF;
-//         border-radius: 10px;
-//         border: none;
-//     }
-
-
-//     &-first-row {
-//         display: flex;
-//         align-items: center;
-//         justify-content: space-between;
-//     }
-
-//     &-first-row {
-//         display: flex;
-//         align-items: center;
-//         justify-content: space-between;
-
-//         > input {
-//             width: 204px;
-//             height: 66px;
-//             text-align: center;
-//         }
-//     }
-
-//     &-second-row {
-//         display: flex;
-//         align-items: center;
-//         justify-content: space-between;
-
-//         > input {
-//             width: 204px;
-//             height: 66px;
-//             text-align: center;
-//         }
-//     }
-// }
-
-// .second-row-measures {
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     margin: 0 33px;
-//     flex: 1 0 0;
-
-//     .measures-input {
-//         width: 88px;
-//         height: 66px;
-//         text-align: center;
-//     }
-// }
-
-// .backstory-box {
-//     width: 100%;
-//     height: 261px;
-//     padding: 1rem 0;
-//     display: flex;
-//     flex-direction: column;
-
-//     input {
-//         width: calc(100% - 0.25rem);
-//         height: 80%;
-//         border-radius: 0 0 10px 10px;
-//     }
-
-//     h1 {
-//         background: #000000;
-//         font-weight: 400;
-//         border-radius: 10px 10px 0 0;
-//         text-align: left;
-//         padding: 2rem;
-//     }
-// }
-
-
-// .religion-box {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     width: 33%;
-// }
-
-// .religion-description {
-//     background: #000000;
-//     border-radius: 10px ;
-//     padding: 2rem;
-//     width: 410px;
-//     height: 443px;
-// }
-
-
-
-
-
-
-
-
-
+    
+    .religion-box {
+      padding: 10px;
+      margin: 10px;
+    }
+  }
