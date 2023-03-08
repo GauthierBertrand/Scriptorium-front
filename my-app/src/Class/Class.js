@@ -125,7 +125,15 @@ const Class = () => {
                 slidesPerView={3}
                 spaceBetween={3}
                 onRealIndexChange={(swiper) => {handleSelectClass(swiper.realIndex)}}
-                onSlideChange={(swiper) => {handleSelectClass(swiper.realIndex)}}>
+                onSlideChange={(swiper) => {handleSelectClass(swiper.realIndex)}}
+                breakpoints={{
+                    550: {
+                        slidesPerView: 5
+                    },
+                    900: {
+                        slidesPerView: 7
+                    }
+                }}>
                 {classes.map((classObj) => (
                     <SwiperSlide key={classObj.id}>
                         <div className="class-carrousel-item">
