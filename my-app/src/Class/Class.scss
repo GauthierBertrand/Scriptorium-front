@@ -47,8 +47,9 @@
             justify-content: center;
             gap: 2em;
             align-items: center;
-            color: #fff;
-
+            font-family: vars.$font-family;
+            font-size: 1.1em;
+            
             &-name.recommended {
                 font-weight: bold;
                 transform: scale(1.1);

@@ -104,6 +104,9 @@ const Class = () => {
                 )}
                 <img className="class-img" src={barde} alt="Classe" />                
                     <ImageListItemBar
+                    sx={{
+                        background: "linear-gradient(90deg, rgba(255,255,255,0) 15%, rgba(0,0,0,1) 50%, rgba(255,255,255,0) 85%)"
+                    }}
                     title=
                         <div className="class-stat">
                             {classesStats[selectedClass] && (classesStats[selectedClass].stat.map((statObj, index) => (
