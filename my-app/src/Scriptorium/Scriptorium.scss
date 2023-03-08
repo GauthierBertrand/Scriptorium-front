@@ -1,5 +1,16 @@
 @use '../vars';
 
+html::-webkit-scrollbar {
+    width: 0.8em;
+    background-color: vars.$background-input;
+    border-radius: 1em;
+    &-thumb {
+        background-color: vars.$background-color;
+        border-radius: 1em;
+        border: 0.3em solid vars.$background-input;
+    }
+}
+
 body {
     max-height: 100%;
     font-family: vars.$font-family;
@@ -43,11 +54,8 @@ body {
 
     ::-webkit-scrollbar {
         width: 0.6em;
-        background-color: vars.$background-input;
-        border-radius: 1em;
         &-thumb {
             background-color: vars.$background-color;
-            border-radius: 1em;
             border: 0.17em solid vars.$background-input;
         }
     }

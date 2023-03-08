@@ -8,7 +8,7 @@
         box-sizing: border-box;
         display: block;
         width: 100%;
-        max-height: 40vh;
+        max-height: 40%;
         margin-bottom: 1.5em;
         position: relative;
 
@@ -18,7 +18,7 @@
             top: 2.5em;
             width: 70vw;
             max-width: 20em;
-            max-height: 60%;
+            max-height: 50%;
             height: auto;
             padding: 0.5em;
             border-radius: 0.5em;
@@ -35,11 +35,11 @@
         .class-img {
             display: block;
             margin: auto;
-            max-height: 40vh;
-            max-width: 100%;
-            object-fit: contain;
             // mask-image: radial-gradient(circle, vars.$background-color 65%, rgba(255, 255, 255, 0) 85%);
             mask-image: radial-gradient(ellipse at center, vars.$background-color 45%, rgba(255, 255, 255, 0) 70%);
+            max-height: 70vh;
+            max-width: 100%;
+            object-fit: cover;
         }
 
         .class-stat {
