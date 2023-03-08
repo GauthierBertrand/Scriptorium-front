@@ -32,7 +32,6 @@ const Way = () => {
     const {
         selectedWayAbilityId,
         setSelectedWayAbilityId,
-        updateSelectedWayAbilityId,
     } = useContext(SheetContext);
 
     const [descriptionOpen, setDescriptionOpen] = useState(false);
@@ -172,7 +171,6 @@ const Way = () => {
         axios.get(`http://localhost:8080/api/ways/${classId}`)
             .then((response) => {
                 setWays(response.data.ways);
-                console.log(response.data.ways);
             })
             .catch((error) => {
                 alert("Erreur API : Les données des voies n'ont pas pu être récupérées.");
