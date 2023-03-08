@@ -132,7 +132,7 @@
         &-text {
             padding: 0 1em;
             text-align: left;
-            // vertical-align: middle;
+            align-self: center;
 
             @media (min-width: 900px) {
                 width: 60%;
@@ -159,8 +159,8 @@
         margin: auto;        
         &-img {
             border-radius: 100%;
-            height: 10vh;
-            width: 10vh;
+            height: 12vh;
+            width: 12vh;
             object-fit: cover;
         }
         &-title {
@@ -172,6 +172,10 @@
             max-height: 30vh;
 
             .swiper-slide img {
+                transform: scale(0.5) translateY(70%);
+            }
+
+            .swiper-slide-prev img, .swiper-slide-next img {
                 transform: scale(0.7) translateY(50%);
             }
 

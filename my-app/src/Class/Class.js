@@ -18,7 +18,11 @@ import "./../reset.css";
 import "./Class.scss";
 
 import next from "./../assets/images/next.png";
+import arquebusier from "./../assets/images/arquebusier.png";
+import barbare from "./../assets/images/barbare.png";
 import barde from "./../assets/images/barde.png";
+import guerrier from "./../assets/images/guerrier.png";
+import moine from "./../assets/images/moine.png";
 
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
@@ -52,6 +56,7 @@ const Class = () => {
         </div>
     );
 
+    const chosenPicture = classes[selectedClass] && (classes[selectedClass].name.toLowerCase());
 
     const handleToggleEquipment = () => {
         setEquipmentModal(!equipmentModal);
@@ -87,6 +92,8 @@ const Class = () => {
         })
     }, []);
 
+    // console.log(chosenPicture);
+
     return (
         <div className="class-container">
             <h1 className="class-title">
@@ -102,7 +109,7 @@ const Class = () => {
                         {equipmentElement}
                     </div>
                 )}
-                <img className="class-img" src={barde} alt="Classe" />                
+                <img className="class-img" src={guerrier} alt={classes[selectedClass] && (classes[selectedClass].name)} /> {/* src={chosenPicture} || {classes[selectedClass] && (classes[selectedClass].picture)} */}
                     <ImageListItemBar
                     sx={{
                         background: "linear-gradient(90deg, rgba(255,255,255,0) 15%, rgba(0,0,0,1) 50%, rgba(255,255,255,0) 85%)"
@@ -143,11 +150,12 @@ const Class = () => {
                 centeredSlides={true}
                 slidesPerView={3}
                 spaceBetween={3}
+                slideToClickedSlide={true}
                 onRealIndexChange={(swiper) => {handleSelectClass(swiper.realIndex)}}
                 onSlideChange={(swiper) => {handleSelectClass(swiper.realIndex)}}
                 breakpoints={{
                     550: {
-                        slidesPerView: 5
+                        slidesPerView: 5,
                     },
                     900: {
                         slidesPerView: 7
@@ -159,7 +167,8 @@ const Class = () => {
                 {classes.map((classObj) => (
                     <SwiperSlide key={classObj.id}>
                         <div className="class-carrousel-item">
-                            <img className="class-carrousel-img" src={barde} alt="Classe" />
+                            <img className="class-carrousel-img" src={guerrier} alt={classObj.name} /> {/* src={classObj.picture} */}
+                            {/* <div className="class-carrousel-img" style={{background:`url(${barde}) 0`}}></div> */}
                             <p className="class-carrousel-title">{classObj.name}</p>
                         </div>
                     </SwiperSlide>
