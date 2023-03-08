@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import './BurgerMenu.scss';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -16,7 +17,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    Cookies.remove('token');
     setUser(null);
     setOpen(false);
   };
@@ -33,11 +34,16 @@ const Navbar = () => {
 
   const isLoggedIn = user != null;
   return (
-    <div>
+    <div className="navbar-container">
+      <div className="logo">
+        <Link to="/classes">
+          <img src="https://fakeimg.pl/40x40/000/?text=Logo" alt="Logo" />
+        </Link>
+      </div>
       <nav className="navbar">
         <div className="menu">
           {user ? (
-            <div className="user-info">{`${user.username}`}</div>
+            <div className="user-info">{`${user.pseudo}`}</div>
           ) : (
             <div className="auth-buttons">
               <button type="button" onClick={handleShowLoginForm}>
@@ -62,7 +68,7 @@ const Navbar = () => {
       <div className={`burger-menu ${open ? "open" : ""}`}>
         <ul>
           <li>
-            <Link to="/fiches">Mes fiches</Link>
+            <Link to="/profile">Mes fiches</Link>
           </li>
           <li>
             <Link to="/parametres">Paramètres</Link>

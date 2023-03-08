@@ -3,10 +3,12 @@ import { PDFViewer } from '@react-pdf/renderer';
 
 import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
+import { UserContext } from "../UserContext";
 
 import Sheet from "./Sheet";
 
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 import "./Preview.scss";
 
@@ -33,12 +35,39 @@ const Preview = () => {
          formValues,
          selectedReligion,
          // Ways
-        selectedWayAbilityId
-
+         selectedWayAbilityId
     } = useContext(SheetContext);
+
+    const { user } = useContext(UserContext);
 
     const [pdfUrl, setPdfUrl] = useState(null);
     const [numPage, setNumPage] = useState(null);
+
+    const sheetData = {
+        character_name: formValues.firstName + " " + formValues.lastName,
+        race_name: raceName,
+        religion_name: "Fromage", // A dynamiser quand la religion sera récupérable de l'API (vide pour l'instant)
+        description: formValues.backstory,
+        age: Number(formValues.age),
+        level: 1,
+        picture: currentImage,
+        height: Number(formValues.height),
+        weight: Number(formValues.weight),
+        hair: formValues.hairColor,
+        eyes: formValues.eyeColor,
+        stats: {
+            Dextérité: finalPrimaryStats.DEX,
+            Constitution: finalPrimaryStats.CON,
+            Force: finalPrimaryStats.FOR,
+            Charisme: finalPrimaryStats.CHA,
+            Sagesse: finalPrimaryStats.SAG,
+            Intelligence: finalPrimaryStats.INT,
+        },
+        user: null,
+        classe: classId,
+        way_abilities: selectedWayAbilityId, // WIP : Tableau avec 2 valeurs, voir comment les assigner correctement
+        racialAbility: selectedRaceAbilityId
+    };
 
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPage(numPages);
@@ -50,35 +79,22 @@ const Preview = () => {
         link.setAttribute('download', 'fiche.pdf');
         document.body.appendChild(link);
         link.click();
+
+        if(user) {
+            const token = Cookies.get('token');
+            axios.post("http://localhost:8080/api/characters", sheetData,
+            {responseType: 'arraybuffer',
+            headers: {
+                'accept': 'application/json',
+                'Authorization':`Bearer ${token}`
+            }})
+                .then((response) => {
+                    console.log(response);
+                })
+        }
     };
 
-    useEffect(() => {    
-        console.log(selectedWayAbilityId);   
-        const sheetData = {
-            character_name: formValues.firstName + " " + formValues.lastName,
-            race_name: raceName,
-            religion_name: "Fromage", // A dynamiser quand la religion sera récupérable de l'API (vide pour l'instant)
-            description: formValues.backstory,
-            age: Number(formValues.age),
-            level: 1,
-            picture: currentImage,
-            height: Number(formValues.height),
-            weight: Number(formValues.weight),
-            hair: formValues.hairColor,
-            eyes: formValues.eyeColor,
-            stats: {
-                Dextérité: finalPrimaryStats.DEX,
-                Constitution: finalPrimaryStats.CON,
-                Force: finalPrimaryStats.FOR,
-                Charisme: finalPrimaryStats.CHA,
-                Sagesse: finalPrimaryStats.SAG,
-                Intelligence: finalPrimaryStats.INT,
-            },
-            user: null,
-            classe: classId,
-            way_abilities: selectedWayAbilityId, // WIP : Tableau avec 2 valeurs, voir comment les assigner correctement
-            racialAbility: selectedRaceAbilityId
-        };
+    useEffect(() => {       
         console.log(sheetData);
         axios.post("http://localhost:8080/api/generator", sheetData, {responseType: 'arraybuffer', headers: {'accept': 'application/json'}})
             .then((response) => {
