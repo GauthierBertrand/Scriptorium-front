@@ -38,6 +38,21 @@ const Class = () => {
     } = useContext(SheetContext);
     const [equipmentModal, setEquipmentModal] = useState(false);
 
+    const equipmentElement = equipment[selectedClass] && (
+        <div className="equipment-container">
+        {equipment[selectedClass].map((equipment, index) => (
+            <div className="equipment-item" key={index}>
+                <div className="equipment-item-title" key={index}>
+                    <img className="equipment-item-title-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
+                    <p className="equipment-item-title-name">{equipment.name} x{equipment.number}</p>
+                </div>
+                <p className="equipment-item-description">{equipment.description}</p>
+            </div>
+        ))}
+        </div>
+    );
+
+
     const handleToggleEquipment = () => {
         setEquipmentModal(!equipmentModal);
     };
@@ -83,30 +98,12 @@ const Class = () => {
                     <img className="equipment-button-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
                 </button>
                 {equipmentModal && (
-                    <div className="equipment-container">
-                    {equipment[selectedClass].map((equipment, index) => (
-                        <div className="equipment-item" key={index}>
-                            <div className="equipment-item-title" key={index}>
-                                <img className="equipment-item-title-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
-                                <p className="equipment-item-title-name">{equipment.name} x{equipment.number}</p>
-                            </div>
-                            <p className="equipment-item-description">{equipment.description}</p>
-                    </div>
-                    ))}
+                    <div className="equipment-modal">
+                        {equipmentElement}
                     </div>
                 )}
-                <img className="class-img" src={barde} alt="Classe" />
-                
-                    {/* <div className="class-stat">           
-                        {classesStats[selectedClass].stat.map((statObj, index) => (
-                            <div className={statObj.isRecommended ? "class-stat-name recommended" : "class-stat-name"}
-                                key={index}>
-                                    {statObj.name.substr(0, 3)}
-                            </div>  
-                        ))}
-                    </div> */}
-                
-                <ImageListItemBar
+                <img className="class-img" src={barde} alt="Classe" />                
+                    <ImageListItemBar
                     title=
                         <div className="class-stat">
                             {classesStats[selectedClass] && (classesStats[selectedClass].stat.map((statObj, index) => (
@@ -124,6 +121,9 @@ const Class = () => {
                     {classes[selectedClass].description}
                 </p>
             )}
+                <div className="class-description-equipment">
+                    {equipmentElement}
+                </div>
             </div>
             <Swiper
                 className="class-carrousel"

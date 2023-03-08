@@ -35,5 +35,20 @@ body {
         position: relative;
         left: 16vw;
         z-index: 100;
+
+        @media (min-width: 900px) {
+            display: none;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.6em;
+        background-color: vars.$background-input;
+        border-radius: 1em;
+        &-thumb {
+            background-color: vars.$background-color;
+            border-radius: 1em;
+            border: 0.17em solid vars.$background-input;
+        }
     }
 }

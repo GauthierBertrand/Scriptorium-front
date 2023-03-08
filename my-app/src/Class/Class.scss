@@ -12,39 +12,23 @@
         margin-bottom: 1.5em;
         position: relative;
 
-        .equipment-container {
+        .equipment-modal {
             position: absolute;
             right: 0.5em;
             top: 2.5em;
-            width: 85%;
+            width: 70vw;
             max-width: 20em;
             max-height: 60%;
             height: auto;
             padding: 0.5em;
-            border: 1px solid #fff;
             border-radius: 0.5em;
             background-color: vars.$background-input;
+            font-size: 0.8em;
             z-index: 100;
-            overflow: scroll;
+            overflow-y: scroll;
 
-            .equipment-item {
-
-                &-title {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-
-                    &-img {
-                        padding-right: 0.5em;
-                    }
-                }
-
-                &-description {
-                    padding-left: 5em;
-                    font-size: 0.8em;
-                    text-align: left;
-                    margin-bottom: 0.5em;
-                }
+            @media (min-width: 900px) {
+                display: none;
             }
         }
 
@@ -54,18 +38,26 @@
             max-height: 40vh;
             max-width: 100%;
             object-fit: contain;
+            // mask-image: radial-gradient(circle, vars.$background-color 65%, rgba(255, 255, 255, 0) 85%);
+            mask-image: radial-gradient(ellipse at center, vars.$background-color 45%, rgba(255, 255, 255, 0) 70%);
         }
 
         .class-stat {
             display: flex;
-            justify-content: space-evenly;
+            justify-content: center;
+            gap: 2em;
             align-items: center;
             color: #fff;
 
             &-name.recommended {
                 font-weight: bold;
                 transform: scale(1.1);
-                text-shadow: 0 0 0.8em rgb(255, 254, 193);
+                text-shadow: 0 0 0.8em rgb(254, 229, 0);
+            }
+
+            @media (max-width: 400px) {
+                justify-content: space-evenly;
+                gap: 0;
             }
         }
     }
@@ -77,16 +69,62 @@
         padding: 0;
         border: none;
         background-color: transparent;
-    }    
+        z-index: 100;
+
+        @media (min-width: 900px) {
+            display: none;
+        }
+    }
+    
+    .equipment-item {
+
+        &-title {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+            &-img {
+                padding-right: 0.5em;
+            }
+        }
+
+        &-description {
+            padding-left: 5em;
+            font-size: 0.8em;
+            text-align: left;
+            margin-bottom: 0.5em;
+        }
+    }
 
     .class-description {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
         height: 18vh;
         max-height: 30vh;
-        overflow: scroll;
+        overflow: auto;
     
         &-text {
             padding: 0 1em;
             text-align: left;
+
+            @media (min-width: 900px) {
+                width: 60%;
+                padding: 0;
+            }  
+        }
+
+        &-equipment {
+            display: flex;
+            width: 32%;
+            overflow: auto;
+            padding: 0.5em;
+            background-color: vars.$background-input;
+            border-radius: 0.5em;
+
+            @media (max-width: 900px) {
+                display: none;
+            }
         }
     }
 
