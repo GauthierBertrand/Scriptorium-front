@@ -116,6 +116,13 @@ const Class = () => {
                                 </span>  
                             )))}
                         </div> />
+                <div className="class-choice">
+                    <Link to="/races">
+                        <button className="class-choice-button">
+                            Choisir la classe {classes[selectedClass] && classes[selectedClass].name}
+                        </button>
+                    </Link>
+                </div>
             </div>
 
             <div className="class-description">
