@@ -10,12 +10,16 @@ import Notice from "../Notice/Notice";
 import Profile from "../User/Profile";
 import Settings from "../User/Settings";
 import ProtectedRoute from "../User/ProtectedRoute";
+import Edit from "../General/Edit";
+import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { UserProvider } from "../UserContext";
 import SheetProvider from "../SheetContext";
+import { SheetContext } from "../SheetContext";
 import "./Scriptorium.scss";
 
 const Scriptorium = () => {
+  const { selectedSheetId } = useContext(SheetContext);
   return (
     <div>
       <UserProvider>
@@ -53,6 +57,16 @@ const Scriptorium = () => {
                 <Preview />
              </UserProvider>} />
            <Route path="/mentions-legales" element={<Notice/>} />
+           <Route
+            path="/general/edit/:sheetId"
+            element={
+              <ProtectedRoute>
+                <UserProvider>
+                  <Edit />
+                </UserProvider>                
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </SheetProvider>
     </div>

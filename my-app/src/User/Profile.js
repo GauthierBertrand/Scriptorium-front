@@ -1,19 +1,22 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { UserContext } from '../UserContext';
-import { useEffect } from 'react';
+import { SheetContext } from '../SheetContext';
 import axios from 'axios';
 import './Profile.scss';
 
 
 const Profile = () => {
     const { 
-      user,
-    } = useContext(UserContext);
+      pdfUrl,
+      setPdfUrl,
+      setSelectedSheetId
+    } = useContext(SheetContext);
 
     const token = Cookies.get('token');
 
     const [sheetsList, setSheetsList] = useState([]);
+    const [refreshList, setRefreshList] = useState(false);
 
   useEffect (() => {
     axios.get("http://localhost:8080/api/characters/users", {
@@ -25,7 +28,59 @@ const Profile = () => {
       console.log(sheetsData);
       setSheetsList(sheetsData);
     })
-  }, []);
+  }, [refreshList]);
+
+  const handleDownload = (sheetId) => {
+    axios.get(`http://localhost:8080/api/generator/sheet/${sheetId}`, {
+      responseType: 'blob',
+      headers: {
+        "Authorization":  `Bearer ${token}`
+      }})
+        .then((response) => {
+          console.log(response.data);
+          const blob = new Blob([response.data], {type: 'application/pdf'});
+          setPdfUrl(URL.createObjectURL(blob));
+          console.log(pdfUrl);
+          if (pdfUrl !== null) {
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.setAttribute('download', `fiche${sheetId}.pdf`);
+            document.body.appendChild(link);
+            link.click();
+            console.log(response);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+    });
+  };
+
+
+
+  const handleEdit = (sheetId) => {
+    setSelectedSheetId(sheetId);
+    // axios.patch(`http://localhost:8080/api/characters/${sheetId}`, {
+    //   responseType: 'json',
+    //   headers: {
+    //     "Authorization": `Bearer ${token}`
+    //   }})
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+  };
+
+  const handleDelete = (sheetId) => {
+    axios.delete(`http://localhost:8080/api/characters/${sheetId}`, {
+      responseType: 'json',
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }})
+      .then((response) => {
+        alert(response.data.message);
+        console.log(response.data);
+        setRefreshList(!refreshList);
+      })
+  };
 
   return ( 
     <div className="sheet-container">
@@ -48,13 +103,15 @@ const Profile = () => {
               </div>
             </div>
             <div className="sheet-actions">
-              <button className="sheet-button">
+              <button className="sheet-button" onClick={() => handleDownload(sheet.id)}>
                 <img src="https://fakeimg.pl/20x20/000/?text=DL" alt="Télécharger la fiche" />
               </button>
-              <button className="sheet-button">
-                <img src="https://fakeimg.pl/20x20/000/?test=EDIT" alt="Modifier la fiche" />
-              </button>
-              <button className="sheet-button">
+              <button className="sheet-button" onClick={() => handleEdit(sheet.id)}>
+                <Link to={`/general/edit/${sheet.id}`}>                  
+                    <img src="https://fakeimg.pl/20x20/000/?test=EDIT" alt="Modifier la fiche" />
+                </Link>
+            </button>
+              <button className="sheet-button" onClick={() => handleDelete(sheet.id)}>
                 <img src="https://fakeimg.pl/20x20/000/?text=SUPP" alt="Supprimer la fiche" />
               </button>
             </div>
