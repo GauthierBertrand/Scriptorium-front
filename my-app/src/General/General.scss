@@ -1,75 +1,285 @@
 @use '../vars';
 
+body {
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
   .general-page {
-    position: relative;
-    background-color: rgb(175, 117, 9);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 2vh;
+    height: 90vh;
+    margin: 20px;
+    align-items: flex-start;
+
   }
   
-  .selected-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    position: relative;
-  }
-  
-  .general-form-head  {
+  .general-gender-image {
     display: flex;
-    margin: 0.5rem 0.5rem 0 0.5rem;
-    justify-content: space-between;
+    align-self: flex-end;
+    padding: 10px 0 0 0;
+    grid-column: 3 / 5;
+    grid-row: 1 ;
+    height: 100%;
+    width: 55vw;
+    box-sizing: border-box;
+    flex-direction: row-reverse;
+    justify-content: center;
+  
+    .selected-image {
+      object-fit: cover;
+      width: 50vw;
+      max-width: 100%;
+      max-height: 22vh;
+      border: 5px solid rgb(0, 0, 0);
+    }
   }
-
-  .general-form-head >* {
-    border: solid red;
-    }
-
-    .general-form-head-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-
-    .general-form-head-right {
-        display: flex;
-        justify-content: space-around;
-    }
+  
+  .general-form {
+    grid-column: 1/ 5;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  
+  .general-inputs {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(4,7.5vh);
+    align-items: center;
+    grid-gap : 5px;
     
-    .general-form-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      flex: 0 0 33%;
-    }
-
-    .general-form-row >* {
-        flex: 0 0 60px;
-        border: solid red;
-    }
-
-  .backstory-input {
-    margin-top: auto;
-    border: 1px solid black;
-    padding: 1rem;
-    width: 90%;
-    height: 40vh;
   }
-
-  .religion-box {
-    flex-grow: 1;
-    border: 1px solid black;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: solid red;
+  
+  .general-inputs input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px !important;
+    height: 35px;
+    box-sizing: border-box;
     text-align: center;
   }
+  
+  #firstName {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  #lastName {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  #hairColor {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  
+  #eyeColor {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  
+  /* Column 2 */
+  #age {
+    grid-column: 2;
+    grid-row: 4;
+  }
+  
+  /* Column 3 */
+  .measures {
+    grid-column: 3 / 5;
+    grid-row: 4;
+    display: flex;
+    gap: 5px;
+  }
+  
+  .backstory-box {
+    width: 100%;
+  }
+  
+  .backstory-box h1 ,.religion-header {
+    font-size: 25px;
+    background-color: #000000;
+    padding: 15px 0 10px 20px;
+    text-align: start;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .backstory-box-input {
+    width: 100%;
+    height: 18vh;
+    padding: 0 20px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border-radius: 0 0 10px 10px;
+    border: none;
+    text-align: start;
+    resize: none;
+    vertical-align: top;
 
-  .religion-description {
-    border: 1px solid black;
-    height: 15vh;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: solid red;
+  }
+  
+    .religion-box {
+      grid-column: 1 / 5;
+      grid-row: 2 ;
+      
+
+      .religion-description {
+        height: 18vh;
+        width: 100%;
+        border-radius: 0 0 10px 10px;
+        background-color: #000000;
+      }
+    }
+
   }
 
-  .religion-dropdown {
-    margin-left: 1rem;
+
+@media only screen and (min-width: 769px) {
+  .general-page {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    height: 100vh;
+    align-items: center;
+
+    .general-gender-image {
+      padding: 10px;
+      margin: 10px;
+
+      .selected-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+      }
     }
+
+
+    .general-form {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      align-items: center;
+      grid-gap: 27px;
+      height: 45vh;
+
+      .general-inputs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        grid-gap: 10px;
+
+        input {
+          width: 100%;
+          margin: 4px 0;
+          padding: 10px;
+          font-size: 18px;
+          height: 60px;
+          box-sizing: border-box;
+          text-align: center;
+        }
+
+        #lastName {
+          grid-row: 1 / 2;
+          grid-column: 1 / 2;
+        }
+
+        #firstName {
+          grid-row: 2 / 3;
+          grid-column: 1 / 2;
+        }
+
+        #age {
+          grid-row: 1 / 2;
+          grid-column: 2 / 3;
+        }
+
+        #weight {
+          grid-row: 2 / 3;
+          grid-column: 2 / 3;
+        }
+
+        #height {
+          grid-row: 2 / 3;
+          grid-column: 3 / 4;
+        }
+
+        #eyeColor {
+          grid-row: 1 / 2;
+          grid-column: 3 / 4;
+        }
+
+        #hairColor {
+          grid-row: 2 / 3;
+          grid-column: 3 / 4;
+        }
+      }
+
+      .measures {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        font-size: 20px;
+      }
+
+      .backstory-box {
+        width: 100%;
+      }
+
+      .backstory-box h1 {
+        font-size: 30px;
+        background-color: #000000;
+        padding: 30px 0 15px 30px;
+        text-align: start;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .backstory-box-input {
+        width: 100%;
+        height: 150px;
+        padding: 0 30px;
+        font-size: 18px;
+        box-sizing: border-box;
+        border-radius: 0 0 10px 10px;
+        border: none;
+        text-align: start;
+        resize: none;
+        vertical-align: top;
+        // text-align-last: center;
+      }
+    }
+
+    .religion-box {
+      justify-self: flex-start;
+      height: 45vh;
+      width: 20vw;
+
+      .religion-header {
+        font-size: 30px;
+        background-color: #000000;
+        padding: 30px 0 15px 30px;
+        text-align: start;
+        border-radius: 10px 10px 0 0;
+        height: 20%;
+      }
+
+
+      .religion-description {
+        height: 69%;
+        border-radius: 0 0 10px 10px;
+        background-color: #000000;
+      }
+    }
+
+  }
+}
