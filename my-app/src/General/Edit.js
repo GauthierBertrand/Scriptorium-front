@@ -8,9 +8,8 @@ import Cookies from "js-cookie";
 import { SheetContext } from "../SheetContext";
 import { UserContext } from "../UserContext";
 
-// import "./General.scss";
+import "./General.scss";
 // import "./Modal.scss";
-import "./figma.scss";
 import "../Preview/Preview.scss";
 
 import maleOrc from "../assets/images/male-orc.jpg";
