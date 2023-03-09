@@ -33,6 +33,8 @@ export const SheetContext = createContext({
     // Preview
     pdfUrl: null,
     setPdfUrl: () => { },
+    selectedSheetId: null,
+    setSelectedSheetId: () => { },
 });
 
 const SheetProvider = (props) => {
@@ -58,6 +60,7 @@ const SheetProvider = (props) => {
     const [selectedWayAbilityId, setSelectedWayAbilityId] = useState([]);
     // Preview
     const [pdfUrl, setPdfUrl] = useState(null);
+    const [selectedSheetId, setSelectedSheetId] = useState(null);
 
     return (
         <SheetContext.Provider value={{
@@ -82,6 +85,8 @@ const SheetProvider = (props) => {
             // Preview
             pdfUrl,
             setPdfUrl,
+            selectedSheetId,
+            setSelectedSheetId,
         }}>
             {props.children}
         </SheetContext.Provider>
