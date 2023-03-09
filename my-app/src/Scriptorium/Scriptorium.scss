@@ -13,7 +13,7 @@ html::-webkit-scrollbar {
 
 body {
     max-height: 100%;
-    max-width: 1440px;
+    max-width: 1000px;
     margin: auto;
     font-family: vars.$font-family;
     color: vars.$font-color;
@@ -47,6 +47,8 @@ body {
     .next-page {
         max-width: 100px;
         z-index: 100;
+        margin-top: 2em;
+        opacity: 0.3;
 
         @media (min-width: 900px) {
             display: none;

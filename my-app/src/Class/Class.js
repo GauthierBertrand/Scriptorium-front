@@ -159,9 +159,6 @@ const Class = () => {
                     },
                     900: {
                         slidesPerView: 7
-                    },
-                    1500: {
-                        slidesPerView: 9
                     }
                 }}>
                 {classes.map((classObj) => (
