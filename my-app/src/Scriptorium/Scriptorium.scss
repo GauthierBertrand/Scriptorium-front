@@ -41,7 +41,8 @@ body {
 
     ::placeholder {
         text-align: center;
-        color: vars.$font-color;
+        color: rgb(168, 168, 168);
+        font-size: 15px;
     }
 
     .next-page {

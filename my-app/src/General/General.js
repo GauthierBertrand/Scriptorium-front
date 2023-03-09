@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 
 import { SheetContext } from "../SheetContext";
 
-// import "./General.scss";
+import "./General.scss";
 // import "./Modal.scss";
-import "./figma.scss"
 
 import maleOrc from "../assets/images/male-orc.jpg";
 import femaleOrc from "../assets/images/female-orc.png";
