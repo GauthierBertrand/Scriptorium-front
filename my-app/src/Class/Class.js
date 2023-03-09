@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { ImageListItemBar } from '@mui/material';
 
@@ -99,47 +99,49 @@ const Class = () => {
             <h1 className="class-title">
                 Choisissez votre classe
             </h1>
+            <div className="class-img-description-equipment">
+                <div className="class-img-container">
+                    <button className="equipment-button" onClick={handleToggleEquipment}>
+                        <img className="equipment-button-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
+                    </button>
+                    {equipmentModal && (
+                        <div className="equipment-modal">
+                            {equipmentElement}
+                        </div>
+                    )}
+                    <img className="class-img" src={guerrier} alt={classes[selectedClass] && (classes[selectedClass].name)} /> {/* src={chosenPicture} || {classes[selectedClass] && (classes[selectedClass].picture)} */}
+                        <ImageListItemBar
+                        sx={{
+                            background: "linear-gradient(90deg, rgba(255,255,255,0) 15%, rgba(0,0,0,1) 50%, rgba(255,255,255,0) 85%)"
+                        }}
+                        title=
+                            <div className="class-stat">
+                                {classesStats[selectedClass] && (classesStats[selectedClass].stat.map((statObj, index) => (
+                                    <span className={statObj.isRecommended ? "class-stat-name recommended" : "class-stat-name"}
+                                        key={index}>
+                                            {statObj.name.substr(0, 3)}
+                                    </span>  
+                                )))}
+                            </div> />
+                    
+                </div>
 
-            <div className="class-img-container">
-                <button className="equipment-button" onClick={handleToggleEquipment}>
-                    <img className="equipment-button-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
-                </button>
-                {equipmentModal && (
-                    <div className="equipment-modal">
+                <div className="class-description">
+                {classes[selectedClass] && (
+                    <p className="class-description-text">
+                        {classes[selectedClass].description}
+                    </p>
+                )}
+                    <div className="class-description-equipment">
                         {equipmentElement}
                     </div>
-                )}
-                <img className="class-img" src={guerrier} alt={classes[selectedClass] && (classes[selectedClass].name)} /> {/* src={chosenPicture} || {classes[selectedClass] && (classes[selectedClass].picture)} */}
-                    <ImageListItemBar
-                    sx={{
-                        background: "linear-gradient(90deg, rgba(255,255,255,0) 15%, rgba(0,0,0,1) 50%, rgba(255,255,255,0) 85%)"
-                    }}
-                    title=
-                        <div className="class-stat">
-                            {classesStats[selectedClass] && (classesStats[selectedClass].stat.map((statObj, index) => (
-                                <span className={statObj.isRecommended ? "class-stat-name recommended" : "class-stat-name"}
-                                    key={index}>
-                                        {statObj.name.substr(0, 3)}
-                                </span>  
-                            )))}
-                        </div> />
-                <div className="class-choice">
-                    <Link to="/races">
-                        <button className="class-choice-button">
-                            Choisir la classe {classes[selectedClass] && classes[selectedClass].name}
-                        </button>
-                    </Link>
-                </div>
-            </div>
-
-            <div className="class-description">
-            {classes[selectedClass] && (
-                <p className="class-description-text">
-                    {classes[selectedClass].description}
-                </p>
-            )}
-                <div className="class-description-equipment">
-                    {equipmentElement}
+                    <div className="class-choice">
+                        <Link to="/races">
+                            <button className="class-choice-button">
+                                Choisir la classe {classes[selectedClass] && classes[selectedClass].name}
+                            </button>
+                        </Link>
+                    </div> 
                 </div>
             </div>
             <Swiper
