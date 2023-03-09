@@ -29,7 +29,10 @@ export const SheetContext = createContext({
     // Ways
     selectedWayAbilityId: null,
     setSelectedWayAbilityId: () => { },
-    updateSelectedWayAbilityId: () => { }
+    updateSelectedWayAbilityId: () => { },
+    // Preview
+    pdfUrl: null,
+    setPdfUrl: () => { },
 });
 
 const SheetProvider = (props) => {
@@ -53,6 +56,8 @@ const SheetProvider = (props) => {
     const [selectedReligion, setSelectedReligion] = useState(null);
     // Ways
     const [selectedWayAbilityId, setSelectedWayAbilityId] = useState([]);
+    // Preview
+    const [pdfUrl, setPdfUrl] = useState(null);
 
     return (
         <SheetContext.Provider value={{
@@ -74,6 +79,9 @@ const SheetProvider = (props) => {
             // Ways
             selectedWayAbilityId,
             setSelectedWayAbilityId,
+            // Preview
+            pdfUrl,
+            setPdfUrl,
         }}>
             {props.children}
         </SheetContext.Provider>

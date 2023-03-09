@@ -1,15 +1,15 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { UserContext } from '../UserContext';
-import { useEffect } from 'react';
+import { SheetContext } from '../SheetContext';
 import axios from 'axios';
 import './Profile.scss';
 
 
 const Profile = () => {
     const { 
-      user,
-    } = useContext(UserContext);
+      pdfUrl,
+      setPdfUrl
+    } = useContext(SheetContext);
 
     const token = Cookies.get('token');
 
@@ -26,6 +26,39 @@ const Profile = () => {
       setSheetsList(sheetsData);
     })
   }, []);
+
+  const handleDownload = (sheetId) => {
+    axios.get(`http://localhost:8080/api/generator/sheet/${sheetId}`, {
+      responseType: 'blob',
+      headers: {
+        "Authorization":  `Bearer ${token}`
+      }})
+        .then((response) => {
+          console.log(response.data);
+          const blob = new Blob([response.data], {type: 'application/pdf'});
+          setPdfUrl(URL.createObjectURL(blob));
+          console.log(pdfUrl);
+          const link = document.createElement('a');
+          link.href = pdfUrl;
+          link.setAttribute('download', `fiche${sheetId}.pdf`);
+          document.body.appendChild(link);
+          link.click();
+          console.log(response);          
+        })
+        .catch((error) => {
+            console.error(error);
+    });
+  };
+
+
+
+  const handleEdit = (sheetId) => {
+
+  };
+
+  const handleDelete = (sheetId) => {
+    
+  };
 
   return ( 
     <div className="sheet-container">
@@ -48,13 +81,13 @@ const Profile = () => {
               </div>
             </div>
             <div className="sheet-actions">
-              <button className="sheet-button">
+              <button className="sheet-button" onClick={() => handleDownload(sheet.id)}>
                 <img src="https://fakeimg.pl/20x20/000/?text=DL" alt="Télécharger la fiche" />
               </button>
-              <button className="sheet-button">
+              <button className="sheet-button" onClick={() => handleEdit(sheet.id)}>
                 <img src="https://fakeimg.pl/20x20/000/?test=EDIT" alt="Modifier la fiche" />
               </button>
-              <button className="sheet-button">
+              <button className="sheet-button" onClick={() => handleDelete(sheet.id)}>
                 <img src="https://fakeimg.pl/20x20/000/?text=SUPP" alt="Supprimer la fiche" />
               </button>
             </div>

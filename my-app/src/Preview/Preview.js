@@ -35,12 +35,14 @@ const Preview = () => {
          formValues,
          selectedReligion,
          // Ways
-         selectedWayAbilityId
+         selectedWayAbilityId,
+         // Preview
+         pdfUrl,
+         setPdfUrl,
     } = useContext(SheetContext);
 
     const { user } = useContext(UserContext);
 
-    const [pdfUrl, setPdfUrl] = useState(null);
     const [numPage, setNumPage] = useState(null);
 
     const sheetData = {
@@ -100,7 +102,6 @@ const Preview = () => {
             .then((response) => {
                 const blob = new Blob([response.data], {type: 'application/pdf'});
                 setPdfUrl(URL.createObjectURL(blob));
-                // window.open(pdfUrl);
                 console.log(pdfUrl);
 
                 console.log(response);
