@@ -25,11 +25,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
-  height: auto;
-  margin: 10px;
+  width: 30vw;
+  height: 25vh;
+  padding: 3em;
   font-size: 16px;
   white-space: normal;
+  
   .hover {
     background-color: green;
     color: white;

@@ -49,7 +49,7 @@ const Generator = () => {
       <div className="generator-container">
         <NavLink to="/stats" className="button-link">
           <button
-            className={`generator-button ${
+            className={`generator-button box ${
               selectedGeneration === "standard" ? "selected" : ""
             }`}
             onClick={generateStandardArray}
