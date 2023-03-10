@@ -6,13 +6,13 @@
     left: 30px;
     top: 50%;
     transform: translateY(-50%);
-    max-width: 500px;
-    max-height: 800px;
+    max-width: 400px;
+    max-height: 80vh;
     box-sizing: border-box;
 
     &-image {
-      width: 500px;
-      height: 800px;
+      width: 400px;
+      height: 80vh;
       object-fit: cover;
     }
   }
