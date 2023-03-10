@@ -31,11 +31,12 @@ const Generator = () => {
   return (
     <div className="main">
       <h1>Génération des statistiques</h1>
+      <p> </p>
       <div className="generator">
       <div className="generator-container">
         <NavLink to="/stats" className="button-link">
           <button
-            className={`generator-button ${
+            className={`generator-button box ${
               selectedGeneration === "dice" ? "selected" : ""
             }`}
             onClick={rollDice}
@@ -56,7 +57,8 @@ const Generator = () => {
           >
             <h1>Série standard</h1>
             <div className="explanation-text">
-              Utiliser la série standard pour générer les 6 valeurs de stats : 15, 14, 13, 12, 10, 8.
+              Utiliser la série standard pour générer les 6 valeurs de stats :<br />
+               15, 14, 13, 12, 10, 8.
             </div>
           </button>
         </NavLink>

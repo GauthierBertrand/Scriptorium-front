@@ -10,6 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 3vw;
+  position: relative;
+  transform: translateY(30%);
 }
 
 .generator-container {
@@ -29,7 +32,7 @@
   height: 25vh;
   padding: 3em;
   font-size: 16px;
-  white-space: normal;
+  white-space: pre-wrap;
   
   .hover {
     background-color: green;
