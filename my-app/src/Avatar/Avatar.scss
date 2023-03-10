@@ -15,4 +15,8 @@
       height: 80vh;
       object-fit: cover;
     }
+
+    @media (max-width: 900px) {
+        display: none;
+    }
   }
