@@ -24,12 +24,12 @@ export const SheetContext = createContext({
         hairColor: "",
         backstory: ""
     },
+    setFormValues: () => { },
     selectedReligion: null,
     setSelectedReligion: () => { },
     // Ways
     selectedWayAbilityId: null,
     setSelectedWayAbilityId: () => { },
-    updateSelectedWayAbilityId: () => { },
     // Preview
     pdfUrl: null,
     setPdfUrl: () => { },

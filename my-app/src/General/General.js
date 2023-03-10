@@ -104,7 +104,7 @@ const General = ({ religions }) => {
             <input type="text" id="hairColor" name="hairColor" placeholder="Couleur des cheveux" value={formValues.hairColor} onChange={handleChange} />
           </div>
           <div className="backstory-box">
-            <h1>Histoire</h1>
+            <h2>Histoire</h2>
             <textarea className="backstory-box-input" id="backstory" name="backstory" placeholder="Votre histoire" value={formValues.backstory} onChange={handleChange} />
           </div>
         </form>

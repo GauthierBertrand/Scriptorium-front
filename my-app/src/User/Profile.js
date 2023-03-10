@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { SheetContext } from '../SheetContext';
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 import './Profile.scss';
 
 
@@ -17,6 +19,20 @@ const Profile = () => {
 
     const [sheetsList, setSheetsList] = useState([]);
     const [refreshList, setRefreshList] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+
+    const style = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 400,
+      bgcolor: '#000000',
+      border: '2px solid #000',
+      boxShadow: 24,
+      p: 4,
+    };
+    
 
   useEffect (() => {
     axios.get("http://localhost:8080/api/characters/users", {
@@ -27,6 +43,7 @@ const Profile = () => {
       const sheetsData = response.data.sheets;
       console.log(sheetsData);
       setSheetsList(sheetsData);
+      setPdfUrl(null);
     })
   }, [refreshList]);
 
@@ -79,7 +96,12 @@ const Profile = () => {
         alert(response.data.message);
         console.log(response.data);
         setRefreshList(!refreshList);
+        handleOpenModal();
       })
+  };
+
+  const handleOpenModal = () => {
+    setOpenModal(!openModal);
   };
 
   return ( 
@@ -111,9 +133,24 @@ const Profile = () => {
                     <img src="https://fakeimg.pl/20x20/000/?test=EDIT" alt="Modifier la fiche" />
                 </Link>
             </button>
-              <button className="sheet-button" onClick={() => handleDelete(sheet.id)}>
+              <button className="sheet-button" onClick={() => handleOpenModal()}>
                 <img src="https://fakeimg.pl/20x20/000/?text=SUPP" alt="Supprimer la fiche" />
-              </button>
+              </button>  
+              <Modal
+                open={openModal}
+                onClose={handleOpenModal}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                  <p>
+                    Etes-vous sûr de vouloir supprimer cette fiche ?
+                  </p>
+                  <div className="modal-buttons">
+                    <button onClick={() => handleDelete(sheet.id)}>Oui</button>
+                    <button onClick={() => handleOpenModal()}>Non</button>
+                  </div>
+                </Box>
+              </Modal>
             </div>
           </div>
           ))}
