@@ -12,6 +12,7 @@ html::-webkit-scrollbar {
 }
 
 body {
+    position: relative;
     max-height: 100%;
     max-width: 1200px;
     margin: auto;
@@ -58,5 +59,9 @@ body {
             background-color: vars.$background-color;
             border: 0.17em solid vars.$background-input;
         }
+    }
+
+    .main {
+        margin-left: 600px;
     }
 }

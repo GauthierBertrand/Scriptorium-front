@@ -1,52 +1,51 @@
 @use '../vars';
 
 .body {
-    
+    max-width: 1700px;
+    font-family: vars.$font-family;
 }
 
 .stats-header {
     margin-top: 1em;
     padding: 0.3em;
     max-height: 15vh;
-    font-family: Arial, Helvetica, sans-serif;
 
     &-mod {
         display: flex;
         justify-content: space-around;
-        flex-wrap: wrap;
         margin-right: 0.5em;
 
         .stat-info {
-            display: inline-flex;
-            width: 5%;
-            margin: 0.5em;
-            padding: 0.2em 1.5em 0.2em 0.2em;
-            border: 1px solid #000;
             position: relative;
-            font-size: 3.7vw;
+            display: inline-flex;
+            justify-content: center;
+            width: 2em;
+            margin: 0.5em;
+            padding: 0.2em 1em 0.2em 0.5em;
+            background-color: vars.$background-input;
+            border: 1px solid vars.$border-color;
+            font-size: 0.65em;
 
             .stat-mod {
-                font-size: 4vw;
                 height: fit-content;
                 width: auto;
-                padding: 0.2em 0.4em;
-                border: 1px solid #000;
+                padding: 0.2em 0.7em;
+                border: 1px solid vars.$border-color;
                 border-radius: 100%;
                 position: absolute;
                 right: -40%;
                 top: -65%;
                 z-index: 100;
-                background-color: white;
+                background-color: vars.$background-input;
             }
         }
-
     }
 
     &-other {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        margin-top: 0.5em;
+        justify-content: center;
+        margin-top: 0.2em;
 
         .atk, .def {
             display: flex;
@@ -62,12 +61,13 @@
             padding-bottom: 1em;
 
             &-value {
-                font-size: 4vw;
-                padding: 0.3em 0.5em 0.2em 0.5em;
-                border: 1px solid #000;
                 position: absolute;
-                bottom: 30%;
+                bottom: 20%;
                 left: 60%;
+                padding: 0 0.5em;
+                background-color: vars.$background-input;
+                border: 1px solid vars.$border-color;
+                font-size: 0.75em;
             }
         }
     }
@@ -77,20 +77,23 @@
         justify-content: space-around;
         width: 55vw;
         margin-left: 42vw;
+        margin-top: 1.5vh;
 
         .remaining-points {
             width: 40px;
             height: 40px;
-            border: 1px solid #000;
+            border: 1px solid vars.$border-color;
             border-radius: 100%;
             font-size: 110%;
-            background-color: transparent;
+            background-color: vars.$background-input;
+            color: vars.$font-color;
 
             &-text {
-                margin-top: 3vh;
+                margin-top: 2vh;
                 margin-right: 1vw;
                 font-size: 80%;
                 font-style: italic;
+                
             }
         }
     }
@@ -99,13 +102,14 @@
 .way-container {
     margin-top: 2em;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    min-height: 55vh;
 
     .way-name {
         display: flex;
         justify-content: space-between;
         padding: 1em 1em 0;
-        border: 1px solid #000;
+        border: 1px solid vars.$border-color;
+        border-radius: 1em;
         text-align: left;
         font-size: 1.2em;
     }
@@ -116,11 +120,16 @@
         font-size: 120%;
         border: none;
         background-color: transparent;
+        color: vars.$border-color;
         &.open {
                 transform: rotate(180deg) translate(0, -50%);
                 z-index: 100;
         }
     }
+}
+
+.way-ability-container.selected {
+    background-color: vars.$background-selected-color;
 }
 
 .way-ability {
@@ -157,11 +166,6 @@
             padding-right: 1em;
         }
     }
-}
-
-.swiper-button-prev, .swiper-button-next {
-    max-height: 20px;
-    color: black;
 }
 
 .hidden {

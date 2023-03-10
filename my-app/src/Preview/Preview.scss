@@ -1,5 +1,11 @@
 @use '../vars';
 
+.body {
+    @media (min-width: 900px) {
+        display: none;
+    }
+}
+
 .preview-container {
     height: auto;
     width: fit-content;

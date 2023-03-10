@@ -92,6 +92,7 @@ const Preview = () => {
             }})
                 .then((response) => {
                     console.log(response);
+
                 })
         }
     };

@@ -5,6 +5,7 @@ import { SheetContext } from '../SheetContext';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
 import './Profile.scss';
 
 
@@ -27,11 +28,11 @@ const Profile = () => {
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      width: 300,
+      width: 400,
       bgcolor: '#000000',
       border: '2px solid #000',
       boxShadow: 24,
-      p: 4,
+      p: 3,
     };
     
 
@@ -95,7 +96,7 @@ const Profile = () => {
         "Authorization": `Bearer ${token}`
       }})
       .then((response) => {
-        alert(response.data.message);
+        // alert(response.data.message);
         console.log(response.data);
         setRefreshList(!refreshList);
         handleOpenModal();
@@ -145,12 +146,16 @@ const Profile = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description">
                 <Box sx={style}>
-                  <p>
+                  <p className="modal-title">
                     Etes-vous sûr de vouloir supprimer cette fiche ?
                   </p>
                   <div className="modal-buttons">
-                    <button onClick={() => handleDelete(sheet.id)}>Oui</button>
-                    <button onClick={() => handleOpenModal()}>Non</button>
+                    <Button variant="outlined" size="small" color="success" onClick={() => handleDelete(sheet.id)}>
+                      Oui
+                    </Button>
+                    <Button variant="outlined" size="small" color="success" onClick={() => handleOpenModal()}>
+                      Non
+                    </Button>
                   </div>
                 </Box>
               </Modal>
