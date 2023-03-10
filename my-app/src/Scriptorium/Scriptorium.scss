@@ -59,8 +59,11 @@ body {
             background-color: vars.$background-color;
             border: 0.17em solid vars.$background-input;
         }
-    }
+    } 
+    
+}
 
+@media (min-width: 900px) {
     .main {
         margin-left: 500px;
     }

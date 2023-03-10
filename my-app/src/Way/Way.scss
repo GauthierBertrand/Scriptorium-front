@@ -60,6 +60,10 @@
             position: relative;
             padding-bottom: 1em;
 
+            @media (min-width: 900px) {
+                min-width: 10vw;
+            }
+
             &-value {
                 position: absolute;
                 bottom: 20%;
