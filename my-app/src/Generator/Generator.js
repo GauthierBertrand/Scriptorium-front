@@ -29,8 +29,9 @@ const Generator = () => {
   };
 
   return (
-    <div>
+    <div className="main">
       <h1>Génération des statistiques</h1>
+      <div className="generator">
       <div className="generator-container">
         <NavLink to="/stats" className="button-link">
           <button
@@ -39,7 +40,7 @@ const Generator = () => {
             }`}
             onClick={rollDice}
           >
-            <h1>Random Rolls</h1>
+            <h1>Lancers Aléatoires</h1>
             Lancer 4 dés à 6 faces, et faire la somme des 3 meilleurs. Répéter ce processus 6 fois
             pour générer les 6 valeurs de stats.
           </button>
@@ -59,6 +60,7 @@ const Generator = () => {
             </div>
           </button>
         </NavLink>
+      </div>
       </div>
     </div>
   );

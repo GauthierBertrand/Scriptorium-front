@@ -89,7 +89,7 @@ const General = ({ religions }) => {
       )} */}
       <div className="general-page">
         <div className="general-gender-image">
-          <img className="selected-image" src={currentImage} alt="image du sexe sélectionné" />
+          <img className="selected-image" src={currentImage} alt="sexe sélectionné" />
         </div>
         <form className="general-form">
           <div className="general-inputs">

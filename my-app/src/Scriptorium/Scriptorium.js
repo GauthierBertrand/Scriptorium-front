@@ -10,6 +10,7 @@ import Notice from "../Notice/Notice";
 import Profile from "../User/Profile";
 import Settings from "../User/Settings";
 import ProtectedRoute from "../User/ProtectedRoute";
+import Avatar from "../Avatar/Avatar";
 import Edit from "../General/Edit";
 import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -26,15 +27,16 @@ const Scriptorium = () => {
         <Navbar />
       </UserProvider>
       <SheetProvider>
+      <Avatar />
         <Routes>
-        <Route path="/" element={<Navigate to="/classes" />} />
-        <Route
+          <Route path="/" element={<Navigate to="/classes" />} />
+          <Route
             path="/profile"
             element={
               <ProtectedRoute>
                 <UserProvider>
                   <Profile />
-                </UserProvider>                
+                </UserProvider>
               </ProtectedRoute>
             }
           />
@@ -52,18 +54,23 @@ const Scriptorium = () => {
           <Route path="/generation-des-stats" element={<Generator />} />
           <Route path="/stats" element={<Stat />} />
           <Route path="/voies" element={<Way />} />
-          <Route path="/apercu" element={
-             <UserProvider>
+          <Route
+            path="/apercu"
+            element={
+              <UserProvider>
                 <Preview />
-             </UserProvider>} />
-           <Route path="/mentions-legales" element={<Notice/>} />
-           <Route
+              </UserProvider>
+            }
+
+          />
+          <Route path="/mentions-legales" element={<Notice />} />
+          <Route
             path="/general/edit/:sheetId"
             element={
               <ProtectedRoute>
                 <UserProvider>
                   <Edit />
-                </UserProvider>                
+                </UserProvider>
               </ProtectedRoute>
             }
           />
