@@ -53,3 +53,26 @@
 .button-link {
   text-decoration: none;
 }
+
+@media (max-width: 1370px) {
+  .generator {
+    flex-direction: column;
+    transform: translateY(25%);
+    justify-content: space-around;
+  }
+
+  .generator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 20vh;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .generator-button {
+    width : 60vw
+  }
+}
