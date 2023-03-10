@@ -50,10 +50,6 @@ body {
         z-index: 100;
         margin-top: 2em;
         opacity: 0.3;
-
-        @media (min-width: 900px) {
-            display: none;
-        }
     }
 
     ::-webkit-scrollbar {
