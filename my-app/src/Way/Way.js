@@ -87,6 +87,24 @@ const Way = () => {
 
       const wayNameClassnames = windowSize[0] >= 900 ? "way-name wide" : "way-name";
 
+      const waySummary = (
+        <div className="way-summary">
+            <h3 className="changes-summary">
+                Résumé des changements liés aux traits :
+            </h3>
+            <div className="way-changes">
+                {/* <img src="#" alt="Logo décoratif des changements"/> */}
+                <p className="feature-changing">
+                    {selectedAbilityTraits.map((trait, index) => (
+                        <span key={index}>
+                            &bull; {trait}
+                            {index !== selectedAbilityTraits.length - 1 && <br />}
+                        </span>
+                    ))}
+                </p>
+            </div>
+        </div>)
+
     const handleToggleDescription = () => {
         if (windowSize[0] >= 900) {
             return;
@@ -233,6 +251,11 @@ const Way = () => {
                     <div className="remaining-points-text">{remainingPoints > 1 ? "points disponibles" : "point disponible"}</div>
                 </div>
             </div>
+            {(windowSize[0] >= 900) && (
+                <div className="way-changes-container-desktop">
+                    {waySummary}
+                </div>
+            )}
 
             <Swiper
                 loop={true}
@@ -269,7 +292,7 @@ const Way = () => {
                                                 {wayAbility.name}
                                                 {wayAbility.limited && <>&nbsp;&#x24c1;</>}
                                                 <div className="way-ability-level">
-                                                    Level {windowSize[0] >= 900 && (wayAbility.level)}
+                                                    Level {wayAbility.level}
                                                 </div>
                                             </div>
                                             <div className="way-ability-description">
@@ -279,29 +302,16 @@ const Way = () => {
                                     </div>
                                 ))
                             )}
-
-                            {!descriptionOpen && (
-                                <div className="way-changes-container">
-                                    <h3 className="changes-summary">
-                                        Résumé des changements liés aux traits :
-                                    </h3>
-                                    <div className="way-changes">
-                                        {/* <img src="#" alt="Logo décoratif des changements"/> */}
-                                        <p className="feature-changing">
-                                            {selectedAbilityTraits.map((trait, index) => (
-                                                <span key={index}>
-                                                    &bull; {trait}
-                                                    {index !== selectedAbilityTraits.length - 1 && <br />}
-                                                </span>
-                                            ))}
-                                        </p>
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
+
+            {(!descriptionOpen) && (
+                <div className="way-changes-container">
+                    {waySummary}
+                </div>
+            )}
 
             <Link to="/apercu">
                 <img
