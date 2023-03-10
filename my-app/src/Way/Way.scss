@@ -149,19 +149,30 @@
     min-height: 55vh;
     text-align: left;
 
-    @media (min-width: 900px) {
-        max-width: 50vw;
+    @media (min-width: 550px) {
+        max-width: 80vw;
         margin: auto;
         margin-top: 2em;
+    }
+
+    @media (min-width: 900px) {
+        max-width: 50vw;
+        margin-right: 1em;
     }
 
     .way-name {
         display: flex;
         justify-content: space-between;
-        padding: 1em 1em 0;
+        padding: 1em 1em 0.5em;
         border: 1px solid vars.$border-color;
         border-radius: 0.5em;
         font-size: 1.2em;
+
+        &.wide {
+            display: block;
+            padding: 1em;
+            text-align: center;
+        }
     }
 
     .way-button {
@@ -175,32 +186,58 @@
                 transform: rotate(180deg) translate(0, -50%);
                 z-index: 100;
         }
+        &-wide {
+            display: none;
+        }
     }
 }
 
 .way-ability-container.selected {
     background-color: vars.$background-selected-color;
-    border-radius: 0.5em;
-    border-bottom: 1px solid vars.$border-color;
 }
 
 .way-ability {
     padding-left: 1em;
-    padding-top: 1em;  
+    padding-top: 1em;
+
+    @media (min-width: 900px) {
+        padding-right: 0.5em;
+    }
 
     &-name {
         font-size: 1.1em;
         padding-bottom: 0.5em;
+        font-style: italic;
+        color: vars.$title-color;
+        
+        @media (min-width: 900px) {
+            font-size: 1.2em;
+        }
+    }
+    
+    &-level {
+        margin: 0.2em 0.5em 0 0;
+        font-size: 0.65em;
+        font-style: italic;
+        text-align: right;
+        color: vars.$font-color;
     }
 
     &-description {
         font-size: 0.9em;
-        padding-bottom: 2em;
+        padding-bottom: 1.5em;
     }
 
     &-bonus {
         font-size: 1.1em;
         padding-bottom: 0.5em;
+    }
+
+    @media (min-width: 900px) {
+        min-height: 30vh;
+        margin-bottom: 0.5em;
+        border: 1px solid vars.$border-color;
+        border-radius: 0.5em;
     }
 }
 
@@ -217,7 +254,3 @@
         }
     }
 }
-
-// .swiper {
-//     max-width: 70vh;
-// }

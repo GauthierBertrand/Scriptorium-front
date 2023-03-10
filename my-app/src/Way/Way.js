@@ -3,11 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import { GlobalContext } from "./../GlobalContext";
 import { SheetContext } from "./../SheetContext";
 
-import axios from "axios";
 
 import next from "../assets/images/next.png";
 
@@ -22,6 +22,7 @@ import "./Way.scss";
 SwiperCore.use([Navigation, Keyboard, Mousewheel]);
 
 const Way = () => {
+    
     const {
         classId,
         statModifiers,
@@ -62,8 +63,34 @@ const Way = () => {
     const [selectedAbilityTraits, setSelectedAbilityTraits] = useState([]);
     const [remainingPoints, setRemainingPoints] = useState(2);
 
+    // To get and use the viewport size
+    const [windowSize, setWindowSize] = useState([
+        window.innerWidth,
+        window.innerHeight,
+      ]);
+    
+      useEffect(() => {
+        const handleWindowResize = () => {
+          setWindowSize([window.innerWidth, window.innerHeight]);
+        };
+    
+        window.addEventListener('resize', handleWindowResize);
+
+        if (windowSize[0] >= 900) {
+            setDescriptionOpen(true);
+        }
+    
+        return () => {
+          window.removeEventListener('resize', handleWindowResize);
+        };
+      });
+
+      const wayNameClassnames = windowSize[0] >= 900 ? "way-name wide" : "way-name";
 
     const handleToggleDescription = () => {
+        if (windowSize[0] >= 900) {
+            return;
+        }
         setDescriptionOpen(!descriptionOpen);
     }
 
@@ -216,27 +243,19 @@ const Way = () => {
                     0: {
                         slidesPerView: 1
                     },
-
-                    700: {
-                        slidesPerView: 2
-                    },
-
-                    900: {
-                        slidesPerView: 1
-                    },
                     1024: {
                         slidesPerView: 2
                     },
-                    1400: {
+                    1440: {
                         slidesPerView: 5
                     }}}
                 onSlideChangeTransitionEnd={(swiper) => { handleSelectWay(swiper.realIndex) }}>
                 {ways.map((way) => (
                     <SwiperSlide key={way.id}>
                         <div className="way-container">
-                            <div className="way-name" onClick={handleToggleDescription}>
+                            <div className={wayNameClassnames} onClick={handleToggleDescription}>
                                 {way.name}
-                                <button className={`race ${descriptionOpen ? "way-button open" : "way-button"}`}
+                                <button className={`${windowSize[0] >= 900 ? "way-button-wide" : descriptionOpen ? "way-button open" : "way-button"}`}
                                     onClick={handleToggleDescription}>
                                     &#9207;
                                 </button>
@@ -249,6 +268,9 @@ const Way = () => {
                                             <div className="way-ability-name">
                                                 {wayAbility.name}
                                                 {wayAbility.limited && <>&nbsp;&#x24c1;</>}
+                                                <div className="way-ability-level">
+                                                    Level {windowSize[0] >= 900 && (wayAbility.level)}
+                                                </div>
                                             </div>
                                             <div className="way-ability-description">
                                                 {wayAbility.description}
