@@ -10,6 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 3vw;
+  position: relative;
+  transform: translateY(30%);
 }
 
 .generator-container {
@@ -25,11 +28,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
-  height: auto;
-  margin: 10px;
+  width: 30vw;
+  height: 25vh;
+  padding: 3em;
   font-size: 16px;
-  white-space: normal;
+  white-space: pre-wrap;
+  
   .hover {
     background-color: green;
     color: white;
@@ -48,4 +52,27 @@
 
 .button-link {
   text-decoration: none;
+}
+
+@media (max-width: 1370px) {
+  .generator {
+    flex-direction: column;
+    transform: translateY(25%);
+    justify-content: space-around;
+  }
+
+  .generator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 20vh;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .generator-button {
+    width : 60vw
+  }
 }
