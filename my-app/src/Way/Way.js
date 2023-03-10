@@ -168,7 +168,7 @@ const Way = () => {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/ways/12`)
+        axios.get(`http://localhost:8080/api/ways/1`)
             .then((response) => {
                 setWays(response.data.ways);
             })
@@ -212,6 +212,24 @@ const Way = () => {
                 navigation={false}
                 keyboard={true}
                 mousewheel={false}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1
+                    },
+
+                    700: {
+                        slidesPerView: 2
+                    },
+
+                    900: {
+                        slidesPerView: 1
+                    },
+                    1024: {
+                        slidesPerView: 2
+                    },
+                    1400: {
+                        slidesPerView: 5
+                    }}}
                 onSlideChangeTransitionEnd={(swiper) => { handleSelectWay(swiper.realIndex) }}>
                 {ways.map((way) => (
                     <SwiperSlide key={way.id}>
