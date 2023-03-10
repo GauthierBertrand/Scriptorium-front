@@ -168,7 +168,7 @@ const Way = () => {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/ways/${classId}`)
+        axios.get(`http://localhost:8080/api/ways/12`)
             .then((response) => {
                 setWays(response.data.ways);
             })
