@@ -180,7 +180,7 @@ const Way = () => {
 
 
     return (
-        <div className="main">
+        <div className="main way-main">
             <div className="stats-header">
                 <div className="stats-header-mod">
                     {Object.entries(finalPrimaryStats).map((stat) => (
