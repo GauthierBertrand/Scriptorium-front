@@ -12,6 +12,7 @@ const Profile = () => {
     const { 
       pdfUrl,
       setPdfUrl,
+      selectedSheetId,
       setSelectedSheetId
     } = useContext(SheetContext);
 
@@ -26,7 +27,7 @@ const Profile = () => {
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      width: 400,
+      width: 300,
       bgcolor: '#000000',
       border: '2px solid #000',
       boxShadow: 24,
@@ -87,7 +88,8 @@ const Profile = () => {
   };
 
   const handleDelete = (sheetId) => {
-    axios.delete(`http://localhost:8080/api/characters/${sheetId}`, {
+    setSelectedSheetId(sheetId);
+    axios.delete(`http://localhost:8080/api/characters/${selectedSheetId}`, {
       responseType: 'json',
       headers: {
         "Authorization": `Bearer ${token}`
@@ -100,7 +102,8 @@ const Profile = () => {
       })
   };
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (sheetId) => {
+    setSelectedSheetId(sheetId);
     setOpenModal(!openModal);
   };
 
@@ -133,7 +136,7 @@ const Profile = () => {
                     <img src="https://fakeimg.pl/20x20/000/?test=EDIT" alt="Modifier la fiche" />
                 </Link>
             </button>
-              <button className="sheet-button" onClick={() => handleOpenModal()}>
+              <button className="sheet-button" onClick={() => handleOpenModal(sheet.id)}>
                 <img src="https://fakeimg.pl/20x20/000/?text=SUPP" alt="Supprimer la fiche" />
               </button>  
               <Modal
