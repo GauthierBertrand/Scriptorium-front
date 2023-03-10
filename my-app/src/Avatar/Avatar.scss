@@ -1,0 +1,18 @@
+.avatar {
+    padding: 10px;
+    margin:  0 40px;
+    position: fixed;
+    vertical-align: baseline;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 500px;
+    max-height: 800px;
+    box-sizing: border-box;
+
+    &-image {
+      width: 500px;
+      height: 800px;
+      object-fit: cover;
+    }
+  }

@@ -1,5 +1,21 @@
 @use '../vars';
 
+.body {
+  @media (min-width: 900px) {
+      display: none;
+  }
+}
+
+.main {
+  margin-left: 600px;
+}
+
+.generator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .generator-container {
   display: flex;
   flex-direction: column;
