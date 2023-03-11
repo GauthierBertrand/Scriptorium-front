@@ -4,7 +4,7 @@ import hpIcon from "./hp.png";
 import initIcon from "./init.png";
 import acIcon from "./ac.png";
 import distIcon from "./ranged.png";
-import cacIcon from "./melee.png";
+import cacIcon from "./../assets/images/sword.png";
 import magIcon from "./magic.png";
 import next from "./../assets/images/next.png";
 import { GlobalContext } from "../GlobalContext";
@@ -19,7 +19,9 @@ const Stat = () => {
     secondaryStats,
     statModifiers,
     setPrimaryStats,
-    finalPrimaryStats
+    finalPrimaryStats,
+    classesStats,
+    selectedClass,
   } = useContext(GlobalContext);
   const [footerArray, setFooterArray] = useState(diceRolls);
 
@@ -93,6 +95,8 @@ const Stat = () => {
     }
   };
 
+
+
   const PrimaryStatItem = ({
     name,
     value,
@@ -100,23 +104,32 @@ const Stat = () => {
     /*handleMoveLeft, handleMoveRight,*/ handleRemoveStat,
     statModifiers,
   }) => {
-    const modifier = value
-      ? statModifiers[name] >= 0
-        ? `+${statModifiers[name]}`
-        : statModifiers[name]
-      : "";
-    console.log("value:", value);
+    const modifier = value < 3
+      ? ""
+      : value && statModifiers[name] >= 0
+        ? value >= 10
+          ? `+ ${statModifiers[name]}`
+          : value >= 4
+            ? statModifiers[name]
+            : ""
+        : statModifiers[name];
+
+    const isRecommended = classesStats[selectedClass].stat.find(
+      (stat) => stat.name.toUpperCase().startsWith(name.slice(0, 3)) && stat.isRecommended
+    );
+
+    console.log(classesStats[selectedClass].stat, isRecommended);
+
     return (
       <div key={name} className="primary-stat-item">
-        <div className="primary-stat-header">
-          <div className="primary-stat-modifier">{modifier}</div>
-          <div className="primary-stat-name">{name}</div>
-        </div>
+        <div className="primary-stat-lines" />
+        <div className="primary-stat-modifier box">{modifier}</div>
+        <div className={`primary-stat-name box ${isRecommended ? 'recommended' : ''}`}>{name}</div>
         <button
-          className="primary-stat-text"
+          className="primary-stat-value box"
           onClick={() => handleRemoveStat(index)}
         >
-          {value === 0 || value === "" ? "" : value}
+          {value === 0 || value === "" ? "" : value < 3 && value > 0 ? `+${value}` : value}
         </button>
         {/* {index < 5 && (
           <button className="primary-stat-move-right" onClick={() => handleMoveRight(index)}>
@@ -142,52 +155,54 @@ const Stat = () => {
   };
 
   return (
-    <div className="secondary-stat-container">
-      <div className="secondary-stat-row">
-        {Object.entries(secondaryStats).map(([key, value]) => {
-          const iconName = iconMap[key];
-          const displayValue =
-            value === 0 ? 0 : value >= 0 ? `+${value}` : value;
-          return (
-            <div className="secondary-stat-item" key={key}>
-              <img src={iconName} alt={`${key} Icon`} />
-              <div className="secondary-stat-value">{displayValue}</div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="primary-stat-container">
-        {Object.keys(finalPrimaryStats).map((key, index) => (
-          <PrimaryStatItem
-            key={key}
-            name={key}
-            value={finalPrimaryStats[key]}
-            index={index}
-            statModifiers={statModifiers}
-            handleRemoveStat={handleRemoveStat}
+    <div className="main stat-main">
+      <div className="parent">
+        <div className="secondary-stat-container">
+          {Object.entries(secondaryStats).map(([key, value]) => {
+            const iconName = iconMap[key];
+            const displayValue =
+              value === 0 ? 0 : value >= 0 ? `+${value}` : value;
+            return (
+              <div className="secondary-stat-item" key={key}>
+                <img src={iconName} alt={`${key} Icon`} />
+                <div className="secondary-stat-value box">{displayValue}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="primary-stat-container">
+          {Object.keys(finalPrimaryStats).map((key, index) => (
+            <PrimaryStatItem
+              key={key}
+              name={key}
+              value={finalPrimaryStats[key]}
+              index={index}
+              statModifiers={statModifiers}
+              handleRemoveStat={handleRemoveStat}
             // handleMoveLeft={handleMoveLeft}
             // handleMoveRight={handleMoveRight}
-          />
-        ))}
+            />
+          ))}
+        </div>
         <div className="primary-stat-footer">
           {footerArray.map((value, index) => (
             <button
               key={index}
-              className="primary-stat-button"
+              className="primary-stat-footer-button box"
               onClick={() => handleFooterButtonClick(value)}
             >
               {value}
             </button>
           ))}
         </div>
+        <Link to="/voies">
+          <img
+            className="next-page"
+            src={next}
+            alt="Chevron pointing down for the next page"
+          />
+        </Link>
       </div>
-      <Link to="/voies">
-        <img
-          className="next-page"
-          src={next}
-          alt="Chevron pointing down for the next page"
-        />
-      </Link>
     </div>
   );
 };

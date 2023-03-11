@@ -1,100 +1,108 @@
 @use '../vars';
 
-.stat-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-}
-.secondary-stat-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin: 2rem 1rem;
+.stat-main {
+  height: 100%;
 
-  .secondary-stat-row {
+  .parent {
     display: flex;
-    margin-bottom: 2rem;
-  }
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 95vh;
 
-  .secondary-stat-item {
-    position: relative;
 
-    img {
-      width: 60%;
-    }
-
-    .secondary-stat-value {
-      position: absolute;
-      bottom: 0.5rem;
-      right: 0.5rem;
-      background-color: rgb(36, 9, 110);
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.5rem;
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: aliceblue;
-    }
-  }
-}
-
-.primary-stat-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-
-  .primary-stat-item {
-    width: calc(100% / 3);
-    margin: 1rem;
-
-    .primary-stat-header {
+    .secondary-stat-container {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem;
+      flex-wrap: wrap;
+      align-self: flex-start;
+      justify-self: flex-end;
+      max-width: 40vw;
 
-      .primary-stat-modifier {
+      .secondary-stat-item {
+        flex-basis: 30%;
+      }
+
+      img {
+        width: 30%;
+      }
+    }
+
+    .primary-stat-container {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      height: 100%;
+      gap: 2vw;
+      order: -1;
+      justify-self: flex-start;
+
+
+      .primary-stat-item {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 2rem;
-        height: 2rem;
-        background-color: blue;
-        border-radius: 50%;
-        color: white;
-        font-weight: bold;
-      }
+        width: 10vw;
+        height: 4vh;
+        gap: 2vw;
+        position: relative;
 
-      .primary-stat-name {
-        margin-left: 0.5rem;
-        font-size: 1.25rem;
-        font-weight: bold;
+        .primary-stat-value,
+        .primary-stat-name {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px !important;
+          width: 4vw;
+          height: 4vh;
+          border: solid 2px vars.$border-color;
+        }
+
+        .primary-stat-modifier {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          border-radius: 100%;
+          height: 5vw;
+          width: 5vw;
+          left: 5.40vw;
+          top: 4.3vh;
+          text-align: center;
+          font-size: 40px !important;
+          border: solid 2px vars.$border-color;
+        }
+
+        .primary-stat-lines {
+          position: absolute;
+          top: 2vh;
+          width: 8vw;
+          height: 7.2vh;
+          border: solid 2px vars.$border-color;
+          z-index: -1;
+          border-right: none;
+        }
+
+        .recommended {
+          font-weight: 700;
+          transform: scale(1.1);
+          text-shadow: 0 0 0.8em rgb(254, 229, 0);
+        }
       }
     }
 
-    .primary-stat-text {
-      width: 100%;
-      height: 5rem;
-      resize: none;
-      padding: 0.5rem;
-      font-size: 1.25rem;
-      background-color: rgb(36, 9, 110);
-      color: white;
-    }
-  }
+    .primary-stat-footer {
+      display: flex;
+      justify-content: space-evenly;
+      order: -2;
+      width: 90%;
 
-  @media (max-width: 780px) {
-    .primary-stat-item {
-      width: 80px;
+      &-button {
+        width: 5vw;
+        height: 5vh;
+        border: solid 2px vars.$border-color;
+        font-size: 30px !important;
+      }
+
     }
   }
 }
-// .next-page {
-//   margin: 0 auto;
-//   position: absolute;
-//   bottom: 1px;
-//   left: 50%;
-//   transform: translateX(-50%) !important;
-//   max-width: 100px;
-// }
