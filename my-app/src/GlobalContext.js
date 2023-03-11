@@ -122,7 +122,7 @@ const GlobalProvider = (props) => {
     const newSecondaryStats = {
       PV: handleClassBonus() + statModifiers.CON,
       INIT: finalPrimaryStats.DEX,
-      AC: secondaryStats.AC,
+      AC: 10 + statModifiers.DEX ,
       DIST: statModifiers.DEX,
       CAC: statModifiers.FOR,
       MAG: statModifiers.INT,

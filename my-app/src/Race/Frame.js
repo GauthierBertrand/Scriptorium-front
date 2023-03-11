@@ -3,6 +3,7 @@ import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
 import { useSwipeable } from "react-swipeable";
 import { Link } from "react-router-dom";
+import raceImages from './raceImages.js';
 import "./Frame.scss";
 
 const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleRaceClick }) => {
@@ -44,7 +45,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
   return (
     <div className={`race ${selectedRace === raceIndex ? "expanded" : ""}`}>
       <div className="race-header" onClick={handleClick} {...handlers}>
-        <img className="race-picture" src={picture} alt={name} />
+      <img className="race-picture" src={raceImages[name]} alt={name} />
         <h3 className="race-title">{name}</h3>
       </div>
 
@@ -64,7 +65,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
                   handleRaceAbilityClick(racialAbilities[0]);
                 }}
               >
-                {racialAbilities[0].name}
+                {racialAbilities[0].description}
               </button>
               </Link>
             )}
@@ -80,7 +81,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
                     handleRaceAbilityClick(racialAbilities[1]);
                   }}
                 >
-                  {racialAbilities[1].name}
+                  {racialAbilities[1].description}
                 </button>
               </Link>
             )}

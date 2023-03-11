@@ -14,6 +14,7 @@ import mars from "../assets/images/mars.png";
 import venus from "../assets/images/venus.png";
 import next from "../assets/images/next.png";
 
+
 // TODO : Dynamiser les religions avec un axios
 
 const General = ({ religions }) => {

@@ -5,8 +5,6 @@ import axios from "axios";
 import "./Race.scss";
 import Frame from "./Frame";
 
-
-
 const Race = () => {
   const [races, setRaces] = useState([]);
   const {

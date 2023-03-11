@@ -1,15 +1,14 @@
 import { useContext } from "react";
 import { SheetContext } from "../SheetContext";
 import { useLocation } from "react-router-dom";
+import raceImages from '../Race/raceImages.js';
 import "./Avatar.scss";
 
-
-import maleOrc from "../assets/images/male-orc.jpg";
 
 const Avatar = () => {
 
     const {
-        currentImage,
+        raceName,
     } = useContext(SheetContext);
 
     let location = useLocation();
@@ -21,11 +20,14 @@ const Avatar = () => {
         "/voies",
     ].includes(location.pathname);
 
+    
+    console.log()
+ 
     return (    
         <div>
             {shouldShowAvatar && (
                 <div className="avatar">
-                    <img className="avatar-image" src={currentImage} alt="sexe sélectionné" />
+                    <img className="avatar-image" src={raceImages[raceName]} alt={raceName} />
                 </div>
             )}
         </div>

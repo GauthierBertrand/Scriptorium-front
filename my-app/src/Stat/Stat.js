@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import "./Stat.scss";
-import hpIcon from "./hp.png";
-import initIcon from "./init.png";
-import acIcon from "./ac.png";
-import distIcon from "./ranged.png";
-import cacIcon from "./../assets/images/sword.png";
-import magIcon from "./magic.png";
+import hpIcon from "../assets/images/health.png";
+import initIcon from "../assets/images/initiative.png";
+import acIcon from "../assets/images/defense.png";
+import distIcon from "../assets/images/ranged.png";
+import cacIcon from "../assets/images/melee.png";
+import magIcon from "../assets/images/magic.png";
 import next from "./../assets/images/next.png";
 import { GlobalContext } from "../GlobalContext";
 import { Link } from "react-router-dom";
@@ -118,7 +118,7 @@ const Stat = () => {
       (stat) => stat.name.toUpperCase().startsWith(name.slice(0, 3)) && stat.isRecommended
     );
 
-    console.log(classesStats[selectedClass].stat, isRecommended);
+    // console.log(classesStats[selectedClass].stat, isRecommended);
 
     return (
       <div key={name} className="primary-stat-item">
@@ -157,18 +157,56 @@ const Stat = () => {
   return (
     <div className="main stat-main">
       <div className="parent">
-        <div className="secondary-stat-container">
-          {Object.entries(secondaryStats).map(([key, value]) => {
-            const iconName = iconMap[key];
-            const displayValue =
-              value === 0 ? 0 : value >= 0 ? `+${value}` : value;
-            return (
-              <div className="secondary-stat-item" key={key}>
-                <img src={iconName} alt={`${key} Icon`} />
-                <div className="secondary-stat-value box">{displayValue}</div>
-              </div>
-            );
-          })}
+        <div className="secondary-stat-container-parent">
+          <div className="secondary-stat-container">
+            {Object.entries(secondaryStats).map(([key, value]) => {
+              const iconName = iconMap[key];
+
+              let displayValue;
+
+              if (key === "HP" || key === "INIT" || key === "AC") {
+                displayValue = String(value);
+              } else if (key === "DIST" || key === "CAC" || key === "MAG") {
+                displayValue = value >= 0 ? `+${value}` : value;
+              } else {
+                displayValue = value;
+              }
+              return (
+                <div className="secondary-stat-item" key={key}>
+                  <img src={iconName} alt={`${key} Icon`} />
+                  <div className="secondary-stat-value box">{displayValue}</div>
+                </div>
+              );
+            })}
+          </div>
+          <p className="Stat-desciption box">
+            <p>
+              Le personnage est défini par six stats auxquelles on assigne un score constitué de deux parties : la valeur et le Modificateur (Mod.).
+            </p>
+            <p>
+              <span>Force (FOR) </span> &nbsp; mesure la puissance physique et musculaire.
+              Gagner un bras de fer, soulever, tordre, lancer un objet lourd, immobiliser un adversaire. Attaquer au contact. Etc.
+            </p>
+            <p>
+              <span>Dextérité (DEX) </span> &nbsp; évalue l’agilité, les réflexes et l’adresse.
+              Faire des acrobaties, tenir en équilibre, grimper, sauter, sprinter, se déplacer en silence, crocheter, chaparder, esquiver une attaque. Attaquer à distance. Etc.
+            </p>
+            <p>
+              <span>Constitution (CON) </span> &nbsp; représente la santé et l’endurance. Résister aux éléments, à la fatigue, aux poisons, aux privations, courir longtemps. Encaisser des blessures. Etc.
+            </p>
+            <p>
+              <span>Intelligence (INT) </span> &nbsp; représente les capacités d’apprentissage et de raisonnement.
+              Raisonner, comprendre, connaître, apprendre, se souvenir, chercher, trouver une information (livre). Attaquer par magie. Etc.
+            </p>
+            <p>
+              <span>Sagesse (SAG) </span> &nbsp; relie le personnage à l’univers : volonté, intuition, perception.
+              Observer, entendre, détecter, repérer, pister, deviner, ressentir. Résister à la peur ou aux influences mentales. Etc.
+            </p>
+            <p>
+              <span>Charisme (CHA) </span> &nbsp; traduit la force de persuasion, la présence et la capacité à commander.
+              Bluffer, mentir, négocier, séduire, intimider, convaincre. Etc.
+            </p>
+          </p>
         </div>
         <div className="primary-stat-container">
           {Object.keys(finalPrimaryStats).map((key, index) => (
