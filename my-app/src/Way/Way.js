@@ -62,6 +62,7 @@ const Way = () => {
     const [selectedAbilityNames, setSelectedAbilityNames] = useState([]);
     const [selectedAbilityTraits, setSelectedAbilityTraits] = useState([]);
     const [remainingPoints, setRemainingPoints] = useState(2);
+    const [waysNumber, setWaysNumber] = useState(0);
 
     // To get and use the viewport size
     const [windowSize, setWindowSize] = useState([
@@ -235,9 +236,10 @@ const Way = () => {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/ways/1`)
+        axios.get(`http://localhost:8080/api/ways/${classId}`)
             .then((response) => {
                 setWays(response.data.ways);
+                setWaysNumber(response.data.ways.length);
             })
             .catch((error) => {
                 alert("Erreur API : Les données des voies n'ont pas pu être récupérées.");
@@ -278,8 +280,7 @@ const Way = () => {
                     {waySummary}
                 </div>
             )}
-
-            <Swiper
+            {waysNumber && (<Swiper
                 loop={true}
                 navigation={false}
                 keyboard={true}
@@ -292,7 +293,7 @@ const Way = () => {
                         slidesPerView: 2
                     },
                     1440: {
-                        slidesPerView: 5
+                        slidesPerView: waysNumber
                     }}}
                 onSlideChangeTransitionEnd={(swiper) => { handleSelectWay(swiper.realIndex) }}>
                 {ways.map((way) => (
@@ -329,7 +330,7 @@ const Way = () => {
                         </div>
                     </SwiperSlide>
                 ))}
-            </Swiper>
+            </Swiper>)}
 
             {(!descriptionOpen) && (
                 <div className="way-changes-container">
