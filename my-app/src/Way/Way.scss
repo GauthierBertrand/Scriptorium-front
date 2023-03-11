@@ -257,6 +257,14 @@
         border-radius: 0.5em;
         // height: 30vh;
         // overflow-y: scroll; // Si le scroll des descriptions est acceptable
+        // &::-webkit-scrollbar {
+        //     width: 0.3em;
+        //     &-thumb {
+        //         background-color: vars.$background-color;
+        //         border: 0.11em solid vars.$background-input;
+        //         border-radius: 0.2em;
+        //     }
+        // } 
     }
 }
 
