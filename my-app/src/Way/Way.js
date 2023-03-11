@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import { GlobalContext } from "./../GlobalContext";
 import { SheetContext } from "./../SheetContext";
 
-import axios from "axios";
 
 import next from "../assets/images/next.png";
 
@@ -22,6 +22,7 @@ import "./Way.scss";
 SwiperCore.use([Navigation, Keyboard, Mousewheel]);
 
 const Way = () => {
+
     const {
         classId,
         statModifiers,
@@ -61,9 +62,76 @@ const Way = () => {
     const [selectedAbilityNames, setSelectedAbilityNames] = useState([]);
     const [selectedAbilityTraits, setSelectedAbilityTraits] = useState([]);
     const [remainingPoints, setRemainingPoints] = useState(2);
+    const [waysNumber, setWaysNumber] = useState(0);
+
+    // To get and use the viewport size
+    const [windowSize, setWindowSize] = useState([
+        window.innerWidth,
+        window.innerHeight
+    ]);
+    
+    
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowSize([window.innerWidth, window.innerHeight]);
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+
+        if (windowSize[0] >= 900) {
+            setDescriptionOpen(true);
+        }
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, [windowSize]);
+
+    const wayNameClassnames = windowSize[0] >= 900 ? "way-name wide" : "way-name";
+
+    const waySummary = (
+        <div className="way-summary">
+            <h3 className="changes-summary">
+                Résumé des changements liés aux traits :
+            </h3>
+            <div className="way-changes">
+                {/* <img src="#" alt="Logo décoratif des changements"/> */}
+                <p className="feature-changing">
+                    {selectedAbilityTraits.map((trait, index) => (
+                        <span key={index}>
+                            &bull; {trait}
+                            {index !== selectedAbilityTraits.length - 1 && <br />}
+                        </span>
+                    ))}
+                </p>
+            </div>
+        </div>
+    );
+
+    // Buttons previous and next that will be used in the Swiper for laptop
+    const SwiperButtonNext = () => {
+        const swiper = useSwiper();
+        return (
+            <button className={`${windowSize[0] >= 900 && windowSize[0] < 1440 ? "way-button-slider button-next" : "way-button-slider hidden"}`} onClick={() => swiper.slideNext()}>
+                <img src={next} alt="Changer de slide" />
+            </button>
+        );
+    };
+
+    const SwiperButtonPrev = () => {
+        const swiper = useSwiper();
+        return (
+            <button className={`${windowSize[0] >= 900 && windowSize[0] < 1440 ? "way-button-slider button-prev" : "way-button-slider hidden"}`} onClick={() => swiper.slidePrev()}>
+                <img src={next} alt="Changer de slide" />
+            </button>
+        );
+    };
 
 
     const handleToggleDescription = () => {
+        if (windowSize[0] >= 900) {
+            return;
+        }
         setDescriptionOpen(!descriptionOpen);
     }
 
@@ -171,6 +239,7 @@ const Way = () => {
         axios.get(`http://localhost:8080/api/ways/${classId}`)
             .then((response) => {
                 setWays(response.data.ways);
+                setWaysNumber(response.data.ways.length);
             })
             .catch((error) => {
                 alert("Erreur API : Les données des voies n'ont pas pu être récupérées.");
@@ -206,22 +275,38 @@ const Way = () => {
                     <div className="remaining-points-text">{remainingPoints > 1 ? "points disponibles" : "point disponible"}</div>
                 </div>
             </div>
-
-            <Swiper
+            {(windowSize[0] >= 900) && (
+                <div className="way-changes-container-desktop">
+                    {waySummary}
+                </div>
+            )}
+            {waysNumber && (<Swiper
                 loop={true}
                 navigation={false}
                 keyboard={true}
                 mousewheel={false}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1
+                    },
+                    1024: {
+                        slidesPerView: 2
+                    },
+                    1440: {
+                        slidesPerView: waysNumber
+                    }}}
                 onSlideChangeTransitionEnd={(swiper) => { handleSelectWay(swiper.realIndex) }}>
                 {ways.map((way) => (
                     <SwiperSlide key={way.id}>
                         <div className="way-container">
-                            <div className="way-name" onClick={handleToggleDescription}>
+                            <div className={wayNameClassnames} onClick={handleToggleDescription}>
+                                <SwiperButtonPrev />
                                 {way.name}
-                                <button className={`race ${descriptionOpen ? "way-button open" : "way-button"}`}
+                                <button className={`${windowSize[0] >= 900 ? "way-button-wide" : descriptionOpen ? "way-button open" : "way-button"}`}
                                     onClick={handleToggleDescription}>
                                     &#9207;
                                 </button>
+                                <SwiperButtonNext />
                             </div>
 
                             {descriptionOpen && (
@@ -231,6 +316,9 @@ const Way = () => {
                                             <div className="way-ability-name">
                                                 {wayAbility.name}
                                                 {wayAbility.limited && <>&nbsp;&#x24c1;</>}
+                                                <div className="way-ability-level">
+                                                    Level {wayAbility.level}
+                                                </div>
                                             </div>
                                             <div className="way-ability-description">
                                                 {wayAbility.description}
@@ -239,29 +327,16 @@ const Way = () => {
                                     </div>
                                 ))
                             )}
-
-                            {!descriptionOpen && (
-                                <div className="way-changes-container">
-                                    <h3 className="changes-summary">
-                                        Résumé des changements liés aux traits :
-                                    </h3>
-                                    <div className="way-changes">
-                                        {/* <img src="#" alt="Logo décoratif des changements"/> */}
-                                        <p className="feature-changing">
-                                            {selectedAbilityTraits.map((trait, index) => (
-                                                <span key={index}>
-                                                    &bull; {trait}
-                                                    {index !== selectedAbilityTraits.length - 1 && <br />}
-                                                </span>
-                                            ))}
-                                        </p>
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </SwiperSlide>
                 ))}
-            </Swiper>
+            </Swiper>)}
+
+            {(!descriptionOpen) && (
+                <div className="way-changes-container">
+                    {waySummary}
+                </div>
+            )}
 
             <Link to="/apercu">
                 <img
