@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -22,7 +22,7 @@ import "./Way.scss";
 SwiperCore.use([Navigation, Keyboard, Mousewheel]);
 
 const Way = () => {
-    
+
     const {
         classId,
         statModifiers,
@@ -66,28 +66,29 @@ const Way = () => {
     // To get and use the viewport size
     const [windowSize, setWindowSize] = useState([
         window.innerWidth,
-        window.innerHeight,
-      ]);
+        window.innerHeight
+    ]);
     
-      useEffect(() => {
+    
+    useEffect(() => {
         const handleWindowResize = () => {
-          setWindowSize([window.innerWidth, window.innerHeight]);
+            setWindowSize([window.innerWidth, window.innerHeight]);
         };
-    
+
         window.addEventListener('resize', handleWindowResize);
 
         if (windowSize[0] >= 900) {
             setDescriptionOpen(true);
         }
-    
+
         return () => {
-          window.removeEventListener('resize', handleWindowResize);
+            window.removeEventListener('resize', handleWindowResize);
         };
-      });
+    }, [windowSize]);
 
-      const wayNameClassnames = windowSize[0] >= 900 ? "way-name wide" : "way-name";
+    const wayNameClassnames = windowSize[0] >= 900 ? "way-name wide" : "way-name";
 
-      const waySummary = (
+    const waySummary = (
         <div className="way-summary">
             <h3 className="changes-summary">
                 Résumé des changements liés aux traits :
@@ -103,7 +104,28 @@ const Way = () => {
                     ))}
                 </p>
             </div>
-        </div>)
+        </div>
+    );
+
+    // Buttons previous and next that will be used in the Swiper for laptop
+    const SwiperButtonNext = () => {
+        const swiper = useSwiper();
+        return (
+            <button className={`${windowSize[0] >= 900 && windowSize[0] < 1440 ? "way-button-slider button-next" : "way-button-slider hidden"}`} onClick={() => swiper.slideNext()}>
+                <img src={next} alt="Changer de slide" />
+            </button>
+        );
+    };
+
+    const SwiperButtonPrev = () => {
+        const swiper = useSwiper();
+        return (
+            <button className={`${windowSize[0] >= 900 && windowSize[0] < 1440 ? "way-button-slider button-prev" : "way-button-slider hidden"}`} onClick={() => swiper.slidePrev()}>
+                <img src={next} alt="Changer de slide" />
+            </button>
+        );
+    };
+
 
     const handleToggleDescription = () => {
         if (windowSize[0] >= 900) {
@@ -277,11 +299,13 @@ const Way = () => {
                     <SwiperSlide key={way.id}>
                         <div className="way-container">
                             <div className={wayNameClassnames} onClick={handleToggleDescription}>
+                                <SwiperButtonPrev />
                                 {way.name}
                                 <button className={`${windowSize[0] >= 900 ? "way-button-wide" : descriptionOpen ? "way-button open" : "way-button"}`}
                                     onClick={handleToggleDescription}>
                                     &#9207;
                                 </button>
+                                <SwiperButtonNext />
                             </div>
 
                             {descriptionOpen && (

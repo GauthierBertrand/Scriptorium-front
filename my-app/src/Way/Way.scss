@@ -168,9 +168,23 @@
         font-size: 1.2em;
 
         &.wide {
-            display: block;
+            display: flex;
             padding: 1em;
             text-align: center;
+        }
+
+        .way-button-slider {
+            background-color: transparent;
+            border: none;
+            opacity: 0.1;
+
+            &.button-next {
+                transform: rotate(-90deg);
+            }
+
+            &.button-prev {
+                transform: rotate(90deg);
+            }
         }
     }
 
