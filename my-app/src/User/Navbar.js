@@ -4,7 +4,7 @@ import { GlobalContext } from '../GlobalContext';
 import { SheetContext } from '../SheetContext';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
-import './BurgerMenu.scss';
+import './Navbar.scss';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -16,7 +16,7 @@ const Navbar = () => {
     setDiceRolls,
     setPrimaryStats,
     setSecondaryStats,
-    setStats
+    setStats,
    } = useContext(GlobalContext);
 
   const {
@@ -30,18 +30,18 @@ const Navbar = () => {
     setSelectedSheetId
   } = useContext(SheetContext);
   const { user, setUser } = useContext(UserContext);
-  const [open, setOpen] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-  const handleBurgerClick = () => {
-    setOpen(!open);
+  const handleOpenModal = () => {
+    setOpenModal(!openModal);
   };
 
   const handleLogout = () => {
     Cookies.remove('token');
     setUser(null);
-    setOpen(false);
+    setOpenModal(false);
   };
 
   const handleShowLoginForm = () => {
@@ -97,26 +97,26 @@ const Navbar = () => {
             <div className="user-info">{`${user.pseudo}`}</div>
           ) : (
             <div className="auth-buttons">
-              <button type="button" onClick={handleShowLoginForm}>
+              <button className="button" type="button" onClick={handleShowLoginForm}>
                 Connexion
               </button>
-              <button type="button" onClick={handleShowSignUpForm}>
+              <button className="button" type="button" onClick={handleShowSignUpForm}>
                 Inscription
               </button>
             </div>
           )}
         </div>
         {isLoggedIn && (
-        <div className="burger" onClick={handleBurgerClick}>
+        <div className="burger" onClick={handleOpenModal}>
           <div className="line"></div>
           <div className="line"></div>
           <div className="line"></div>
         </div>
-      )}
+        )}
       </nav>
-      {showLoginForm && <LoginForm onSuccess={() => setShowLoginForm(false)} />}
-      {showSignUpForm && <SignUpForm onSuccess={() => setShowSignUpForm(false)} />}
-      <div className={`burger-menu ${open ? "open" : ""}`}>
+      {showLoginForm && <LoginForm onSuccess={() => setShowLoginForm(false)} handleShowLoginForm={handleShowLoginForm} />}
+      {showSignUpForm && <SignUpForm onSuccess={() => setShowSignUpForm(false)} handleShowSignUpForm={handleShowSignUpForm} />}
+      <div className={`burger-menu ${openModal ? "open" : ""}`}>
         <ul>
           <li>
             <Link to="/profile">Mes fiches</Link>

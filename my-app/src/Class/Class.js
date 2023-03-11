@@ -18,11 +18,12 @@ import "./../reset.css";
 import "./Class.scss";
 
 import next from "./../assets/images/next.png";
-import arquebusier from "./../assets/images/arquebusier.png";
-import barbare from "./../assets/images/barbare.png";
-import barde from "./../assets/images/barde.png";
-import guerrier from "./../assets/images/guerrier.png";
-import moine from "./../assets/images/moine.png";
+import equipmentIcon from "./../assets/images/equipment.png";
+import arquebusier from "./../assets/images/classes-images/arquebusier.png";
+import barbare from "./../assets/images/classes-images/barbare.png";
+import barde from "./../assets/images/classes-images/barde.png";
+import guerrier from "./../assets/images/classes-images/guerrier.png";
+import moine from "./../assets/images/classes-images/moine.png";
 
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
@@ -102,7 +103,7 @@ const Class = () => {
             <div className="class-img-description-equipment">
                 <div className="class-img-container">
                     <button className="equipment-button" onClick={handleToggleEquipment}>
-                        <img className="equipment-button-img" src="https://fakeimg.pl/30x30/000/" alt="Classe" />
+                        <img className="equipment-button-img" src={equipmentIcon} alt="Classe" />
                     </button>
                     {equipmentModal && (
                         <div className="equipment-modal">
@@ -175,7 +176,7 @@ const Class = () => {
             </Swiper>
             <Link to="/races">
                 <img
-                className="next-page"
+                className="next-page next-page-classes"
                 src={next}
                 alt="Chevron pointing down for the next page"
                 />

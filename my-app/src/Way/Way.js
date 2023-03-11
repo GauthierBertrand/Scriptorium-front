@@ -340,7 +340,7 @@ const Way = () => {
 
             <Link to="/apercu">
                 <img
-                    className="next-page"
+                    className="next-page next-page-ways"
                     src={next}
                     alt="Chevron pointing down for the next page"
                 />

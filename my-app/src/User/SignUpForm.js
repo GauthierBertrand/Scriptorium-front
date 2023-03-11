@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+
 const SignUpForm = (props) => {
   const [pseudo, setPseudo] = useState('');
   const [email, setEmail] = useState('');
@@ -9,6 +12,20 @@ const SignUpForm = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    bgcolor: '#0D1717',
+    border: '2px solid #000',
+    borderRadius: '1em',
+    boxShadow: 24,
+    p: 3,
+  };
 
   const handleResendActivation = async (event) => {
     event.preventDefault();
@@ -56,39 +73,58 @@ const SignUpForm = (props) => {
     }
   };
 
-
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <>
         {successMessage ? (
           <div className="success-message">{successMessage}</div>
         ) : (
-          <>
-            <h2>Inscription</h2>
+          <Modal
+            open={openModal}
+            onClose={props.handleShowSignUpForm}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description">
+            <Box sx={style}>
+            {/* <h2>Inscription</h2> */}
             {errorMessage && <div className="error-message">{errorMessage}</div>}
             <form className="signup-form" onSubmit={handleSubmit}>
-              <label htmlFor="username">Nom d'utilisateur</label>
-              <input type="text" id="pseudo" value={pseudo} onChange={(event) => setPseudo(event.target.value)} />
-              <label htmlFor="email">Adresse e-mail</label>
-              <input type="email" id="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-              <label htmlFor="password">Mot de passe</label>
-              <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-              <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
-              <input type="password" id="confirmPassword" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
-              <button type="submit">S'inscrire</button>
-          {isSubmitted && (
-            <>
-              <button type="button" onClick={handleResendActivation}>Renvoyer l'e-mail d'activation</button>
-              {successMessage && <div className="success-message">{successMessage}</div>}
-            </>
-          )}
-          {!isSubmitted && <button type="button" onClick={props.onClose}>Annuler</button>}
-        </form>
-      </>
-    )}
-  </div>
-</div>
-);
+              <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <Box sx={{mb: 1, mt: 1.5}}>
+                <label className="modal-title" htmlFor="username">Nom d'utilisateur</label>
+              </Box>
+                <input type="text" id="pseudo" value={pseudo} onChange={(event) => setPseudo(event.target.value)} />
+              <Box sx={{mb: 1, mt: 1.5}}>
+                <label className="modal-title" htmlFor="email">Adresse e-mail</label>
+              </Box>
+                <input type="email" id="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+              <Box sx={{mb: 1, mt: 1.5}}>
+                <label className="modal-title" htmlFor="password">Mot de passe</label>
+              </Box>
+                <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+              <Box sx={{mb: 1, mt: 1.5}}>
+                <label className="modal-title" htmlFor="confirmPassword">Confirmer le mot de passe</label>
+              </Box>
+                <input type="password" id="confirmPassword" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+              </Box>  
+                <div className="modal-buttons modal-buttons-signup">
+                  <button className="button button-modal" type="submit" onClick={() => setOpenModal(false)}>
+                    S'inscrire
+                  </button>
+                {isSubmitted && (
+                  <>
+                  <button type="button" className="button button-modal" onClick={handleResendActivation}>
+                    Renvoyer l'e-mail d'activation
+                  </button>
+                    {successMessage && <div className="success-message">{successMessage}</div>}
+                  </>
+                )}
+                {!isSubmitted && <button className="button button-modal" type="button" onClick={props.onClose}>Annuler</button>}
+                </div>              
+            </form>
+            </Box>
+          </Modal>
+        )}
+    </>
+  );
 };
 
 export default SignUpForm;

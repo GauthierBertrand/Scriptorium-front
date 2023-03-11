@@ -1,16 +1,109 @@
 @use '../vars';
 
-.login-form {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: white;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+.user-info {
+  display: flex;
+  justify-content: flex-end;
+    margin-right: 10px;
+  }
+
+.burger {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  padding: 0;
+  border: solid 1px red;
+  cursor: pointer;
 }
 
-.login-form input, .login-form button {
-  display: block;
-  margin-bottom: 10px;
+.burger-menu {
+  display: none;
+  z-index: 100;
+  position: absolute;
+  top: 33px;
+  right: 5px;
+  text-align: center;
+  padding: 7px 15px;
+  border: solid 1px black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.6);
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      &:hover {
+        background-color: yellow;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.open {
+    display: block;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+
+    &.link {
+      color: black;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .auth-buttons {
+    text-align: center;
+  }
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+
+  .logo {
+    margin: 0.2em 0 0 0.2em;
+  }
+}
+
+.button {
+  font-family: vars.$font-family;
+  background-color: vars.$background-input;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 0.8em;
+  color: vars.$font-color;
+  padding: 0.8em;
+  margin-right: 0.3em;
+
+  &-modal {
+    font-size: 1em;
+  }
+
+  &:hover {
+      background-color: vars.$background-selected-color;
+      color: vars.$background-input
+  }
+}
+
+.signin-form input, .signup-form input {
+    width: 80%;
 }
