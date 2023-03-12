@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
-import './LoginForm.scss';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 
