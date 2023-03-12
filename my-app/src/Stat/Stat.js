@@ -114,9 +114,9 @@ const Stat = () => {
             : ""
         : statModifiers[name];
 
-    const isRecommended = classesStats[selectedClass].stat.find(
-      (stat) => stat.name.toUpperCase().startsWith(name.slice(0, 3)) && stat.isRecommended
-    );
+    // const isRecommended = classesStats[selectedClass].stat.find(
+    //   (stat) => stat.name.toUpperCase().startsWith(name.slice(0, 3)) && stat.isRecommended
+    // );
 
     // console.log(classesStats[selectedClass].stat, isRecommended);
 
@@ -124,7 +124,7 @@ const Stat = () => {
       <div key={name} className="primary-stat-item">
         <div className="primary-stat-lines" />
         <div className="primary-stat-modifier box">{modifier}</div>
-        <div className={`primary-stat-name box ${isRecommended ? 'recommended' : ''}`}>{name}</div>
+        <div className={`primary-stat-name box `}>{name}</div>
         <button
           className="primary-stat-value box"
           onClick={() => handleRemoveStat(index)}
