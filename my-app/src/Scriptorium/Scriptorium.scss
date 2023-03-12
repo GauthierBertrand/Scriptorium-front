@@ -46,6 +46,16 @@ body {
         font-size: 15px;
     }
 
+    .modal-title {
+        font-size: 1.2em;
+    }
+    
+    .modal-buttons {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 1.2em;
+    }
+
     .next-page {
         max-width: 100px;
         z-index: 100;

@@ -172,7 +172,6 @@ const GlobalProvider = (props) => {
         stats,
         setStats,
         finalPrimaryStats,
-        // Ways
       }}
     >
       {props.children}
