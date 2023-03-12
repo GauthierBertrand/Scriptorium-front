@@ -57,7 +57,7 @@ const Race = () => {
  
   return (
     <div className="races-container">
-      <h1 className="races-title">Races</h1>
+      <h1 className="races-title">R A C E S</h1>
       <div className="races-frames">
         {races.map((race, index) => (
           <Frame
@@ -71,6 +71,7 @@ const Race = () => {
             handleRaceClick={handleRaceClick}
             expanded={expanded === index}
             setExpanded={setExpanded}
+            isLast={index === 7}
           />
         ))}
       </div>

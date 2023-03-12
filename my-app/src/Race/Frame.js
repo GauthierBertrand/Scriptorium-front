@@ -1,9 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
 import { useSwipeable } from "react-swipeable";
 import { Link } from "react-router-dom";
 import raceImages from './raceImages.js';
+import mobileRaceImages from './mobileRaceImages.js';
 import "./Frame.scss";
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -16,7 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleRaceClick, expanded, setExpanded }) => {
+const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleRaceClick, expanded, setExpanded, isLast }) => {
   const {
     selectedRace,
     setSelectedRace,
@@ -70,12 +71,25 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
     }),
   }));  
 
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  const isMobile = screenWidth < 600;
+
+
   return (
     <div>
       <Card
        className="race-header"
       sx={{ maxWidth: 1, width: expanded ? 1 : 3/5 , transition: 'width 0.35s'}}>
       <Box 
+        className="race-box"
         expand={expanded}
         onClick={handleClick}
         sx={{ position: "relative" }}
@@ -83,15 +97,16 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
         <CardMedia
           component="img"
           height="60"
-          image={raceImages[name]}
+          image={isMobile ? mobileRaceImages[name] : raceImages[name]}
           alt={name}
           className="race-picture"
         />
         <Box
+        className="race-title"
           sx={{
             position: "absolute",
             right: 0,
-            bottom: 3,
+            top: 0,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -99,14 +114,17 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
             borderRadius: "6px",
             height: "4vh",
             width: "40vw",
+            color: "white",
+            fontSize: "1.5rem",
           }}
         >
-          <p className="race-title">{name}</p>
+          <p>{name}</p>
         </Box>
       </Box>
         <Collapse
+        className="race-collapse"
         in={expanded}
-        sx={{ maxHeight: 420, backgroundColor: "rgba(0, 0, 0)",}}
+        sx={{ maxHeight: 420, backgroundColor: "rgba(0, 0, 0)"}}
         timeout="auto" unmountOnExit>
             <CardContent>
               <Typography paragraph className="race-content">{description}</Typography>

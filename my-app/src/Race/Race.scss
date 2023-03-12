@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5vh;
+    box-sizing: border-box;
   }
   .races-title {
     display: none;
@@ -28,11 +29,26 @@
 }
 
 @media screen and (min-width: 900px) {
+
+  .races-container {
+
+    box-sizing: border-box;
+    position: relative;
+
+    .races-title {
+      position: absolute;
+      top: -10vh;
+      left: 40%;
+      z-index: 1;
+      font-size: 40px;
+    }
+  }
   .races-frames {
     margin-top: 2vh;
     width: 100vw;
     height: 90vh;
     display: flex;
-    gap: 1.5vh;
+    gap: 1vw;
+    margin-left:20vw ;
   }
 }

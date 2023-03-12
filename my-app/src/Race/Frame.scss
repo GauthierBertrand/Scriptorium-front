@@ -4,17 +4,13 @@
   margin-bottom: 1rem;
   overflow: hidden;
 
-  &.expanded {
-    height: auto;
-  }
-
-
-
   .race-content {
     padding: 1rem;
     background-color: #eee;
     font-size: 0.9em;
     height: 40vh;
+
+
 
     .race-bonuses {
       display: flex;
@@ -38,14 +34,6 @@
     }
   }
 }
-
-    .race-title {
-      font-family: vars.$font-family;
-      color: #fff;
-      font-size: 1.5em;
-      font-weight: bold;
-    }
-
     .race-content {
       font-family: vars.$font-family !important;
       color: #fff;
@@ -54,22 +42,58 @@
 
     @media screen and (min-width: 900px) {
     .race-picture {
-      max-width: 20vw;
-      width: 20vw;
-      height: auto;
+      max-width: 15vw;
+      width: 10vw !important;
+      height: 100%;
       object-fit: cover;
+
+    }
+    .race-title {
+      font-family: vars.$font-family;
+      color: #fff !important;
+      font-size: 1.5em;
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      left: -2vw !important;
+      margin-left: 2vw;
+      width: 10vw !important;
+      z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
     .race-header {
-      width: 20vw;
-      max-width: 20vw;
-      height: auto;
-    }
-    .race.expanded {
-      height: unset;
+      width: 30vw !important;
+      max-width: 30vw !important;
+      min-width: 10vw !important;
+      background-color: transparent !important;
+      margin-left: -20vw;
     }
 
-    .race-header.expanded {
-      height: auto;
+    .race-box {
+      height: 65vh !important
+    }
+
+    .race-content {
+      font-size: 15px !important;
+    }
+    .last-race {
+      width: 20vw !important;
+      max-width: 30vw !important;
+      min-width: 10vw !important;
+      background-color: transparent !important;
+      margin-left: -10vw;
+    }
+    body {
+      overflow-x: hidden;
+    }
+
+  }
+
+  @media screen and (max-width: 600px) {
+    .race-title {
+      font-weight: bold;
+      text-transform: uppercase;
     }
   }
