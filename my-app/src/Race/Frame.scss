@@ -1,70 +1,75 @@
 @use '../vars';
 
 .race {
-    margin-bottom: 1rem;
-    overflow: hidden;
-  
-    &.expanded {
-      height: auto;
-    }
+  margin-bottom: 1rem;
+  overflow: hidden;
 
-    .race-header {
+  &.expanded {
+    height: auto;
+  }
+
+
+
+  .race-content {
+    padding: 1rem;
+    background-color: #eee;
+    font-size: 0.9em;
+    height: 40vh;
+
+    .race-bonuses {
       display: flex;
-      align-items: center;
-      justify-content: space-around;
-      width: 60%;
-      height: 7vh;
-      padding-top: 1em;
-      border-top-right-radius: 1em;
-      background-color: #ccc;
-      color: #333;
+      margin-top: 1rem;
 
-      .race-picture {
-        width: auto;
-        height: 120%;
-        object-fit: cover;
-      }
+      .race-bonus {
+        padding: 0.5rem 1rem;
+        margin-right: 1rem;
+        font-size: 0.9em;
+        border-radius: 4px;
+        border: none;
+        background-color: #ccc;
+        color: #333;
+        flex-grow: 45%;
 
-      .race-title {
-        width: 30vw;
-        padding: 1em 0;
-        font-size: 1.1em;
-        text-align: right;
-      }
-    }
-  
-    .race-content {
-      padding: 1rem;
-      background-color: #eee;
-      font-size: 0.9em;
-      height: 40vh;
-
-      .race-bonuses {
-        display: flex;
-        margin-top: 1rem;
-  
-        .race-bonus {
-          padding: 0.5rem 1rem;
-          margin-right: 1rem;
-          font-size: 0.9em;
-          border-radius: 4px;
-          border: none;
-          background-color: #ccc;
-          color: #333;
-          flex-grow: 45%;
-  
-          &.selected {
-            background-color: #333;
-            color: #fff;
-          }
+        &.selected {
+          background-color: #333;
+          color: #fff;
         }
       }
     }
   }
+}
 
-  p {
-    font-family: vars.$font-family;
-    color:#fff;
-    font-size: 1.5em;
-    font-weight: bold;
+    .race-title {
+      font-family: vars.$font-family;
+      color: #fff;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .race-content {
+      font-family: vars.$font-family !important;
+      color: #fff;
+      font-size: 1.1em !important;
+    }
+
+    @media screen and (min-width: 900px) {
+    .race-picture {
+      max-width: 20vw;
+      width: 20vw;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .race-header {
+      width: 20vw;
+      max-width: 20vw;
+      height: auto;
+    }
+    .race.expanded {
+      height: unset;
+    }
+
+    .race-header.expanded {
+      height: auto;
+    }
   }

@@ -72,7 +72,8 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
 
   return (
     <div>
-      <Card 
+      <Card
+       className="race-header"
       sx={{ maxWidth: 1, width: expanded ? 1 : 3/5 , transition: 'width 0.35s'}}>
       <Box 
         expand={expanded}
@@ -84,7 +85,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
           height="60"
           image={raceImages[name]}
           alt={name}
-
+          className="race-picture"
         />
         <Box
           sx={{
@@ -100,7 +101,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
             width: "40vw",
           }}
         >
-          <p>{name}</p>
+          <p className="race-title">{name}</p>
         </Box>
       </Box>
         <Collapse
@@ -108,7 +109,7 @@ const Frame = ({ name, description, picture, racialAbilities, raceIndex, handleR
         sx={{ maxHeight: 420, backgroundColor: "rgba(0, 0, 0)",}}
         timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography paragraph>{description}</Typography>
+              <Typography paragraph className="race-content">{description}</Typography>
               <CardContent>
               {racialAbilities?.[0]?.name && (
               <Link to="/general">
