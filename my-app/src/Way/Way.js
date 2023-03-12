@@ -274,7 +274,7 @@ const Way = () => {
                         
                         <div className={stat[0] === "DIST" || stat[0] === "CAC" || stat[0] === "MAG" ? "stat-type atk" : "stat-type def"} key={stat}>
                             <img className="stats-ways-icons" src={stat[0] === "PV" ? pv : stat[0] === "INIT" ? init : stat[0] === "AC" ? ac : stat[0] === "DIST" ? dist : stat[0] === "CAC" ? cac : mag} alt={stat[0]} />
-                            <div className="stat-type-value">{console.log(stat)}{stat[1]}</div>
+                            <div className="stat-type-value">{stat[1]}</div>
                         </div>
                     ))}
                 </div>

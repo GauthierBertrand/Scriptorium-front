@@ -110,7 +110,7 @@ const Class = () => {
                             {equipmentElement}
                         </div>
                     )}
-                    <img className="class-img" src={guerrier} alt={classes[selectedClass] && (classes[selectedClass].name)} /> {/* src={chosenPicture} || {classes[selectedClass] && (classes[selectedClass].picture)} */}
+                    <img className="class-img" src={barde} alt={classes[selectedClass] && (classes[selectedClass].name)} /> {/* src={chosenPicture} || {classes[selectedClass] && (classes[selectedClass].picture)} */}
                         <ImageListItemBar
                         sx={{
                             background: "linear-gradient(90deg, rgba(255,255,255,0) 15%, rgba(0,0,0,1) 50%, rgba(255,255,255,0) 85%)"
@@ -167,7 +167,7 @@ const Class = () => {
                 {classes.map((classObj) => (
                     <SwiperSlide key={classObj.id}>
                         <div className="class-carrousel-item">
-                            <img className="class-carrousel-img" src={guerrier} alt={classObj.name} /> {/* src={classObj.picture} */}
+                            <img className="class-carrousel-img" src={barde} alt={classObj.name} /> {/* src={classObj.picture} */}
                             {/* <div className="class-carrousel-img" style={{background:`url(${barde}) 0`}}></div> */}
                             <p className="class-carrousel-title">{classObj.name}</p>
                         </div>

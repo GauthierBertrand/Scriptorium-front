@@ -117,7 +117,7 @@ const SignUpForm = (props) => {
                     {successMessage && <div className="success-message">{successMessage}</div>}
                   </>
                 )}
-                {!isSubmitted && <button className="button button-modal" type="button" onClick={props.onClose}>Annuler</button>}
+                {!isSubmitted && <button className="button button-modal" type="button" onClick={() => setOpenModal(false)}>Annuler</button>}
                 </div>              
             </form>
             </Box>
