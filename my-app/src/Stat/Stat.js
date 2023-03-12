@@ -9,6 +9,11 @@ import magIcon from "../assets/images/magic.png";
 import next from "./../assets/images/next.png";
 import { GlobalContext } from "../GlobalContext";
 import { Link } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
+import Button from '@mui/material/Button';
+import {styled} from '@mui/material/styles';
+import statsDescriptions from "./statsDescriptions";
+import mobileStatDescriptions from "./mobileStatDescriptions";
 
 const Stat = () => {
   const {
@@ -114,17 +119,22 @@ const Stat = () => {
             : ""
         : statModifiers[name];
 
-    // const isRecommended = classesStats[selectedClass].stat.find(
-    //   (stat) => stat.name.toUpperCase().startsWith(name.slice(0, 3)) && stat.isRecommended
-    // );
+    const isRecommended = classesStats[selectedClass].stat.find(
+      (stat) => stat.name.toUpperCase().startsWith(name.slice(0, 3)) && stat.isRecommended
+    );
 
+    const description = statsDescriptions.find((stat) => stat.name.includes(name)).description;
     // console.log(classesStats[selectedClass].stat, isRecommended);
 
     return (
       <div key={name} className="primary-stat-item">
         <div className="primary-stat-lines" />
         <div className="primary-stat-modifier box">{modifier}</div>
-        <div className={`primary-stat-name box `}>{name}</div>
+        <Tooltip 
+        title={description}
+        >
+        <div className={`primary-stat-name box ${isRecommended ? 'recommended' : ''}`}>{name}</div>
+        </Tooltip>
         <button
           className="primary-stat-value box"
           onClick={() => handleRemoveStat(index)}
@@ -183,29 +193,11 @@ const Stat = () => {
             <p>
               Le personnage est défini par six stats auxquelles on assigne un score constitué de deux parties : la valeur et le Modificateur (Mod.).
             </p>
-            <p>
-              <span>Force (FOR) </span> &nbsp; mesure la puissance physique et musculaire.
-              Gagner un bras de fer, soulever, tordre, lancer un objet lourd, immobiliser un adversaire. Attaquer au contact. Etc.
-            </p>
-            <p>
-              <span>Dextérité (DEX) </span> &nbsp; évalue l’agilité, les réflexes et l’adresse.
-              Faire des acrobaties, tenir en équilibre, grimper, sauter, sprinter, se déplacer en silence, crocheter, chaparder, esquiver une attaque. Attaquer à distance. Etc.
-            </p>
-            <p>
-              <span>Constitution (CON) </span> &nbsp; représente la santé et l’endurance. Résister aux éléments, à la fatigue, aux poisons, aux privations, courir longtemps. Encaisser des blessures. Etc.
-            </p>
-            <p>
-              <span>Intelligence (INT) </span> &nbsp; représente les capacités d’apprentissage et de raisonnement.
-              Raisonner, comprendre, connaître, apprendre, se souvenir, chercher, trouver une information (livre). Attaquer par magie. Etc.
-            </p>
-            <p>
-              <span>Sagesse (SAG) </span> &nbsp; relie le personnage à l’univers : volonté, intuition, perception.
-              Observer, entendre, détecter, repérer, pister, deviner, ressentir. Résister à la peur ou aux influences mentales. Etc.
-            </p>
-            <p>
-              <span>Charisme (CHA) </span> &nbsp; traduit la force de persuasion, la présence et la capacité à commander.
-              Bluffer, mentir, négocier, séduire, intimider, convaincre. Etc.
-            </p>
+            {statsDescriptions.map((stat) => (
+              <p key={stat.name}>
+                <span>{stat.name}</span> &nbsp; {stat.description}
+              </p>
+            ))}
           </p>
         </div>
         <div className="primary-stat-container">

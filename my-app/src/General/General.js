@@ -1,15 +1,11 @@
 import { useSwipeable } from "react-swipeable";
 import React, { useState, useContext } from "react";
-
 import { Link } from "react-router-dom";
-
 import { SheetContext } from "../SheetContext";
-
+import raceImages from '../Race/raceImages.js';
 import "./General.scss";
 // import "./Modal.scss";
 
-import maleOrc from "../assets/images/male-orc.jpg";
-import femaleOrc from "../assets/images/female-orc.png";
 import mars from "../assets/images/mars.png";
 import venus from "../assets/images/venus.png";
 import next from "../assets/images/next.png";
@@ -25,6 +21,7 @@ const General = ({ religions }) => {
     setFormValues,
     selectedReligion,
     setSelectedReligion,
+    raceName,
   } = useContext(SheetContext);
 
   const [direction, setDirection] = useState(null);
@@ -57,13 +54,13 @@ const General = ({ religions }) => {
     setModalOpen(true);
   };
 
-  const handleMaleClick = () => {
-    setCurrentImage(maleOrc);
-  };
+  // const handleMaleClick = () => {
+  //   setCurrentImage(maleOrc);
+  // };
 
-  const handleFemaleClick = () => {
-    setCurrentImage(femaleOrc);
-  };
+  // const handleFemaleClick = () => {
+  //   setCurrentImage(femaleOrc);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -90,7 +87,7 @@ const General = ({ religions }) => {
       )} */}
       <div className="general-page">
         <div className="general-gender-image">
-          <img className="selected-image" src={currentImage} alt="sexe sélectionné" />
+          <img className="selected-image" src={raceImages[raceName]} alt="sexe sélectionné" />
         </div>
         <form className="general-form">
           <div className="general-inputs">

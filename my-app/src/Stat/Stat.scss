@@ -12,6 +12,9 @@
     height: 95vh;
 
     @media screen and (min-width: 1200px) {
+      .Tooltip {
+        display: none;
+      }
       .secondary-stat-container-parent {
         display: flex;
         justify-content: space-between;
@@ -304,6 +307,9 @@
             z-index: -1;
           }
         }
+      }
+      .primary-stat-tooltip {
+        background-color: #0D3D3D;
       }
     }
   }
