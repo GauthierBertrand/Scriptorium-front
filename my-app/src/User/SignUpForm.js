@@ -106,7 +106,7 @@ const SignUpForm = (props) => {
                 <input type="password" id="confirmPassword" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
               </Box>  
                 <div className="modal-buttons modal-buttons-signup">
-                  <button className="button button-modal" type="submit" onClick={() => setOpenModal(false)}>
+                  <button className="button button-modal" type="submit">
                     S'inscrire
                   </button>
                 {isSubmitted && (
