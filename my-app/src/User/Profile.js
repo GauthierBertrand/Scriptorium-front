@@ -150,10 +150,10 @@ const Profile = () => {
                     Etes-vous sûr de vouloir supprimer cette fiche ?
                   </p>
                   <div className="modal-buttons">
-                    <Button variant="outlined" size="small" color="success" onClick={() => handleDelete(sheet.id)}>
+                    <Button variant="outlined" size="small" sx={{color: "#fff", border: "1px solid #fff"}} onClick={() => handleDelete(sheet.id)}>
                       Oui
                     </Button>
-                    <Button variant="outlined" size="small" color="success" onClick={() => handleOpenModal()}>
+                    <Button variant="outlined" size="small" sx={{color: "#fff", border: "1px solid #fff"}} onClick={() => handleOpenModal()}>
                       Non
                     </Button>
                   </div>
