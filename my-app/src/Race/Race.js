@@ -7,6 +7,7 @@ import Frame from "./Frame";
 
 const Race = () => {
   const [races, setRaces] = useState([]);
+  const [expanded, setExpanded] = useState(null);
   const {
     selectedRace,
     setSelectedRace,
@@ -68,6 +69,8 @@ const Race = () => {
             racialAbilities={race.racialAbilities}
             selectedRace={selectedRace}
             handleRaceClick={handleRaceClick}
+            expanded={expanded === index}
+            setExpanded={setExpanded}
           />
         ))}
       </div>

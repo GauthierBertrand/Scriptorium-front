@@ -10,8 +10,6 @@ import next from "./../assets/images/next.png";
 import { GlobalContext } from "../GlobalContext";
 import { Link } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
-import Button from '@mui/material/Button';
-import {styled} from '@mui/material/styles';
 import statsDescriptions from "./statsDescriptions";
 import mobileStatDescriptions from "./mobileStatDescriptions";
 
@@ -132,6 +130,7 @@ const Stat = () => {
         <div className="primary-stat-modifier box">{modifier}</div>
         <Tooltip 
         title={description}
+        sx={{ bgcolor: 'primary.main' }}
         >
         <div className={`primary-stat-name box ${isRecommended ? 'recommended' : ''}`}>{name}</div>
         </Tooltip>
