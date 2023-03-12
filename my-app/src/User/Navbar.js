@@ -7,6 +7,9 @@ import SignUpForm from './SignUpForm';
 import './Navbar.scss';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 
 const Navbar = () => {
   const {
@@ -32,16 +35,53 @@ const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
 
-  const handleOpenModal = () => {
-    setOpenModal(!openModal);
+  // Menu burger - MUI
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const BasicMenu = () => {
+
+      return (
+        <Menu
+          id="basic-menu"
+          className={"burger-menu"}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+          >
+            <MenuItem sx={{color: 'white'}} onClick={handleClose}>
+              <Link to="/profile">Mes fiches</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+            <Link to="/parametres">Paramètres</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+            <Link to="mentions-legales">Mentions légales</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              {user && (
+                <Link to="/classes" onClick={handleLogout}>
+                  Déconnexion
+                </Link>
+              )}
+            </MenuItem>
+        </Menu>
+      );
+    };
 
   const handleLogout = () => {
     Cookies.remove('token');
     setUser(null);
-    setOpenModal(false);
   };
 
   const handleShowLoginForm = () => {
@@ -107,35 +147,24 @@ const Navbar = () => {
           )}
         </div>
         {isLoggedIn && (
-        <div className="burger" onClick={handleOpenModal}>
+        <Button
+        sx={{minWidth: 30, minHeight: 20}}
+        size="small"
+        className="burger"
+        onClick={handleClick}
+        id="burger-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}>
           <div className="line"></div>
           <div className="line"></div>
           <div className="line"></div>
-        </div>
+        </Button>
         )}
       </nav>
       {showLoginForm && <LoginForm onSuccess={() => setShowLoginForm(false)} handleShowLoginForm={handleShowLoginForm} />}
       {showSignUpForm && <SignUpForm onSuccess={() => setShowSignUpForm(false)} handleShowSignUpForm={handleShowSignUpForm} />}
-      <div className={`burger-menu ${openModal ? "open" : ""}`}>
-        <ul>
-          <li>
-            <Link to="/profile">Mes fiches</Link>
-          </li>
-          <li>
-            <Link to="/parametres">Paramètres</Link>
-          </li>
-          <li>
-            <Link to="mentions-legales">Mentions légales</Link>
-          </li>
-          {user && (
-            <li>
-              <Link to="/classes" onClick={handleLogout}>
-                Déconnexion
-              </Link>
-            </li>
-          )}
-        </ul>
-      </div>
+      <BasicMenu />
     </div>
   );
 };
