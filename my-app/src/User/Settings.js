@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
 
+import './Settings.scss';
+
 const Settings = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -78,56 +80,58 @@ const Settings = () => {
   };
 
   return (
-    <div>
+    <div className="settings-container">
       <h1>Paramètres</h1>
-      <form onSubmit={handleChangePassword}>
-        <h2>Changer le mot de passe</h2>
-        <label>
-          Mot de passe actuel :
+      <div className="settings-form-container">
+        <form className="settings-form" onSubmit={handleChangePassword}>
+          <h2 className="settings-subtitle">Changer le mot de passe</h2>
+          <label>
+            Mot de passe actuel :
+            <input
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Nouveau mot de passe :
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Confirmation du mot de passe :
+            <input
+              type="password"
+              value={verifyPassword}
+              onChange={(e) => setVerifyPassword(e.target.value)}
+              required
+            />
+          </label>
+          {newPassword !== verifyPassword && (
+            <p style={{ color: 'red' }}>Les mots de passe ne correspondent pas</p>
+          )}
+          <button className="button button-settings" type="submit">Changer le mot de passe</button>
+        </form>
+        <form className="settings-form" onSubmit={handleDeleteAccount}>
+          <h2 className="settings-subtitle">Supprimer mon compte</h2>
+          <h3>Etes-vous sûr.e de vouloir supprimer votre compte ? <br /> Cette action est irréversible.</h3>
+          <label>
+          Mot de passe :
           <input
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            required
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              required
           />
-        </label>
-        <label>
-          Nouveau mot de passe :
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirmation du mot de passe :
-          <input
-            type="password"
-            value={verifyPassword}
-            onChange={(e) => setVerifyPassword(e.target.value)}
-            required
-          />
-        </label>
-        {newPassword !== verifyPassword && (
-          <p style={{ color: 'red' }}>Les mots de passe ne correspondent pas</p>
-        )}
-        <button type="submit">Changer le mot de passe</button>
-      </form>
-      <form onSubmit={handleDeleteAccount}>
-        <h2>Supprimer mon compte</h2>
-        <p>Etes-vous sûr.e de vouloir supprimer votre compte ?</p>
-        <label>
-        Mot de passe actuel :
-        <input
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            required
-        />
-        </label>
-        <button type="submit">Supprimer mon compte</button>
-    </form>
+          </label>
+          <button className="button button-settings" type="submit">Supprimer mon compte</button>
+        </form>
+      </div>
     </div>
     );
 };

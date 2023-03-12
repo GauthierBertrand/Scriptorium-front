@@ -10,6 +10,13 @@ import { SheetContext } from "./../SheetContext";
 
 
 import next from "../assets/images/next.png";
+import pv from "../assets/images/health.png";
+import init from "../assets/images/initiative.png";
+import ac from "../assets/images/defense.png";
+import dist from "../assets/images/ranged.png";
+import cac from "../assets/images/melee.png";
+import mag from "../assets/images/magic.png";
+
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -264,8 +271,9 @@ const Way = () => {
                 </div>
                 <div className="stats-header-other">
                     {Object.entries(secondaryStats).map((stat) => (
+                        
                         <div className={stat[0] === "DIST" || stat[0] === "CAC" || stat[0] === "MAG" ? "stat-type atk" : "stat-type def"} key={stat}>
-                            <img src="https://fakeimg.pl/20/747DEF/?text=PV" alt={stat[0]} />
+                            <img className="stats-ways-icons" src={stat[0] === "PV" ? pv : stat[0] === "INIT" ? init : stat[0] === "AC" ? ac : stat[0] === "DIST" ? dist : stat[0] === "CAC" ? cac : mag} alt={stat[0]} />
                             <div className="stat-type-value">{stat[1]}</div>
                         </div>
                     ))}

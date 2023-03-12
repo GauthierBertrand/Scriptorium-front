@@ -87,7 +87,8 @@
         padding: 0;
         border: none;
         background-color: transparent;
-        z-index: 100;
+        z-index: 50;
+        opacity: 0.7;
 
         @media (min-width: 900px) {
             display: none;
@@ -196,7 +197,7 @@
 
     .class-carrousel {
         margin: auto;
-        mask-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, vars.$background-color 30%, vars.$background-color 70%, rgba(255, 255, 255, 0) 100%);        
+        mask-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, vars.$background-color 30%, vars.$background-color 70%, rgba(255, 255, 255, 0) 100%);         
         &-img {
             border-radius: 100%;
             height: 12vh;

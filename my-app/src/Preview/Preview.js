@@ -115,6 +115,7 @@ const Preview = () => {
 
     return (
         <div className="preview-container">
+            <h1 className="preview-title">Aperçu</h1>
             <div className="preview">
                 {/* <img className="preview-image" src="https://fakeimg.pl/250x450/EFC874/?text=Preview" alt="Prévisualisation de votre fiche de personnage" /> */}
                 {pdfUrl &&
