@@ -6,7 +6,7 @@ const Notice = () => {
             initial={{ opacity: 0, y: "100vh" }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100vh" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
         >
             <h1>Mentions légales</h1>
             <h2>
