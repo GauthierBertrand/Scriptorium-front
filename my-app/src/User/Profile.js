@@ -8,6 +8,8 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import './Profile.scss';
 
+import demiElfe from '../assets/images/race-banners/banner-demi-elfe.png';
+
 
 const Profile = () => {
     const { 
@@ -113,10 +115,10 @@ const Profile = () => {
       <h1>Mes fiches enregistrées</h1>
       <div className="sheet-list">
         {sheetsList.map((sheet, index) => (
-          <div className="sheet" key={index}>
+          <div className="sheet" key={index}>{console.log(sheet)}
             <div className="sheet-infos">
               <div className="sheet-picture">
-                <img className="character-picture" src={sheet.picture} alt="Portrait du personnage" height={80} /> {/* height to disable once the picture is really dynamic*/}
+                <img className="character-picture" src={sheet.picture !== "\"\"" ? sheet.picture : demiElfe} alt="Portrait du personnage" height={80} /> {/* height to disable once the picture is really dynamic*/}
               </div>
               <div className="sheet-name">
                 {sheet.character_name}
