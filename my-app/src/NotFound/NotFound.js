@@ -1,6 +1,8 @@
 import notFound from '../assets/images/notFound.png';
 import './NotFound.scss';
 
+import {motion} from "framer-motion";
+
 function NotFound() {
   return (
     <div className="not-found">

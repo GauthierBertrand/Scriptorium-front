@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-
+import home from '../assets/images/home.png';
 const Navbar = () => {
   const {
     setSelectedClass,
@@ -128,7 +128,7 @@ const Navbar = () => {
     <div className="navbar-container">
       <div className="logo" onClick={clearStates}>
         <Link to="/classes">
-          <img src="https://fakeimg.pl/40x40/000/?text=Logo" alt="Logo" />
+          <img src={home} alt="home" />
         </Link>
       </div>
       <nav className="navbar">

@@ -3,6 +3,8 @@ import "./Generator.scss";
 import { GlobalContext } from "../GlobalContext";
 import { NavLink } from "react-router-dom";
 
+import { motion } from "framer-motion";
+
 const Generator = () => {
   const { diceRolls, setDiceRolls } = useContext(GlobalContext);
   const [selectedGeneration, setSelectedGeneration] = useState(null);
@@ -29,7 +31,12 @@ const Generator = () => {
   };
 
   return (
-    <div className="main">
+    <motion.div className="main"
+      initial={{ opacity: 0, y: "100vh" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "-100vh" }}
+      transition={{ duration: 0.5 }}
+    >
       <h1>Génération des statistiques</h1>
       <p> </p>
       <div className="generator">
@@ -64,7 +71,7 @@ const Generator = () => {
         </NavLink>
       </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

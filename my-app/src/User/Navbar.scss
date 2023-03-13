@@ -92,6 +92,10 @@ li {
 
   .logo {
     margin: 0.2em 0 0 0.2em;
+
+    img {
+      width: 2em;
+    }
   }
 }
 
@@ -118,3 +122,4 @@ li {
 .signin-form input, .signup-form input {
     width: 80%;
 }
+

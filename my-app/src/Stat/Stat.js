@@ -13,6 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import statsDescriptions from "./statsDescriptions";
 import mobileStatDescriptions from "./mobileStatDescriptions";
 
+import {motion} from "framer-motion";
+
 const Stat = () => {
   const {
     diceRolls,
@@ -164,7 +166,12 @@ const Stat = () => {
   };
 
   return (
-    <div className="main stat-main">
+    <motion.div className="main stat-main"
+      initial={{ opacity: 0, y: "100vh" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "-100vh" }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="parent">
         <div className="secondary-stat-container-parent">
           <div className="secondary-stat-container">
@@ -232,7 +239,7 @@ const Stat = () => {
           />
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

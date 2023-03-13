@@ -1,5 +1,7 @@
 @use '../vars';
 
+
+
 html::-webkit-scrollbar {
     width: 0.8em;
     background-color: vars.$background-input;
@@ -86,3 +88,4 @@ body {
 .hidden {
     display: none;
 }
+

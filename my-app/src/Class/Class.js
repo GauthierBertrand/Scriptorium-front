@@ -9,6 +9,8 @@ import { ImageListItemBar } from '@mui/material';
 import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
 
+import {motion} from "framer-motion";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/keyboard";
@@ -24,6 +26,7 @@ import barbare from "./../assets/images/classes-images/barbare.png";
 import barde from "./../assets/images/classes-images/barde.png";
 import guerrier from "./../assets/images/classes-images/guerrier.png";
 import moine from "./../assets/images/classes-images/moine.png";
+
 
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
@@ -96,7 +99,13 @@ const Class = () => {
     // console.log(chosenPicture);
 
     return (
-        <div className="class-container">
+        <motion.div 
+        className="class-container"
+        initial={{ opacity: 0, y: "100vh" }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: "-100vh" }}
+        transition={{ duration: 0.5 }}
+        >
             <h1 className="class-title">
                 Choisissez votre classe
             </h1>
@@ -181,7 +190,7 @@ const Class = () => {
                 alt="Chevron pointing down for the next page"
                 />
             </Link>
-        </div>
+        </motion.div>
     );
 };
 

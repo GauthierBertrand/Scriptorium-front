@@ -4,6 +4,7 @@ import { SheetContext } from "../SheetContext";
 import axios from "axios";
 import "./Race.scss";
 import Frame from "./Frame";
+import { motion } from "framer-motion";
 
 const Race = () => {
   const [races, setRaces] = useState([]);
@@ -54,9 +55,15 @@ const Race = () => {
     }
     setSelectedRaceAbility("");
   };
- 
+
   return (
-    <div className="races-container">
+    <motion.div className="races-container"
+
+      initial={{ opacity: 0, y: "100vh" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "-100vh" }}
+      transition={{ duration: 0.5 }}
+    >
       <h1 className="races-title">R A C E S</h1>
       <div className="races-frames">
         {races.map((race, index) => (
@@ -75,7 +82,7 @@ const Race = () => {
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -14,14 +14,17 @@ import Avatar from "../Avatar/Avatar";
 import Edit from "../General/Edit";
 import NotFound from "../NotFound/NotFound";
 import { useContext } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { UserProvider } from "../UserContext";
 import SheetProvider from "../SheetContext";
 import { SheetContext } from "../SheetContext";
 import "./Scriptorium.scss";
+import {AnimatePresence} from "framer-motion";
+
 
 const Scriptorium = () => {
   const { selectedSheetId } = useContext(SheetContext);
+  const location = useLocation();
   return (
     <div>
       <UserProvider>
@@ -29,8 +32,9 @@ const Scriptorium = () => {
       </UserProvider>
       <SheetProvider>
       <Avatar />
-        <Routes>
-          <Route path="/" element={<Navigate to="/classes" />} />
+        <AnimatePresence >
+        <Routes location={location} key={location.pathname}>
+          <Route  path="/" element={<Navigate to="/classes" />} />
           <Route
             path="/profile"
             element={
@@ -77,6 +81,7 @@ const Scriptorium = () => {
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </AnimatePresence>
       </SheetProvider>
     </div>
   );

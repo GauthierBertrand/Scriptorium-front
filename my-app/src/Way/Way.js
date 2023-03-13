@@ -8,6 +8,7 @@ import axios from "axios";
 import { GlobalContext } from "./../GlobalContext";
 import { SheetContext } from "./../SheetContext";
 
+import {motion} from "framer-motion";
 
 import next from "../assets/images/next.png";
 import pv from "../assets/images/health.png";
@@ -256,7 +257,12 @@ const Way = () => {
 
 
     return (
-        <div className="main way-main">
+        <motion.div className="main way-main"
+        initial={{ opacity: 0, y: "100vh" }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: "-100vh" }}
+        transition={{ duration: 0.5 }}
+        >
             <div className="stats-header">
                 <div className="stats-header-mod">
                     {Object.entries(finalPrimaryStats).map((stat) => (
@@ -353,7 +359,7 @@ const Way = () => {
                     alt="Chevron pointing down for the next page"
                 />
             </Link>
-        </div>
+        </motion.div>
 
 
     );

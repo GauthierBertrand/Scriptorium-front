@@ -6,6 +6,8 @@ import raceImages from '../Race/raceImages.js';
 import "./General.scss";
 // import "./Modal.scss";
 
+import {motion} from "framer-motion";
+
 import mars from "../assets/images/mars.png";
 import venus from "../assets/images/venus.png";
 import next from "../assets/images/next.png";
@@ -85,7 +87,12 @@ const General = ({ religions }) => {
           </div>
         </div>
       )} */}
-      <div className="general-page">
+      <motion.div className="general-page"
+      initial={{ opacity: 0, y: "100vh" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "-100vh" }}
+      transition={{ duration: 0.5 }}
+      >
         <div className="general-gender-image">
           <img className="selected-image" src={raceImages[raceName]} alt="sexe sélectionné" />
         </div>
@@ -119,7 +126,7 @@ const General = ({ religions }) => {
           </div>
           <div className="religion-description">{selectedReligion?.description}</div>
         </div>
-      </div>
+      </motion.div>
       <Link to="/generation-des-stats">
         <img
           className="next-page"

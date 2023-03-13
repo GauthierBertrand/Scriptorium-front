@@ -12,6 +12,8 @@ import Cookies from 'js-cookie';
 
 import "./Preview.scss";
 
+import { motion } from "framer-motion";
+
 const Preview = () => {
     const {
         // Classes
@@ -114,7 +116,12 @@ const Preview = () => {
     }, []);
 
     return (
-        <div className="preview-container">
+        <motion.div className="preview-container"
+            initial={{ opacity: 0, y: "100vh" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100vh" }}
+            transition={{ duration: 0.5 }}
+        >
             <h1 className="preview-title">Aperçu</h1>
             <div className="preview">
                 {/* <img className="preview-image" src="https://fakeimg.pl/250x450/EFC874/?text=Preview" alt="Prévisualisation de votre fiche de personnage" /> */}
@@ -127,7 +134,7 @@ const Preview = () => {
             <div className="generate">
                 <button className="generate-button" onClick={handleGeneration}>Générer ma fiche</button>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
