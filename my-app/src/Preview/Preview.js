@@ -120,7 +120,7 @@ const Preview = () => {
             initial={{ opacity: 0, y: "100vh" }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100vh" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
         >
             <h1 className="preview-title">Aperçu</h1>
             <div className="preview">
