@@ -12,6 +12,7 @@ import Settings from "../User/Settings";
 import ProtectedRoute from "../User/ProtectedRoute";
 import Avatar from "../Avatar/Avatar";
 import Edit from "../General/Edit";
+import NotFound from "../NotFound/NotFound";
 import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { UserProvider } from "../UserContext";
@@ -74,6 +75,7 @@ const Scriptorium = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </SheetProvider>
     </div>
