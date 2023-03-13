@@ -56,7 +56,7 @@ const SignUpForm = (props) => {
     }
 
     try {
-      const response = await axios.post('https://jdr-api.com/inscription', {
+      const response = await axios.post('http://localhost:8080/inscription', {
         pseudo: pseudo,
         email: email,
         password: password
