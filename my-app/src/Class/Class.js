@@ -1,3 +1,4 @@
+// React and dependencies
 import { useState, useEffect, useContext } from "react";
 
 import SwiperCore, { Navigation, Keyboard, Mousewheel } from "swiper";
@@ -5,11 +6,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ImageListItemBar } from '@mui/material';
+import {motion} from "framer-motion";
 
+// Context
 import { GlobalContext } from "../GlobalContext";
 import { SheetContext } from "../SheetContext";
 
-import {motion} from "framer-motion";
+// CSS and images
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -30,7 +33,9 @@ import moine from "./../assets/images/classes-images/moine.png";
 
 SwiperCore.use([ Navigation, Keyboard, Mousewheel ]);
 
+// Component
 const Class = () => {
+    // Contexts and states
     const {
         classes,
         setClasses,
@@ -46,6 +51,7 @@ const Class = () => {
     } = useContext(SheetContext);
     const [equipmentModal, setEquipmentModal] = useState(false);
 
+    // To display equipment when the selected class is set
     const equipmentElement = equipment[selectedClass] && (
         <div className="equipment-container">
         {equipment[selectedClass].map((equipment, index) => (
@@ -60,12 +66,14 @@ const Class = () => {
         </div>
     );
 
+    // Attempt to display the picture of the selected class (not functional at the moment)
     const chosenPicture = classes[selectedClass] && (classes[selectedClass].name.toLowerCase());
 
     const handleToggleEquipment = () => {
         setEquipmentModal(!equipmentModal);
     };
 
+    // API call to get classes data
     useEffect(() => {
         axios.get("https://jdr-api.com/api/classes")
         .then((response) => {
@@ -99,6 +107,7 @@ const Class = () => {
     // console.log(chosenPicture);
 
     return (
+        // Transition animation
         <motion.div 
         className="class-container"
         initial={{ opacity: 0, y: "100vh" }}
@@ -121,6 +130,7 @@ const Class = () => {
                         </div>
                     )}
                     <img className="class-img" src={barde} alt={classes[selectedClass] && (classes[selectedClass].name)} /> {/* src={chosenPicture} || {classes[selectedClass] && (classes[selectedClass].picture)} */}
+                        {/* MUI Component */}
                         <ImageListItemBar
                         sx={{
                             background: "linear-gradient(90deg, rgba(255,255,255,0) 15%, rgba(0,0,0,1) 50%, rgba(255,255,255,0) 85%)"
@@ -146,6 +156,7 @@ const Class = () => {
                     <div className="class-description-equipment">
                         {equipmentElement}
                     </div>
+                    {/* Button to choose the class and go to the next page on desktop */}
                     <div className="class-choice">
                         <Link to="/races">
                             <button className="class-choice-button">
@@ -174,6 +185,7 @@ const Class = () => {
                         slidesPerView: 7
                     }
                 }}>
+                {/* Each class = one slide */}
                 {classes.map((classObj) => (
                     <SwiperSlide key={classObj.id}>
                         <div className="class-carrousel-item">
@@ -184,6 +196,7 @@ const Class = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
+            {/* Button to choose the class and go to the next page on mobile */}
             <Link to="/races">
                 <img
                 className="next-page next-page-classes"
